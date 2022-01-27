@@ -1,0 +1,60 @@
+// // Core
+@import "variables";
+@import "fonts";
+@import "icons";
+@import "default";
+@import "helpers";
+
+
+// Layout
+@import "layout/sidebar";
+@import "elements/dark-switch";
+@import "layout/page-header";
+@import "elements/buttons";
+@import "elements/tables";
+
+@import "form/input";
+@import "form/select";
+@import "form/datepicker";
+
+@import "elements/badges";
+
+@import "pages/orders"
+
+// // Elements
+// @import "form/input";
+// @import "form/checkbox";
+// @import "form/switch";
+// @import "form/select";
+// @import "form/datepicker";
+// @import "form/multiple-text-field";
+// @import "form/multiple-fields-row";
+// @import "form/editor";
+// @import "form/file-input-preview";
+// @import "elements/menu-tree";
+// @import "elements/page-header";
+// @import "elements/search-block";
+// @import "elements/user-dropdown";
+// @import "elements/notifications-dropdown";
+// @import "elements/white-panel";
+// @import "elements/filters-group";
+// @import "elements/table";
+// @import "elements/user-info";
+// @import "elements/pagination";
+// @import "elements/images-uploader";
+// @import "elements/modal";
+// @import "elements/nestable";
+// @import "elements/options-list";
+// @import "elements/dynamic-search";
+// @import "elements/tabs";
+
+// // Pages
+// @import "pages/auth";
+// @import "pages/home";
+// @import "pages/products/index";
+// @import "pages/order";
+// @import "pages/faq";
+// @import "pages/faq-categories";
+// @import "pages/excel";
+// @import "pages/notes";
+// @import "pages/404";

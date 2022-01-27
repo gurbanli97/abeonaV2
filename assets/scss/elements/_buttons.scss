@@ -1,0 +1,63 @@
+.btn {
+    min-height: 32px;
+    max-height: 32px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+
+    &:focus, &.btn.focus {
+        box-shadow: none;
+    }
+
+    &.btn-success {
+        color: $white;
+        font-size: 14px;
+        line-height: 16px;
+        background-color: $success-5;
+        padding: 8px 16px;
+    }
+
+    &.open-filters {
+        display: flex;
+        align-items: center;
+        background: $basic-2;
+        color: $basic-7;
+        margin-left: 32px;
+        margin-right: 16px;
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 500;
+        border: 1px solid #8D92C1;
+        box-sizing: border-box;
+        border-radius: 4px;
+        padding: 8px 16px 8px 16px;
+        
+        span {
+            margin-left: 13px;
+        }
+    
+        i{
+            font-size: 18px;
+        }
+    }
+    
+    
+    &.clear-filters {
+        display: flex;
+        align-items: center;
+        
+        color: #3366FF;
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 500;
+    
+        span{
+            margin-left: 10px;
+        }
+    }
+
+    &.add-consultation {
+        margin-left: 16px;
+    }
+
+}
