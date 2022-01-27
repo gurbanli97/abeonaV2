@@ -1,0 +1,31 @@
+.badge {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: 500;
+    width: 100%;
+    max-width: 100px;
+    height: 32px;
+    padding: 6px 0;
+    border-radius: 4px;
+
+    &-light{
+        background-color: $white;
+        color: #7B61FF !important;
+    }
+
+    &-danger {
+        background-color: $danger-2;
+        color: $danger-5 !important;
+    }
+
+    &-warning {
+        background-color: $warning-2;
+        color: $warning-5 !important;
+    }
+
+    &-info {
+        background-color: $info-2;
+        color: $info-5 !important;
+    }
+}
