@@ -91,7 +91,6 @@ export default {
     // Do away with the baseUrl when using proxy
      proxy: true
    },
- 
    proxy: {
      // Simple proxy
      "/api/": {
