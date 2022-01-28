@@ -28,8 +28,13 @@ export default {
   //   host: '192.168.0.189'
   // },
 
-  loading: '~/components/Loading.vue',
-  
+  // loading: '~/components/Loading.vue',
+  loading: {
+    color: '#00D68F',
+    height: '3px'
+  },
+
+
   alias: {
     'images': resolve(__dirname, './assets/images'),
     'icons': resolve(__dirname, './assets/images/icons'),
@@ -81,9 +86,19 @@ export default {
     '@nuxtjs/toast',
     'vue-scrollto/nuxt',
   ],
+
   axios: {
-    baseURL: "http://localhost:8000"
-  },
+    // Do away with the baseUrl when using proxy
+     proxy: true
+   },
+ 
+   proxy: {
+     // Simple proxy
+     "/api/": {
+       target: "https://stg.abeona.vizam.az",
+       pathRewrite: { "^api/": "" }
+     }
+   },
 
   toast: {
     position: "top-right",

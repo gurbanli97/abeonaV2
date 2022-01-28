@@ -28,24 +28,28 @@
           </b-row >
             <b-row class="mt-3">
             <b-col>
-              <span>Customer</span>
+              <span>Order date</span>
               <strong>{{order.customer}}</strong>
             </b-col>
              <b-col>
-              <span>Order ID</span>
+              <span>Source</span>
               <strong>{{order.id}}</strong>
             </b-col>
              <b-col>
-              <span>Travel to</span>
+              <span>Payment status</span>
               <strong>{{order.travel_to}}</strong>
             </b-col>
              <b-col>
-              <span>Visa Type</span>
-              <strong>{{order.source}}</strong>
+              <span>Priority</span>
+               <badge :priority="'Medium'">
+                        Medium
+              </badge>
             </b-col>
              <b-col>
-              <span>Order Type</span>
-              <strong>{{order.source}}</strong>
+              <span>Order status</span>
+                <badge :status="'Cancelled'">
+                        Cancelled
+                </badge>
             </b-col>
           </b-row>
         </div>
