@@ -1,22 +1,35 @@
 <template>
-  <b-badge variant="light" v-if="status === 'Online'">
-    <slot></slot>
-  </b-badge>
-   <b-badge variant="info" v-else-if="status === 'Completed'">
-    <slot></slot>
-  </b-badge>
-   <b-badge variant="danger" v-else-if="status === 'Canceled'">
-    <slot></slot>
-  </b-badge>
-   <b-badge variant="warning" v-else-if="status === 'Pending'">
-    <slot></slot>
-  </b-badge>
+      <span 
+        v-if="status" 
+        class="badge-status badge"
+       :class="{
+         'badge-light':status === 'Online',
+         'badge-warning':status === 'Pending',
+         'badge-info':status === 'Completed',
+         'badge-danger':status === 'Cancelled',
+         }"
+       >
+        <slot></slot>
+      </span>
+       <span 
+       v-else-if="priority" 
+       class="badge-priority badge"
+       :class="{
+         'badge-light':priority === 'Online',
+         'badge-warning':priority === 'Pending',
+         'badge-info':priority === 'Medium',
+         'badge-danger':priority === 'Important',
+         }"
+       >
+        <slot></slot>
+      </span>
 </template>
 
 <script>
 export default {
     props: {
-        status: String
+        status: String,
+        priority: String
     }
 }
 </script>

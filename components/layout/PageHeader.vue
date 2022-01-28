@@ -1,7 +1,10 @@
 <template>
   <div class="page-header">
     <b-row align-v="center" class="justify-content-between">
-      <b-col xl="3" md="6">
+      <b-col xl="3" md="6" class="d-flex align-items-center">
+        <button class="btn go-back" @click="$router.go(-1)" v-if="showBackButton">
+            <icon :name="'arrow-left'"/>
+        </button>
         <h1 class="page-title">{{ title }}</h1>
       </b-col>
 
@@ -35,12 +38,15 @@
 
 <script>
 import Filters from '../elements/Filters.vue'
+import Icon from '../elements/Icon.vue'
   export default {
-  components: { Filters },
+  components: { Filters, Icon },
       props: {
-          title: {
-              type: String
-          },
+          title: String,
+          showBackButton:{
+              type: Boolean,
+              default: false
+          }
       },
       data(){
           return {

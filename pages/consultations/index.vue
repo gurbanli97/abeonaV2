@@ -1,6 +1,6 @@
 <template>
   <div class="consultations">
-      <page-header :title="'Consultations'" />
+      <page-header :title="'Consultations'"/>
     <div class="container">
     <user-table :fields="fields">
         <tbody>
@@ -19,7 +19,9 @@
                   <span>{{consultation.title}}</span>
                 </td>
                 <td>
-                   <badge :status="consultation.status">{{consultation.status}}</badge>
+                    <badge :status="consultation.status">
+                        {{consultation.status}}
+                    </badge>
                 </td>
                 <td class="actions" :class="{'active':activeAction === consultation.id}">
                   <button class="show-actions" @click="toggleActions(consultation)" v-scroll-to="`#element-${consultation.id}`" ref="showActions">

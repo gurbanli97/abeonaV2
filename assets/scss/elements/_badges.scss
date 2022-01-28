@@ -1,31 +1,43 @@
 .badge {
-    font-size: 14px;
-    line-height: 20px;
     text-align: center;
     font-weight: 500;
     width: 100%;
     max-width: 100px;
-    height: 32px;
-    padding: 6px 0;
+    line-height: 32px;
     border-radius: 4px;
+    padding: 6px 0;
 
-    &-light{
+   &.badge-status.badge-light{
+        background-color: $white;
+        color: #7B61FF !important;
+    }
+   
+    &.badge-status.badge-light{
         background-color: $white;
         color: #7B61FF !important;
     }
 
-    &-danger {
+    &.badge-status.badge-danger {
         background-color: $danger-2;
         color: $danger-5 !important;
     }
 
-    &-warning {
+    &.badge-status.badge-warning {
         background-color: $warning-2;
         color: $warning-5 !important;
     }
 
-    &-info {
+    &.badge-status.badge-info {
+        background-color: $info-2;
+        color: $info-5 !important;
+    }
+
+  
+    
+    &.badge-priority.badge-info {
         background-color: $info-2;
         color: $info-5 !important;
     }
 }
+
+  
