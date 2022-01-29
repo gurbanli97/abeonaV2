@@ -41,11 +41,15 @@
             </b-col>
              <b-col>
               <span>Priority</span>
-               <badge :category="'priority'" :text="'Online'"/>
+               <badge :priority="'Medium'">
+                        Medium
+              </badge>
             </b-col>
              <b-col>
               <span>Order status</span>
-                <badge :category="'status'" :text="'Online'"/>
+                <badge :status="'Cancelled'">
+                        Cancelled
+                </badge>
             </b-col>
           </b-row>
         </div>
