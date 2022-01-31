@@ -1,36 +1,41 @@
 <template>
-      <span 
-        v-if="status" 
-        class="badge-status badge"
-       :class="{
-         'badge-light':status === 'Online',
-         'badge-warning':status === 'Pending',
-         'badge-info':status === 'Completed',
-         'badge-danger':status === 'Cancelled',
-         }"
-       >
-        <slot></slot>
-      </span>
-       <span 
-       v-else-if="priority" 
-       class="badge-priority badge"
-       :class="{
-         'badge-light':priority === 'Online',
-         'badge-warning':priority === 'Pending',
-         'badge-info':priority === 'Medium',
-         'badge-danger':priority === 'Important',
-         }"
-       >
-        <slot></slot>
-      </span>
+  <span :class="['badge', `badge-${category}`, `badge-${className}`]">
+    {{ text }}
+  </span>
 </template>
 
 <script>
 export default {
-    props: {
-        status: String,
-        priority: String
-    }
+  props: {
+    category: {
+      type: String,
+      validator: value => [
+        'status',
+        'priority'
+      ].includes(value)
+    },
+    text: String
+  },
+  computed: {
+    className () {
+      switch (this.category) {
+        case 'status':
+          return {
+            'Online': 'light',
+            'Pending': 'warning',
+            'Completed': 'info',
+            'Cancelled': 'danger'
+          }[this.text]
+        case 'priority':
+          return {
+            'Online': 'light',
+            'Pending': 'warning',
+            'Medium': 'info',
+            'Important': 'danger'
+          }[this.text]
+      }
+    },
+  }
 }
 </script>
 
