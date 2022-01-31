@@ -3,6 +3,7 @@
     {{ text }}
   </span>
 </template>
+
 <script>
 export default {
   props: {
