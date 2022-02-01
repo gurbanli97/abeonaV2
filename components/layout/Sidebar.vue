@@ -55,15 +55,17 @@
             </div>
 
             <div class="sidebar-profile" :class="{'sidebar-active': sidebarIsActive}">
-                <div class="profile-info">
+               <NuxtLink to="/profile">
+                    <div class="profile-info">
                         <div class="profile-avatar">
-                        <img src="~images/avatar.svg" alt="">
-                    </div>
+                            <img src="~images/qarpiz.jpg" alt="">
+                        </div>
                     <div class="profile-name" v-if="sidebarIsActive">
-                        <strong>Ali</strong>
+                        <strong>Orxan</strong>
                         <span>Consultant</span>
                     </div>
                 </div>
+               </NuxtLink>
                 <div class="logout" v-if="sidebarIsActive">
                     <icon :name="'logout-1'"/>
 
@@ -94,7 +96,7 @@ export default {
     methods: {
         toggleSidebar() {
             this.$store.commit('TOGGLE_SIDEBAR')
-        }
+        },
     }
 }
 </script>

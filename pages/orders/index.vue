@@ -1,6 +1,6 @@
 <template>
   <div class="orders">
-      <page-header :title="'Orders'"/>
+      <page-header :title="'Orders'" :showActions="true"/>
     <div class="container">
       <data-table>
         <div class="data-table_row" v-for="order in orders" :key="order.id">
@@ -56,11 +56,8 @@
 </template>
 
 <script>
-import PageHeader from '../../components/layout/PageHeader.vue'
-import DataTable from '../../components/tables/DataTable.vue'
 import { mapGetters } from 'vuex'
 export default {
-  components: { PageHeader, DataTable },
   name: 'Orders',
   computed:{
     ...mapGetters({

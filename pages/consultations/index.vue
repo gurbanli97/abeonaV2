@@ -1,6 +1,6 @@
 <template>
   <div class="consultations">
-      <page-header :title="'Consultations'"/>
+      <page-header :title="'Consultations'" :showActions="true"/>
     <div class="container">
     <user-table :fields="fields">
         <tbody>
@@ -47,11 +47,8 @@
 </template>
 
 <script>
-import PageHeader from '../../components/layout/PageHeader.vue'
-import UserTable from '../../components/tables/UserTable.vue'
 import { mapGetters } from 'vuex'
 export default {
-  components: { PageHeader, UserTable },
   data() {
     return {
       fields: ['Customer','Date & Time','Travel to','Specialist','Status'],

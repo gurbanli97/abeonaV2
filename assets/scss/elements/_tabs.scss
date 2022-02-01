@@ -1,0 +1,36 @@
+.tabs {
+    padding-top: 20px;
+
+    
+    .nav-tabs {
+        border-bottom: 1px solid $dark-1;
+
+       .nav-item:not(:last-child){
+        margin-right: 40px;
+       }
+
+        .nav-link{
+            padding-bottom: 16px;
+            padding-left: 8px;
+            font-size: 16px;
+            line-height: 24px;
+            color: $basic-6;
+            border: none;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+
+            &.active {
+                color: $success-6;
+                border-color: $success-5;
+            }
+
+            
+        }
+        
+    }
+
+    .tab-content {
+        padding: 40px 0;
+    }
+}
