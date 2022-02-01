@@ -1,12 +1,37 @@
 .btn {
     min-height: 32px;
-    max-height: 32px;
     outline: none;
     box-shadow: none;
     border: none;
+    display: flex;
+    align-items: center;
 
     &:focus, &.btn.focus {
         box-shadow: none;
+    }
+
+    &.btn-transparent {
+        padding: 0 16px;
+        border-radius: 4px;
+        border: 1px solid;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    &.btn-borderless {
+        padding: 0;
+        font-size: 12px;
+        line-height: 16px;
+        border:none;
+    }
+
+   
+    &.btn-success {
+        color: $white;
+        font-size: 14px;
+        line-height: 16px;
+        background-color: $success-5;
+        padding: 8px 16px;
     }
 
     &.go-back {
@@ -16,13 +41,6 @@
         color: $basic-7;
         padding: 0;
         margin-right: 19px;
-    }
-    &.btn-success {
-        color: $white;
-        font-size: 14px;
-        line-height: 16px;
-        background-color: $success-5;
-        padding: 8px 16px;
     }
 
     &.open-filters {

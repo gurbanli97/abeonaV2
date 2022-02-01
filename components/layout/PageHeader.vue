@@ -8,7 +8,7 @@
         <h1 class="page-title">{{ title }}</h1>
       </b-col>
 
-      <b-col xl="9" md="6">
+      <b-col xl="9" md="6" v-if="showActions">
           <div class="d-flex justify-content-end">
               <button class="btn clear-filters" v-if="filtersActive" @click="clearFilters">
                   <icon :name="'eraser-1'"/>
@@ -44,6 +44,10 @@ import Icon from '../elements/Icon.vue'
       props: {
           title: String,
           showBackButton:{
+              type: Boolean,
+              default: false
+          },
+          showActions: {
               type: Boolean,
               default: false
           }

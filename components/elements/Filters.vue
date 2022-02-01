@@ -2,16 +2,13 @@
     <div class="filters">
             <b-row class="align-items-end">
                 <b-col xl="3">
-                    <div class="datepicker">
-                        <span class="datepicker-label">
-                            Date range
-                        </span>
+                    <b-form-group label="Date range">
                          <date-picker
                           range type="date" 
                           placeholder="Enter date range"
                           v-model="value1"
                          ></date-picker>
-                    </div>
+                    </b-form-group>
                 </b-col>
                 <b-col xl="3">
                     <b-form-group label="Travel to">

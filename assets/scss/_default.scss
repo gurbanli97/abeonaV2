@@ -28,12 +28,11 @@ body * , html *, html {
 
 body {
   font-family: "Euclid Circular A";
-  font-size: 16px;
+  font-size: 12px;
   line-height: 24px;
   color: #000;
   background-color: transparent;
   font-weight: normal;
-  height: 100vh;
 
   &.modal-open {
     overflow: hidden !important;
@@ -43,8 +42,11 @@ body {
 .root{
   display: flex;
   width: 100%;
+  position: relative;
 }
+
 .page{
+  position: relative;
   width: 100%;
   transition: all .3s linear;
   margin-left: 112px;
