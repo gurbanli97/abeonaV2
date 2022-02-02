@@ -3,7 +3,7 @@ import { resolve } from 'path'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Abeona',
+    title: 'Abeona-Nuxt',
     htmlAttrs: {
       lang: 'en'
     },

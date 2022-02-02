@@ -17,7 +17,7 @@
                         </b-col>
                         <b-col xl="9" class="d-flex flex-column">
                             <b-form class="d-flex">
-                                <b-col xl="6">
+                                <b-col xl="6" class="d-flex flex-column align-items-end">
                                    <b-form-group>
                                 <form-field
                                 :placeholder="'Enter'"
