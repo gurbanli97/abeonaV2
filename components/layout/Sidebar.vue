@@ -12,15 +12,15 @@
             </div>
             <nav>
                 <ul class="menu">
-                    <li v-for="menu in navItems" :key="menu.title">
+                    <li v-for="menu in navItems" :key="menu.title" v-b-tooltip.hover :id="`tooltip-target-${menu.id}`">
                         <NuxtLink :to="menu.route" exact v-if="sidebarIsActive">
                             <icon :name="menu.icon"/>
                             {{menu.title}}
                         </NuxtLink>
                         <NuxtLink :to="menu.route" exact v-else>
-                            <div class="link-tooltip">
+                            <b-tooltip :customClass="'nav-tooltip'" :target="`tooltip-target-${menu.id}`" triggers="hover" placement="right">
                                 {{menu.title}}
-                            </div>
+                             </b-tooltip>
                             <icon :name="menu.icon"/>
                         </NuxtLink>
                     </li>
@@ -35,10 +35,10 @@
                                 <span class="slider round"></span>
                             </label>
                         </a>
-                         <a class="nav-darkmode no-title" href="#" v-else>
-                              <div class="link-tooltip">
+                         <a class="nav-darkmode no-title" href="#" v-else v-b-tooltip.hover id="tooltip-target-darkmode">
+                              <b-tooltip :customClass="'nav-tooltip'" target="tooltip-target-darkmode" triggers="hover" placement="right">
                                 Darkmode
-                            </div>
+                             </b-tooltip>
                             <icon :name="'moon'"/>
                         </a>
                     </li>
@@ -50,7 +50,38 @@
                     <icon :name="'message'"/>
                 </div>
                 <div class="notifications">
-                    <icon :name="'notification'"/>
+                    <button v-b-tooltip.click.blur  id="tooltip-target-notifications">
+                        <icon :name="'notification'"/>
+                    </button>
+                     <b-tooltip :customClass="'notification-tooltip'" target="tooltip-target-notifications" triggers="click blur" placement="right">
+                            <div class="notification-modal">
+                            <div class="modal-header">
+                                <strong>7 new notification</strong>
+                                <button>Mark all as read</button>
+                            </div>
+                            <div class="modal-body-wrap">
+                                <div class="modal-body" v-for="item in notifications" :key="item.id">
+                                    <NuxtLink to="/">
+                                        <div class="modal-item">
+                                            <div class="avatar">
+                                                <img src="~images/qarpiz.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <div class="title">
+                                                    <strong>{{item.username}}</strong>
+                                                    <span>{{item.action}}</span>
+                                                </div>
+                                                <div class="timestamp">
+                                                    <span>{{item.timestamp}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </NuxtLink>
+                                </div>
+                            </div>
+                            <button id="see-all">SEE ALL NOTIFICATIONS</button>
+                        </div>
+                    </b-tooltip>
                 </div>
             </div>
 
@@ -68,10 +99,8 @@
                </NuxtLink>
                 <div class="logout" v-if="sidebarIsActive">
                     <icon :name="'logout-1'"/>
-
                 </div>
             </div>
-
           </div>
   </div>
 </template>
@@ -80,14 +109,31 @@
 <script>
 import { MenuMixin } from '~/mixins/menu-data';
 import { mapState } from 'vuex'
-import Icon from '../elements/Icon.vue';
+
 
 export default {
-  components: { Icon },
     mixins: [MenuMixin],
     data() {
         return {
-            darkmode: false
+            darkmode: false,
+            notificationsActive: false,
+            notifications: [
+                {
+                    id: 0,avatar: 'images/qarpiz.jpg',username: 'Aysel Huseynova',action: 'assigned new task to you',timestamp: '4:10 pm'
+                },
+                {
+                    id: 1,avatar: 'images/qarpiz.jpg',username: 'Aysel Huseynova',action: 'message you',timestamp: '4:10 pm'
+                },
+                {
+                    id: 2,avatar: 'images/qarpiz.jpg',username: 'Aysel Huseynova',action: 'completed task',timestamp: '4:10 pm'
+                },
+                 {
+                    id: 3,avatar: 'images/qarpiz.jpg',username: 'Aysel Huseynova',action: 'completed task',timestamp: '4:10 pm'
+                },
+                 {
+                    id: 4,avatar: 'images/qarpiz.jpg',username: 'Aysel Huseynova',action: 'completed task',timestamp: '4:10 pm'
+                }
+            ]
         }
     },
     computed: {
@@ -97,7 +143,26 @@ export default {
         toggleSidebar() {
             this.$store.commit('TOGGLE_SIDEBAR')
         },
-    }
+    //     handleDocClick(event) { 
+    //     if(this.notificationsActive === false) {
+    //       return
+    //     }
+        
+    //     let clickedActionBtn = event.target.classList.contains('icon-notification');
+    //     let clickedActionBlock = event.target.parentNode.classList.contains('notifications');
+    //     let clickedActionModal = event.target.parentNode.classList.contains('notification-modal');
+        
+    //     if(!clickedActionBtn && !clickedActionBlock && !clickedActionModal) {
+    //       this.notificationsActive = false;
+    //     }
+    //   }
+    },
+//     mounted() {
+//     document.addEventListener('click', this.handleDocClick);
+//   },
+//   beforeDestroy() {
+//     document.removeEventListener('click', this.handleDocClick);
+//   },
 }
 </script>
 
