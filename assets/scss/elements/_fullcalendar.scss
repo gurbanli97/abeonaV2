@@ -1,0 +1,95 @@
+.fc-theme-standard td, .fc-theme-standard th
+.fc-theme-standard .fc-scrollgrid {
+    // border: 1px solid $dark-1 !important;
+}
+
+.fc .fc-daygrid-day-number {
+    color: $dark-4;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+}
+// .fc .fc-daygrid-day-frame {
+//     overflow: hidden !important;
+// }
+.fc-daygrid-event-harness {
+    &:not(:last-child){
+        margin-bottom: 8px;
+    }
+}
+
+.fc-daygrid-day-events {
+    padding: 4px 12px !important;
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    margin: 0 !important;
+}
+
+.fc-col-header-cell-cushion  {
+    color: $basic-7;
+    font-size: 12px;
+    line-height: 16px;
+
+    &:hover{
+        color: $basic-7;
+    }
+}
+
+.fc-h-event {
+    border: 1px solid transparent !important;
+    border-radius: 8px !important;
+}
+.fc-event-main {
+    
+    border-radius: 8px !important;
+
+    span{
+        display: flex;
+        padding: 4px 10px;
+    }
+}
+
+.fc-h-event .fc-event-main-frame {
+    padding: 4px 10px;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.fc-h-event .fc-event-title-container {
+    display: flex;
+    align-items: center;
+    flex-grow: initial !important;
+    flex-shrink: initial !important;
+}
+
+.fc-h-event .fc-event-time {
+    overflow: visible !important;
+}
+.fc-event-time {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+}
+
+.fc-direction-ltr .fc-daygrid-event .fc-event-time {
+    margin-right: 8px !important;
+}
+
+.fc-h-event .fc-event-title {
+    text-overflow: ellipsis;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.fc-daygrid-day-bottom {
+    width: fit-content;
+    a {
+    border-radius: 8px;
+    background: $basic-3;
+    padding: 4px 10px !important;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    color: $basic-7;
+    }
+}
