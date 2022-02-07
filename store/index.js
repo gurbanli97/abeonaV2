@@ -1,13 +1,11 @@
 export const state = () => ({
-    sidebarIsActive: true
+    sidebarIsActive: true,
 })
 
 
 
 export const getters = {
-     getItemById: ({items}) => (id) => {
-         return items.find(item => item.id == id)
-     },
+     sidebarIsActive: s => s.sidebarIsActive,
 
 }
 

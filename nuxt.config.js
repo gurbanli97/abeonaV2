@@ -68,6 +68,7 @@ export default {
     { src: "~/plugins/vue-select" },
     { src: "~/plugins/vClickOutside" },
     { src: "~/plugins/vue-scrollto" },
+    { src: '~/plugins/full-calendar', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
