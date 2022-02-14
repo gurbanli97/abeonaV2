@@ -1,0 +1,124 @@
+.notifications {
+   
+    .notification-date {
+        padding-left: 16px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $basic-6;
+    }
+    .notifications-inner {
+        max-width: 876px;
+        // padding-left: 16px;
+    }
+
+    .notification-card {
+        padding-top: 24px;
+        display: flex;
+
+        &:not(:last-child){
+            .details{
+                padding-bottom: 24px;
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+                border-bottom-color: $basic-3;
+            }
+        } 
+        
+        a {
+            display: flex;
+            width: 100%;
+        }
+            
+
+        .unread-dot{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            transform: translate(0,14px);
+            background-color: $warning-5;
+            border-radius: 50%;
+        }
+       
+        .avatar {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 8px;
+            img{
+             border-radius: 50%;
+            }
+        }
+
+       
+
+        .details {
+            margin-left: 16px;
+            width: 100%;
+
+            .details-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                strong  {
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: $basic-7;
+                    font-weight: 500;
+                }
+                span{
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: $basic-7;
+                    font-weight: 400;
+                }
+            }
+
+            .details-text {
+                max-width: 738px;
+                margin-top: 12px;
+
+                p {
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: $basic-7;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+
+    .notifications-today {
+        padding-bottom: 41px;
+        border-bottom-width: 8px;
+        border-bottom-style: solid;
+        border-bottom-color: $dark-1;
+    }
+
+    .notifications-others {
+        padding-top: 24px;
+
+        .notification-card{
+               
+            .details {
+                padding-bottom: 24px;
+                border-bottom-width: 1px;
+                border-bottom-style: solid;
+                border-bottom-color: $basic-3;
+
+                .details-head{
+                    span {
+                        color: $dark-3;
+                    }
+                }
+                .details-text{
+                    p {
+                        color: $dark-3;
+                    }
+                }
+            }
+        }
+    }
+        
+}
