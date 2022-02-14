@@ -49,11 +49,11 @@
                 <div class="messages">
                     <icon :name="'message'"/>
                 </div>
-                <div class="notifications">
+                <div class="sidebar-notifications">
                     <button v-b-tooltip.click.blur  id="tooltip-target-notifications">
                         <icon :name="'notification'"/>
                     </button>
-                     <b-tooltip :customClass="'notification-tooltip'" target="tooltip-target-notifications" triggers="click blur" placement="right">
+                     <b-tooltip :customClass="'notification-tooltip'" target="tooltip-target-notifications" triggers="click blur" placement="right" ref="notificationTooltip">
                             <div class="notification-modal">
                             <div class="modal-header">
                                 <strong>7 new notification</strong>
@@ -79,7 +79,7 @@
                                     </NuxtLink>
                                 </div>
                             </div>
-                            <button id="see-all">SEE ALL NOTIFICATIONS</button>
+                            <button @click='closeNotyTooltip' id="see-all">SEE ALL NOTIFICATIONS</button>
                         </div>
                     </b-tooltip>
                 </div>
@@ -143,6 +143,11 @@ export default {
         toggleSidebar() {
             this.$store.commit('TOGGLE_SIDEBAR')
         },
+        closeNotyTooltip(){
+             this.$refs.notificationTooltip.$emit('close')
+             
+             this.$router.push('/notifications')
+        }
     //     handleDocClick(event) { 
     //     if(this.notificationsActive === false) {
     //       return

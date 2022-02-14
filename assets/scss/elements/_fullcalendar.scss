@@ -93,3 +93,10 @@
     color: $basic-7;
     }
 }
+
+
+.fullcalendar-tooltip {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
