@@ -4,9 +4,12 @@
                 <b-col xl="3">
                     <b-form-group label="Date range">
                          <date-picker
-                          range type="date" 
+                          range 
+                          value-type="YYYY-MM-DD"
+                          type="date" 
                           placeholder="Enter date range"
-                          v-model="value1"
+                          v-model="dateRange"
+                          @change="handleChange"
                          ></date-picker>
                     </b-form-group>
                 </b-col>
@@ -17,6 +20,9 @@
                         :options="type_options"
                         :closeOnSelect="true"
                         :clearable="false"
+                        :reduce="data => data.value"
+                        v-model="filters.travelTo"
+                        @input="handleChange"
                         >
                         </v-select>
                     </b-form-group>
@@ -27,6 +33,9 @@
                         :options="type_options"
                         :closeOnSelect="true"
                         :clearable="false"
+                        :reduce="data => data.value"
+                        v-model="filters.specialist"
+                        @input="handleChange"
                         >
                         </v-select>
                     </b-form-group>
@@ -37,6 +46,9 @@
                         :options="type_options"
                         :closeOnSelect="true"
                         :clearable="false"
+                        :reduce="data => data.value"
+                        v-model="filters.status"
+                        @input="handleChange"
                         >
                         </v-select>
                     </b-form-group>
@@ -46,7 +58,6 @@
                     <form-field
                         :placeholder="'Search'"
                     >
-
                     </form-field>
                 </b-col>
             </b-row>
@@ -59,20 +70,56 @@ import DatePicker from 'vue2-datepicker'
 export default {
   components: { DatePicker },
     data(){
-        return {
-            value1: [],
-  
+        return {    
+        dateRange:[], 
+        filters: {
+            travelTo: '',
+            specialist: '',
+            status: '',
+        },
         type_options: [
                 { label: "String", value: "string" },
                 { label: "Boolean", value: "bool" },
                 { label: "Select", value: "select" },
             ],
-            // dates: []
+        }
+    },
+    watch: {
+        '$route.query'(query){
+        }
+    },
+    methods:{
+        handleChange(){
+             this.$nextTick(() => {
+                 if(this.dateRange.length){
+                     this.$router.push({
+                     query: {
+                        dateFrom: this.dateRange[0],
+                        dateTo: this.dateRange[1],
+                        ...this.$mapObjectToQuery(this.filters)
+                     }
+                });
+            }else {
+                 this.$router.push({
+                     query: {
+                        ...this.$mapObjectToQuery(this.filters)
+                     }
+                });
+            }
+                
+            });
         }
     },
     created() {
         this.$nuxt.$on('clearFilters',() => {
-            this.dates = []
+            this.dateRange = []
+            this.filters.travelTo = ''
+            this.filters.specialist = ''
+            this.filters.status = ''
+
+            this.$router.push({
+                query: {}
+            });
         })
     },
     beforeDestroy(){
