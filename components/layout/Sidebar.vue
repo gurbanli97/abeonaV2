@@ -13,11 +13,11 @@
             <nav>
                 <ul class="menu">
                     <li v-for="menu in navItems" :key="menu.title" v-b-tooltip.hover :id="`tooltip-target-${menu.id}`">
-                        <NuxtLink :to="menu.route" exact v-if="sidebarIsActive">
+                        <NuxtLink :to="menu.route" :exact="menu.route === '/'" v-if="sidebarIsActive">
                             <icon :name="menu.icon"/>
                             {{menu.title}}
                         </NuxtLink>
-                        <NuxtLink :to="menu.route" exact v-else>
+                        <NuxtLink :to="menu.route" :exact="menu.route === '/'" v-else>
                             <b-tooltip :customClass="'nav-tooltip'" :target="`tooltip-target-${menu.id}`" triggers="hover" placement="right">
                                 {{menu.title}}
                              </b-tooltip>

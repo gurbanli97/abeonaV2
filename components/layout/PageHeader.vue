@@ -100,7 +100,8 @@ import Icon from '../elements/Icon.vue'
                   dateTo: this.$route.query?.dateTo || null,
                   travelTo: this.$route.query?.travelTo || null,
                   status: this.$route.query.status || null,
-                  specialist: this.$route.query.specialist || null
+                  specialist: this.$route.query.specialist || null,
+                  searchInput: this.$route.query.searchInput || null
               }
           },
           filtersLength(){
