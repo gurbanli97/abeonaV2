@@ -57,6 +57,8 @@
                 <b-col xl="3" class="mt-4">
                     <form-field
                         :placeholder="'Search'"
+                        @input="handleChange"
+                        v-model.trim="filters.searchInput"
                     >
                     </form-field>
                 </b-col>
@@ -73,6 +75,7 @@ export default {
         return {    
         dateRange:[], 
         filters: {
+            searchInput: '',
             travelTo: '',
             specialist: '',
             status: '',
@@ -116,6 +119,7 @@ export default {
             this.filters.travelTo = ''
             this.filters.specialist = ''
             this.filters.status = ''
+            this.filters.searchInput = ''
 
             this.$router.push({
                 query: {}
