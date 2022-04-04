@@ -1,7 +1,12 @@
 <template>
-  <b-form-group :label="label" :class="{'search-input': inputStyle === 'search'}">
-    <icon :name="'search-normal-1'" v-if="inputStyle === 'search'"/>
+ <div @click.prevent="$emit('delete-filter')">
+    <b-form-group :label="label" 
+    :class="{'query-field': inputStyle === 'query-field'}" 
+    >
+    <icon :name="'close'" v-if="inputStyle === 'query-field'"/>
+    
     <b-form-input
+      disabled
       autocomplete="off"
       v-model="fieldValue"
       :type="type"
@@ -14,6 +19,7 @@
     />
     <slot></slot>
   </b-form-group>
+ </div>
 </template>
 
 <script>

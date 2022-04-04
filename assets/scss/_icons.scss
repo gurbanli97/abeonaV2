@@ -25,6 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-close:before {
+  content: "\e923";
+  color: #fff;
+}
 .icon-arrow-circle-down:before {
   content: "\e900";
 }
@@ -39,9 +43,6 @@
 }
 .icon-clock-1:before {
   content: "\e904";
-}
-.icon-close-circle-2:before {
-  content: "\e905";
 }
 .icon-close-circle:before {
   content: "\e906";

@@ -1,11 +1,12 @@
 .notifications {
-   
+
     .notification-date {
         padding-left: 16px;
         font-size: 14px;
         line-height: 20px;
         color: $basic-6;
     }
+
     .notifications-inner {
         max-width: 876px;
         // padding-left: 16px;
@@ -13,78 +14,68 @@
 
     .notification-card {
         padding-top: 24px;
-        display: flex;
-
-        &:not(:last-child){
-            .details{
+        &:not(:last-child) {
+            .notification-card_body p {
                 padding-bottom: 24px;
                 border-bottom-width: 1px;
                 border-bottom-style: solid;
                 border-bottom-color: $basic-3;
             }
-        } 
-        
-        a {
+        }
+
+
+
+        .notification-card_head {
             display: flex;
-            width: 100%;
-        }
-            
-
-        .unread-dot{
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            transform: translate(0,14px);
-            background-color: $warning-5;
-            border-radius: 50%;
-        }
-       
-        .avatar {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-left: 8px;
-            img{
-             border-radius: 50%;
-            }
-        }
-
-       
-
-        .details {
-            margin-left: 16px;
-            width: 100%;
-
-            .details-head {
+            justify-content: space-between;
+            align-items: center;
+            .user-info {
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                position: relative;
+               
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                }
 
-                strong  {
+                strong {
+                    margin-left: 16px;
                     font-size: 16px;
                     line-height: 24px;
                     color: $basic-7;
                     font-weight: 500;
                 }
-                span{
-                    font-size: 14px;
-                    line-height: 20px;
-                    color: $basic-7;
-                    font-weight: 400;
-                }
             }
 
-            .details-text {
-                max-width: 738px;
-                margin-top: 12px;
+            .unread-dot {
+                display: inline-block;
+                margin-right: 8px;
+                width: 8px;
+                height: 8px;
+                background-color: $warning-5;
+                border-radius: 50%;
+            }
 
-                p {
-                    font-size: 14px;
-                    line-height: 20px;
-                    color: $basic-7;
-                    font-weight: 400;
-                }
+            span {
+                font-size: 14px;
+                line-height: 20px;
+                color: $basic-7;
+                font-weight: 400;
+            }
+        }
+
+        .notification-card_body {
+            max-width: 738px;
+            margin-top: 12px;
+            padding-left: 73px;
+            p {
+                font-size: 14px;
+                line-height: 20px;
+                color: $basic-7;
+                font-weight: 400;
             }
         }
     }
@@ -99,20 +90,21 @@
     .notifications-others {
         padding-top: 24px;
 
-        .notification-card{
-               
+        .notification-card {
+
             .details {
                 padding-bottom: 24px;
                 border-bottom-width: 1px;
                 border-bottom-style: solid;
                 border-bottom-color: $basic-3;
 
-                .details-head{
+                .details-head {
                     span {
                         color: $dark-3;
                     }
                 }
-                .details-text{
+
+                .details-text {
                     p {
                         color: $dark-3;
                     }
@@ -120,5 +112,36 @@
             }
         }
     }
-        
+
+}
+
+.notification_id .page-header::after{
+    content: '';
+    width: 100%;
+    display: block;
+    margin-top: 32px;
+    height: 1px;
+    background-color: $dark-1;
+}
+
+.notification_id .notification-card {
+    .notification-card_head{
+        .user-info {
+            img{
+                width: 48px;
+                height: 48px;
+            }
+            strong {
+                font-size: 20px;
+                line-height: 28px;
+            }
+        }
+    }
+        .notification-card_body {
+            padding-left: 109px;
+            margin-top: 24px;
+            p {
+                line-height: 24px;
+            }
+        }
 }

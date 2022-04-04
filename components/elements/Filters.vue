@@ -56,7 +56,8 @@
 
                 <b-col xl="3" class="mt-4">
                     <form-field
-                        :placeholder="'Search'"
+                        :placeholder= "'Search'"
+                        :inputStyle="'search'"
                         @input="handleChange"
                         v-model.trim="filters.searchInput"
                     >
