@@ -91,12 +91,13 @@ export default {
 
   axios: {
     // Do away with the baseUrl when using proxy
-     proxy: true
+    proxy: true,
+    baseURL: 'https://stg.abeona.pickvisa.com'
    },
    proxy: {
      // Simple proxy
      "/api/": {
-       target: "https://stg.abeona.vizam.az",
+       target: "https://stg.abeona.pickvisa.com",
        pathRewrite: { "^api/": "" }
      }
    },

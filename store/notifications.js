@@ -15,10 +15,10 @@ export const mutations = {
 }
   
 export const actions = {
-    async fetchOrders({commit}) {
-        let response = await this.$axios.get('/api/v1/orders')  
+    async fetchNotifications({commit}) {
+        let response = await this.$axios.get('/api/v1/orders/notifications')
         let items = response.data.data
-        commit('SET_ORDERS',items);
+        commit('SET_NOTIFICATIONS',items);
       },
 
       

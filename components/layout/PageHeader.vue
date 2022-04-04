@@ -15,9 +15,9 @@
                   <span>Clear filters</span>
               </button>
               <button class="btn open-filters" @click="filtersActive = !filtersActive">
-                  <icon :name="'filter-search'"/>
-                  <span v-if="filtersLength">Filters({{filtersLength}})</span>
-                  <span v-else>Filters</span>
+                  <icon :name="!filtersActive ? 'filter-search' : 'close-circle'"/>
+                  <span v-if="!filtersActive">Filters</span>
+                  <span v-else>Hide Filters</span>
               </button>
              <div class="d-flex justify-content-end open-calendar">
                   <NuxtLink :to="'/consultations/calendar'" class="btn btn-success open-calendar">Calendar</NuxtLink>
@@ -36,36 +36,39 @@
     </b-row>
      <b-row v-show="!filtersActive && filtersLength">
         <b-col xl="3" class="mt-4" v-if="queryFilters.dateFrom">
-        <form-field
-            disabled
+        <query-field
             :placeholder="'Dates'"
             :label="'Dates'"
+            :inputStyle = "'query-field'"
             :value="`${queryFilters.dateFrom} - ${queryFilters.dateTo}`"
+            @delete-filter="test"
+           
         />
         </b-col>
           <b-col xl="3" class="mt-4" v-if="queryFilters.travelTo">
-        <form-field
-            disabled
+        <query-field
             :placeholder="'Travel to'"
             :label="'Travel to'"
+            :inputStyle = "'query-field'"
             :value="queryFilters.travelTo"
         />
         </b-col>
 
          <b-col xl="3" class="mt-4" v-if="queryFilters.status">
-        <form-field
-            disabled
+        <query-field
             :placeholder="'Status'"
             :label="'Status'"
+            :inputStyle = "'query-field'"
             :value="queryFilters.status"
         />
         </b-col>
          <b-col xl="3" class="mt-4" v-if="queryFilters.specialist">
-        <form-field
-            disabled
-            :placeholder="'Specialist'"
+        <query-field
+            :placeholder="'Filter'"
             :label="'Specialist'"
+            :inputStyle = "'query-field'"
             :value="queryFilters.specialist"
+            @delete-filter="test"
         />
         </b-col>
     </b-row>
@@ -109,9 +112,12 @@ import Icon from '../elements/Icon.vue'
           }
       },
       methods: {
+          test(){
+              console.log('aaa')
+          },
           clearFilters(){
               this.$nuxt.$emit('clearFilters')
-          }
+          },
       },
   }
 

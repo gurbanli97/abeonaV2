@@ -1,7 +1,7 @@
 export default function ({ $axios, error: nuxtError }) {
     $axios.onRequest(config => {
       config.headers['Content-Type'] = 'application/json';
-      config.headers['Authorization'] = 'Token 18cd72d3438c27d08086f397ed3a81efd4b45624'
+      config.headers['Authorization'] = 'Token 59a1e6bf9efe056cc908427a64aa02568ae91c2c'
     });
   
     $axios.onError(error => {

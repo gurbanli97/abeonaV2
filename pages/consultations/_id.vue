@@ -5,7 +5,7 @@
     <user-table :fields="fields">
         <tbody>
                <template v-for="consultation in consultations" >
-                <tr :key="consultation.id" @click="$router.push(`consultations/${consultation.id}`)">
+                <tr :key="consultation.id" @click="$router.go(`consultations/${consultation.id}`)">
                   <td>
                     <span>{{consultation.customer.name}}</span>
                   </td>

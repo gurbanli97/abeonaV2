@@ -10,25 +10,22 @@
                   :key="notification.id"
                   >
                  <NuxtLink :to="`/notifications/${notification.id}`">
-
-                      <span class="unread-dot" v-if="!notification.read"></span>
-                      <div class="avatar">
-                          <img src="~images/qarpiz.jpg" alt="">
-                      </div>
-                      <div class="details">
-                          <div class="details-head">
-                              <strong>{{notification.username}}</strong>
+                          <div class="notification-card_head">
+                            <div class="user-info">
+                                <span class="unread-dot" v-if="!notification.read"></span>
+                                <img src="~images/qarpiz.jpg" alt="">
+                                <strong>{{notification.username}}</strong>
+                            </div>
                               <span>{{notification.timestamp}}</span>
                           </div>
-                          <div class="details-text">
+                          <div class="notification-card_body">
                               <p>{{notification.description}}</p>
                           </div>
-                      </div>
                  </NuxtLink>
 
                   </div>
               </div>
-              <div 
+              <!-- <div 
               class="notifications-others"
               v-for="notification in notifications" 
               :key="notification.id"
@@ -51,13 +48,14 @@
                       </div>
                   </div>
                   </NuxtLink>
-              </div>
+              </div> -->
           </div>
       </div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
      head() {
          return {
@@ -66,6 +64,7 @@ export default {
   },
     data() {
         return {
+            items: [],
             notifications: [
                 {
                     id:0,
@@ -85,6 +84,14 @@ export default {
                 }
             ]
         }
+    },
+    computed:{
+        // ...mapGetters({
+        //     items: 'notifications/notifications'
+        // })
+    },
+    async asyncData({store}){
+        await store.dispatch('notifications/fetchNotifications')
     }
 }
 </script>

@@ -10,6 +10,7 @@
 @import "layout/page-header";
 
 //Elements
+@import "elements/modal";
 @import "elements/buttons";
 @import "elements/tables";
 @import "elements/tabs";
@@ -24,5 +25,6 @@
 
 //Pages
 @import "pages/orders";
+@import "pages/add-consultation";
 @import "pages/profile";
 @import "pages/notifications";

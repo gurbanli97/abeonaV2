@@ -1,9 +1,7 @@
 .form-group {
     width: 100%;
-    // margin: 0 !important;
-    width: 100%;
     input {
-        color: $basic-7 !important;
+        color: $basic-7;
         width: 100%;
         font-size: 14px;
         line-height: 20px;
@@ -13,7 +11,6 @@
         border: 1px solid #C0C5EA;
         box-sizing: border-box;
         border-radius: 8px;
-        // cursor: pointer;
         padding: 12px 0 12px 16px;
 
         &::placeholder {
@@ -52,5 +49,27 @@
         transform: translateY(-50%);
         color: $dark-3;
     }
+
 }
 
+.query-field{
+    position: relative;
+
+    input{
+        // padding-left: 52px;
+        
+        background: $dark-4 !important;
+        border-radius: 16px;
+        border: none;
+        color: $white;
+        max-height: 32px;
+    }
+    i {
+        font-size: 12px;
+        position: absolute;
+        top: 50%;
+        right: 18px;
+        transform: translateY(-50%);
+        color: $dark-3;
+    }
+}
