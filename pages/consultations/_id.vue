@@ -2,52 +2,6 @@
   <div class="consultations">
       <page-header :title="'Consultations'" :showActions="true"/>
     <div class="container">
-    <user-table :fields="fields">
-        <tbody>
-               <template v-for="consultation in consultations" >
-                <tr :key="consultation.id" @click="$router.go(`consultations/${consultation.id}`)">
-                  <td>
-                    <span>{{consultation.customer.name}}</span>
-                  </td>
-                  <td>
-                    <strong>{{consultation.customer.surname}}</strong>
-                  </td>
-                  <td>
-                    <strong>{{consultation.travel_to_country}}</strong>
-                  </td>
-                  <td>
-                    <span>{{consultation.user.display_name}}</span>
-                  </td>
-                  <td>
-                      <badge :category="'status'" :text="consultation.status">
-                          {{consultation.status}}
-                      </badge>
-                  </td>
-                  <!-- <td class="actions" :class="{'active':activeAction === consultation.id}">
-                    <button class="show-actions" @click="toggleActions(consultation)" v-scroll-to="`#element-${consultation.id}`" ref="showActions">
-                      <icon :name="'more'" />
-                    </button>
-                    <div class="table-actions" v-show="activeAction === consultation.id" :id="`element-${consultation.id}`" ref="actionsBlock">
-                      <button>
-                        <icon :name="'edit-2'"/>
-                        Edit
-                      </button>
-                      <button @click="openModal(consultation.id)">
-                        <icon :name="'trash'"/>
-                        Delete
-                      </button>
-                    </div>
-                  </td> -->
-                </tr>
-              </template>
-
-        </tbody>
-    </user-table>
-    <modal 
-      :toggle="showDeleteModal"
-      @close="showDeleteModal = false"
-      :item="itemToDelete"
-    />
     </div>
   </div>
 </template>

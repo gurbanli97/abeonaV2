@@ -59,6 +59,7 @@
 import { mapGetters } from 'vuex'
 export default {
   name: 'Orders',
+ 
   computed:{
     ...mapGetters({
       orders: 'orders/orders'

@@ -14,13 +14,16 @@
         color: $basic-7;
         line-height: 24px;
     }
-    .customer-details{
-        form {
-            padding-bottom: 24px;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: $basic-3;
-        }
+        
+    .main div:last-child form {
+        padding-bottom: 24px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: $basic-3;
+    }
+
+    .appointment-details {
+        margin-top: 40px;
     }
 
     .documents {
@@ -65,9 +68,32 @@
                     border-radius: 8px;
                     cursor: pointer;
                     border: none;
-
+                    
                     &:not(:last-child){
                         margin-bottom: 8px;
+                    }
+
+                     p{
+                         max-width: 224px;
+                         white-space: pre-wrap;
+                         font-size: 14px;
+                         line-height: 20px;
+                         color: $basic-7;
+                     }
+                    .badge{
+                        margin-top: 16px;
+                        padding: 4px 8px;
+                        border-radius: 4px;
+                        height: 24px;
+                        font-weight: 400;
+                        width: auto;
+                        max-width: fit-content;
+                        font-size: 12px;
+                        line-height: 16px;
+
+                        &:not(:last-child){
+                            margin-right: 12px;
+                        }
                     }
                 }
                 
@@ -89,6 +115,7 @@
 }
 
 .add-consultation-inner {
+
     display: flex;
     padding-top: 16px;
 
@@ -220,5 +247,51 @@
             }
         }
         
+    }
+
+
+    .main {
+        position: relative;
+    }
+    .customer-search_popup {
+        top: 0;
+        right: -12%;
+        z-index: 2;
+        position: absolute;
+        background: $white;
+        border: 1px solid #DEE1F4;
+        box-sizing: border-box;
+        box-shadow: 0px 16px 24px rgba(41, 45, 50, 0.08);
+        border-radius: 4px;
+
+        
+        .table-responsive thead {
+            background-color: transparent;
+        }
+        .table-responsive thead tr th {
+            padding: 20px 24px;
+            font-size: 12px;
+            color: $info-5;
+        }
+
+        .table-responsive tbody tr {
+            padding: 0 24px;
+            border: none;
+            &:hover {
+                background-color: $basic-3;
+            }
+
+            &:not(:last-child){
+                border-bottom: 1px solid #EDF1F7;
+            }
+
+            td{
+                padding: 24px;
+            }
+        }
+        .table-responsive tbody tr td {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
     }
 }

@@ -4,9 +4,9 @@
     <div class="container">
       <div class="add-consultation-inner row">
         <div class="main col-8">
-          <b-col xl="12" class="customer-details">
+         <div class="forms">
+            <b-col xl="12" class="customer-details">
             <h3>Customer details</h3>
-
             <b-form class="d-flex">
               <b-col xl="6" class="d-flex flex-column align-items-end">
                 <b-form-group>
@@ -54,8 +54,40 @@
                 </b-form-group>
               </b-col>
             </b-form>
-
           </b-col>
+          <b-col xl="12" class="appointment-details">
+            <h3>Appointment details</h3>
+
+            <b-form class="d-flex">
+              <b-col xl="6">
+                <b-form-group label="Date">
+                  <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" v-model="birthDate" />
+                </b-form-group>
+                 <b-form-group label="Language">
+                  <v-select :closeOnSelect="true" :clearable="false">
+                  </v-select>
+                </b-form-group>
+                 <b-form-group label="Specialist">
+                  <v-select :closeOnSelect="true" :clearable="false">
+                  </v-select>
+                </b-form-group>
+              </b-col>
+               <b-col xl="6">
+                <b-form-group label="Date">
+                  <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" v-model="birthDate" />
+                </b-form-group>
+                 <b-form-group label="Language">
+                  <v-select :closeOnSelect="true" :clearable="false">
+                  </v-select>
+                </b-form-group>
+                 <b-form-group label="Specialist">
+                  <v-select :closeOnSelect="true" :clearable="false">
+                  </v-select>
+                </b-form-group>
+              </b-col>
+            </b-form>
+          </b-col>
+         </div>
           <b-col xl="12" class="documents d-flex">
             <b-col xl="6">
               <div class="drag-box">
@@ -66,8 +98,10 @@
                   </div>
                 </div>
                 <draggable class="list-group" :list="list1" group="people" @change="log">
-                  <div class="list-group-item" v-for="(element, index) in list1" :key="element.name">
-                    {{ element.name }} {{ index }}
+                  <div class="list-group-item" v-for="(element) in list1" :key="element.name">
+                    <p>{{ element.name }}</p>
+
+                    <badge :category="'document'" :text="element.document_type"/>
                   </div>
                 </draggable>
                 <button class="btn btn-borderless">
@@ -84,9 +118,11 @@
                     <span>{{list2.length}}</span>
                   </div>
                 </div>
-                <draggable class="list-group" :list="list2" group="people" @change="log">
-                  <div class="list-group-item" v-for="(element, index) in list2" :key="element.name">
-                    {{ element.name }} {{ index }}
+               <draggable class="list-group" :list="list2" group="people" @change="log">
+                  <div class="list-group-item" v-for="(element) in list2" :key="element.name">
+                    <p>{{ element.name }}</p>
+
+                    <badge :category="'document'" :text="element.document_type"/>
                   </div>
                 </draggable>
                 <button class="btn btn-borderless">
@@ -96,6 +132,30 @@
               </div>
             </b-col>
           </b-col>
+
+
+          <div class="customer-search_popup">
+            <user-table :fields="fields">
+              <tbody>
+                    <template v-for="customer in customers" >
+                      <tr :key="customer.id">
+                        <td>
+                          <span>{{customer.name}}</span>
+                        </td>
+                        <td>
+                          <span>{{customer.surname}}</span>
+                        </td>
+                        <td>
+                          <span>{{customer.phone}}</span>
+                        </td>
+                        <td>
+                          <span>{{customer.email}}</span>
+                        </td>
+                      </tr>
+                    </template>
+              </tbody>
+          </user-table>
+          </div>
         </div>
         <div class="checkout col-4">
           <div class="checkout-head">
@@ -184,21 +244,50 @@
     },
     data() {
       return {
+        birthDate: '',
         showAddPopup: false,
+        customers: [
+          {
+            id: 1,
+            name: 'Ali',
+            surname: 'Gurbanli',
+            phone: '+994507224461',
+            email: 'ali.e.gurbanli@gmail.com'
+          },
+             {
+            id: 2,
+            name: 'Ali',
+            surname: 'Gurbanli',
+            phone: '+994507224461',
+            email: 'ali.e.gurbanli@gmail.com'
+          },
+            {
+            id: 3,
+            name: 'Ali',
+            surname: 'Gurbanli',
+            phone: '+994507224461',
+            email: 'ali.e.gurbanli@gmail.com'
+          }
+        ],
+        fields: ['Name','Surname','Phone','Email'],
         list1: [{
-            name: "John",
+            name: "Bank account statement/Evidence of sufficient funds",
+            document_type: 'Translated',
             id: 1
           },
           {
-            name: "Joao",
+            name: "Work reference from e-government portal",
+            document_type: 'Translated',
             id: 2
           },
           {
             name: "Jean",
+            document_type: 'Copy',
             id: 3
           },
           {
             name: "Gerard",
+            document_type: 'Original',
             id: 4
           }
         ],
@@ -218,21 +307,21 @@
       };
     },
     methods: {
-      add: function () {
-        this.list.push({
-          name: "Juan"
-        });
-      },
-      replace: function () {
-        this.list = [{
-          name: "Edgard"
-        }];
-      },
-      clone: function (el) {
-        return {
-          name: el.name + " cloned"
-        };
-      },
+      // add: function () {  
+      //   this.list.push({
+      //     name: "Juan"
+      //   });
+      // },
+      // replace: function () {
+      //   this.list = [{
+      //     name: "Edgard"
+      //   }];
+      // },
+      // clone: function (el) {
+      //   return {
+      //     name: el.name + " cloned"
+      //   };
+      // },
       log: function (evt) {
         window.console.log(evt);
       }

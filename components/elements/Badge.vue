@@ -11,7 +11,8 @@ export default {
       type: String,
       validator: value => [
         'status',
-        'priority'
+        'priority',
+        'document'
       ].includes(value)
     },
     text: String
@@ -32,6 +33,12 @@ export default {
             'Pending': 'warning',
             'Medium': 'info',
             'Important': 'danger'
+          }[this.text]
+           case 'document':
+          return {
+            'Copy': 'danger',
+            'Original': 'warning',
+            'Translated': 'success',
           }[this.text]
       }
     },
