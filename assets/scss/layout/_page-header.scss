@@ -1,7 +1,22 @@
 .page-header {
     background-color: $white;
     padding: 24px;
+
+    &.with-border::after{
+            content: '';
+            width: 100%;
+            display: block;
+            margin-top: 32px;
+            height: 1px;
+            background-color: $dark-1;
+    }
+    
+    button:not(:last-child){
+        margin-right: 16px;
+    }
+
 }
+
 .page-title{
     color: $basic-7;
     font-size: 24px;

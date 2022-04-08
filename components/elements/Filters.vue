@@ -115,7 +115,7 @@ export default {
         }
     },
     created() {
-        this.$nuxt.$on('clearFilters',() => {
+        this.$nuxt.$on('clear-filters',() => {
             this.dateRange = []
             this.filters.travelTo = ''
             this.filters.specialist = ''
@@ -128,7 +128,7 @@ export default {
         })
     },
     beforeDestroy(){
-        this.$nuxt.$off('clearFilters')
+        this.$nuxt.$off('clear-filters')
     }
 
 }

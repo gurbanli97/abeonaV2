@@ -11,12 +11,14 @@
 
 //Elements
 @import "elements/modal";
+@import "elements/slide-out";
 @import "elements/buttons";
 @import "elements/tables";
 @import "elements/tabs";
 @import "elements/badges";
 @import "elements/fullcalendar";
 @import "elements/dark-switch";
+@import "elements/detail-field";
 
 //Form
 @import "form/input";
@@ -25,6 +27,6 @@
 
 //Pages
 @import "pages/orders";
-@import "pages/add-consultation";
+@import "pages/consultations";
 @import "pages/profile";
 @import "pages/notifications";

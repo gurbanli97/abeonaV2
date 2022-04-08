@@ -48,8 +48,7 @@
         align-items: center;
         background: $basic-2;
         color: $basic-7;
-        margin-left: 32px;
-        margin-right: 16px;
+        
         font-size: 14px;
         line-height: 16px;
         font-weight: 500;
@@ -69,6 +68,7 @@
     
     
     &.clear-filters {
+        margin-right: 32px !important;
         display: flex;
         align-items: center;
         

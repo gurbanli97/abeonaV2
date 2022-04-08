@@ -6,7 +6,6 @@
           <th v-for="field in fields" :key="field">
             {{ field }}
           </th>
-          <th></th>
         </tr>
       </thead>
       <slot></slot>

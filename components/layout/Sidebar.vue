@@ -108,7 +108,7 @@
 
 <script>
 import { MenuMixin } from '~/mixins/menu-data';
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 
 export default {
@@ -137,7 +137,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['sidebarIsActive'])
+        ...mapGetters(['sidebarIsActive'])
     },
     methods: {
         toggleSidebar() {
