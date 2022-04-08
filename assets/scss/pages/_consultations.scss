@@ -1,47 +1,130 @@
-.consultations.add-new {
-    .page-header::after{
-        content: '';
-        width: 100%;
-        display: block;
-        margin-top: 32px;
-        height: 1px;
-        background-color: $dark-1;
-    }
+.add-consultation-inner {
+    padding-bottom: 100px;
+    display: flex;
+    padding-top: 16px;
+    padding-right: 10px;
+}
 
-    h3{
+.consultations {
+    .page-header{
+        .add-customer_list {
+            padding: 0 16px;
+            color: $dark-4;
+            font-size: 14px;
+            line-height: 16px;
+        }
+        .send-details {
+            border-color: $dark-4;
+            color: $dark-4;
+        }
+    }
+    h3 {
         margin-bottom: 24px;
         font-size: 16px;
         color: $basic-7;
         line-height: 24px;
     }
-        
-    .main div:last-child form {
+
+    .main .client-details form {
         padding-bottom: 24px;
         border-bottom-width: 1px;
         border-bottom-style: solid;
         border-bottom-color: $basic-3;
     }
 
-    .appointment-details {
+    .applicants {
         margin-top: 40px;
+
+        .add-applicant{
+          i{
+            font-size: 17px;
+            color: $success-5;
+          }
+          span{
+            margin-left: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            color: $dark-4;
+          }
+        }
+
+        .slideout-content_head{
+            h2{
+                font-size: 20px;
+                line-height: 28px;
+                color: $dark-5;
+            }
+
+            .is-client > span {
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 400;
+                color: $basic-7;
+            }
+            
+            .is-client .slider{
+                border: 1px solid #8D92C1 !important;
+            }
+
+            button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                i{
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .slideout-forms-inner{
+            margin: auto;
+            max-width: 312px;
+            .form-group {
+                
+                margin-bottom: 1rem;
+
+            }
+            input {
+                border-radius: 6px;
+            }
+
+            .appointment-form{
+                margin-top: 56px;
+            }
+
+            button{
+                margin-top: 56px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                height: 48px;
+                width: 100%;
+            }
+        }
     }
 
     .documents {
-        padding-top: 32px;
-        .drag-box{
+        margin-top: 112px;
+
+        .drag-box {
+            // max-width: 336px;
             padding: 18px 16px;
             width: 100%;
             border-radius: 8px;
             background-color: #EBEFFF;
             min-height: 492px;
-            &:not(:last-child){
+
+            &:not(:last-child) {
                 margin-right: 24px;
             }
 
-            .box-title{
+            .box-title {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+
                 span {
                     font-size: 14px;
                     line-height: 20px;
@@ -64,23 +147,24 @@
                 margin-top: 22px;
                 margin-bottom: 16px;
 
-                .list-group-item{
+                .list-group-item {
                     border-radius: 8px;
                     cursor: pointer;
                     border: none;
-                    
-                    &:not(:last-child){
+
+                    &:not(:last-child) {
                         margin-bottom: 8px;
                     }
 
-                     p{
-                         max-width: 224px;
-                         white-space: pre-wrap;
-                         font-size: 14px;
-                         line-height: 20px;
-                         color: $basic-7;
-                     }
-                    .badge{
+                    p {
+                        max-width: 224px;
+                        white-space: pre-wrap;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: $basic-7;
+                    }
+
+                    .badge {
                         margin-top: 16px;
                         padding: 4px 8px;
                         border-radius: 4px;
@@ -91,76 +175,75 @@
                         font-size: 12px;
                         line-height: 16px;
 
-                        &:not(:last-child){
+                        &:not(:last-child) {
                             margin-right: 12px;
                         }
                     }
                 }
-                
+
             }
 
-            button{
+            button {
                 margin-left: 17px;
                 color: $dark-4;
                 font-size: 14px;
                 line-height: 20px;
 
-                i{
+                i {
                     margin-right: 10px;
                     font-size: 17px;
                 }
             }
         }
     }
-}
 
-.add-consultation-inner {
-
-    display: flex;
-    padding-top: 16px;
-
-    .checkout{
+    .checkout {
         color: $basic-7;
-        padding: 24px 32px 48px 24px;
+        padding: 24px 32px 10px 24px;
         max-width: 336px;
         background: $warning-2;
         border-radius: 8px;
         height: max-content;
 
         ul {
-            li{
+            li {
                 display: flex;
                 justify-content: space-between;
-                &:not(:last-child){
+
+                &:not(:last-child) {
                     margin-bottom: 12px;
                 }
+
                 span,
-                strong{
-                font-size: 14px;
-                line-height: 20px;
+                strong {
+                    font-size: 14px;
+                    line-height: 20px;
                 }
             }
-       }
+        }
 
-       .checkout-head > button{
-           
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: $white;
-        width: 108px;
-        height: 28px;
-        border-radius: 4px;
-        i{
-            color: #231F20 ;
-            font-size: 13px;
-            margin-right: 9px;
+        .checkout-head>button {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $white;
+            width: 108px;
+            height: 28px;
+            border-radius: 4px;
+
+            i {
+                color: #231F20;
+                font-size: 13px;
+                margin-right: 9px;
+            }
+
+            span {
+                font-size: 12px;
+                line-height: 16px;
+            }
         }
-        span {
-            font-size: 12px;
-            line-height: 16px;
-        }
-}
+
         .checkout-head {
             position: relative;
             display: flex;
@@ -173,7 +256,7 @@
             }
 
             .add-service-popup {
-                padding: 16px 20px 24px 20px ;
+                padding: 16px 20px 24px 20px;
                 position: absolute;
                 top: calc(100% + 12px);
                 width: 288px;
@@ -182,34 +265,36 @@
                 box-shadow: 0px 8px 24px rgba(41, 45, 50, 0.08);
                 border-radius: 8px;
 
-                .popup-head{
+                .popup-head {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
 
-                    span{
+                    span {
                         font-size: 14px;
                         color: $basic-7;
                         line-height: 20px;
                     }
 
-                    button{
+                    button {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         width: auto;
                         height: auto;
-                        i{
+
+                        i {
                             margin: 0;
                             font-size: 17px;
                             color: $dark-4;
                         }
                     }
                 }
+
                 .popup-form {
                     margin-top: 24px;
 
-                    & + button {
+                    &+button {
                         border-radius: 8px;
                         display: flex;
                         align-items: center;
@@ -221,7 +306,7 @@
             }
         }
 
-       
+
 
         .checkout-travel_info,
         .checkout-fees,
@@ -237,25 +322,26 @@
             padding-bottom: 32px;
         }
 
-        .checkout-total{
+        .checkout-total {
             display: flex;
             justify-content: space-between;
 
-            strong{
-            font-size: 14px;
-            line-height: 20px;
+            strong {
+                font-size: 14px;
+                line-height: 20px;
             }
         }
-        
+
     }
 
 
     .main {
         position: relative;
     }
-    .customer-search_popup {
+
+    .client-search_popup {
         top: 0;
-        right: -12%;
+        left: 100%;
         z-index: 2;
         position: absolute;
         background: $white;
@@ -264,10 +350,11 @@
         box-shadow: 0px 16px 24px rgba(41, 45, 50, 0.08);
         border-radius: 4px;
 
-        
+
         .table-responsive thead {
             background-color: transparent;
         }
+
         .table-responsive thead tr th {
             padding: 20px 24px;
             font-size: 12px;
@@ -277,21 +364,35 @@
         .table-responsive tbody tr {
             padding: 0 24px;
             border: none;
+
             &:hover {
                 background-color: $basic-3;
             }
 
-            &:not(:last-child){
+            &:not(:last-child) {
                 border-bottom: 1px solid #EDF1F7;
             }
 
-            td{
+            td {
                 padding: 24px;
             }
         }
+
         .table-responsive tbody tr td {
             padding-top: 20px;
             padding-bottom: 20px;
         }
     }
+
+
+    .detail-field {
+        margin-bottom: 32px;
+
+        .badge {
+            min-height: 32px;
+        }
+    }
+
+
+   
 }

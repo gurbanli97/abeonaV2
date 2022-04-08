@@ -1,6 +1,22 @@
 <template>
   <div class="consultations">
-      <page-header :title="'Consultations'" :showActions="true"/>
+      <page-header :title="'Consultations'" :showActions="true">
+          <button class="btn clear-filters" v-if="filtersActive" @click="$nuxt.$emit('clear-filters')">
+                  <icon :name="'eraser-1'"/>
+                  <span>Clear filters</span>
+              </button>
+              <button class="btn open-filters" @click="toggleFilters">
+                  <icon :name="!filtersActive ? 'filter-search' : 'close-circle'"/>
+                  <span v-if="!filtersActive">Filters</span>
+                  <span v-else>Hide Filters</span>
+              </button>
+             <div class="d-flex justify-content-end open-calendar">
+                  <NuxtLink :to="'/consultations/calendar'" class="btn btn-success open-calendar">Calendar</NuxtLink>
+             </div>
+              <div class="d-flex justify-content-end add-consultation">
+                  <NuxtLink :to="'/consultations/add'" class="btn btn-success add-consultation">Add new</NuxtLink>
+             </div>
+      </page-header>
     <div class="container">
     <user-table :fields="fields">
         <tbody>
@@ -65,10 +81,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      consultations: 'consultations/consultations'
+      consultations: 'consultations/consultations',
+      filtersActive: 'filtersActive'
     }),
   },
   methods: {
+    toggleFilters(){
+      this.$store.commit('TOGGLE_FILTERS')
+    },
     toggleActions(item){
         this.activeAction = item.id
     },

@@ -1,19 +1,22 @@
 <template>
-  <div class="page-header">
+  <div :class="['page-header',{'with-border':showBorder}]">
     <b-row align-v="center" class="justify-content-between">
-      <b-col xl="3" md="6" class="d-flex align-items-center">
+      <b-col class="d-flex align-items-center">
         <button class="btn go-back" @click="$router.go(-1)" v-if="showBackButton">
             <icon :name="'arrow-left'"/>
         </button>
         <h1 class="page-title">{{ title }}</h1>
       </b-col>
 
-      <b-col xl="9" md="6" v-if="showActions">
-          <div class="d-flex justify-content-end">
-              <button class="btn clear-filters" v-if="filtersActive" @click="clearFilters">
+      <b-col v-if="showActions" class="d-flex justify-content-end">
+          <!-- <button class="btn clear-filters" v-if="filtersActive" @click="clearFilters">
                   <icon :name="'eraser-1'"/>
                   <span>Clear filters</span>
-              </button>
+            </button> -->
+          <slot>
+
+          </slot>
+              <!-- 
               <button class="btn open-filters" @click="filtersActive = !filtersActive">
                   <icon :name="!filtersActive ? 'filter-search' : 'close-circle'"/>
                   <span v-if="!filtersActive">Filters</span>
@@ -24,8 +27,7 @@
              </div>
               <div class="d-flex justify-content-end add-consultation">
                   <NuxtLink :to="'/consultations/add'" class="btn btn-success add-consultation">Add new</NuxtLink>
-             </div>
-          </div>
+             </div> -->
       </b-col>
     </b-row>
 
@@ -76,6 +78,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Filters from '../elements/Filters.vue'
 import Icon from '../elements/Icon.vue'
   export default {
@@ -89,14 +92,14 @@ import Icon from '../elements/Icon.vue'
           showActions: {
               type: Boolean,
               default: false
-          }
-      },
-      data(){
-          return {
-              filtersActive: false
+          },
+          showBorder:{
+               type: Boolean,
+               default: false
           }
       },
       computed: {
+          ...mapGetters(['filtersActive']),
           queryFilters(){
               return {
                   dateFrom: this.$route.query?.dateFrom || null,
@@ -112,9 +115,6 @@ import Icon from '../elements/Icon.vue'
           }
       },
       methods: {
-          test(){
-              console.log('aaa')
-          },
           clearFilters(){
               this.$nuxt.$emit('clearFilters')
           },
