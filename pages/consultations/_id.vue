@@ -121,7 +121,8 @@
 
 
         </div>
-        <div class="checkout col-4">
+        <aside>
+          <div class="checkout col-4">
           <div class="checkout-head">
             <span>Checkout</span>
             <button class="btn btn-borderless" @click="showAddPopup = !showAddPopup">
@@ -190,6 +191,29 @@
                 <strong>412.1 AZN</strong>
             </div>
         </div>
+        <div class="visachance-score">
+          <div class="visachance-score_head">
+            <h3>Visa chance score</h3>
+            <button class="btn btn-info">Recheck</button>
+          </div>
+          <div class="visachance-score_progress">
+           <client-only>
+              <vue-ellipse-progress
+               :progress="100"
+               dot="7"
+               :color="gradient"
+               >
+                <span slot="legend-value">
+                  %
+                </span>
+                <div slot="legend-caption">
+                  <p class="mb-0">Excellent</p>
+                </div>
+              </vue-ellipse-progress>
+          </client-only>
+          </div>
+        </div>
+        </aside>
       </div>
     </div>
 
@@ -204,10 +228,35 @@
     order: 1,
     components: {
       DatePicker,
-      draggable
+      draggable,
     },
     data() {
       return {
+        gradient: {
+    radial: false,
+    colors: [
+      {
+        color: '#EF3565',
+        offset: 0,
+        opacity: '1',
+      },
+      {
+        color: '#8068E0',
+        offset: 0,
+        opacity: '1',
+      },
+       {
+        color: '#42CCF6',
+        offset: 0,
+        opacity: '1',
+      },
+      {
+        color: '#5CE09C',
+        offset: 0,
+        opacity: '1',
+      },
+    ]
+  },
         birthDate: '',
         showAddPopup: false,
         customers: [

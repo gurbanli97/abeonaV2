@@ -69,7 +69,8 @@ export default {
     { src: "~/plugins/vue-select" },
     { src: "~/plugins/vClickOutside" },
     { src: "~/plugins/vue-scrollto" },
-    { src: '~/plugins/full-calendar', ssr: false}
+    { src: '~/plugins/full-calendar', ssr: false},
+    { src: "~/plugins/vue-ellipse",mode: 'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
