@@ -62,28 +62,60 @@
             <b-col xl="12" class="applicants">
               <h3>Applicants</h3>
 
-              <div class="applicants-list">
-                <user-table :fields="fields">
+              <div class="applicant-list">
+                <user-table>
                       <tbody>
                         <template v-for="customer in customers">
                           <tr :key="customer.id">
                             <td>
-                              <span>{{customer.name}}</span>
+                              <detail-field :label="'Name'">
+                                <strong>{{customer.name}} <span class="client-type"> (Client applicant)</span></strong>
+                                
+                              </detail-field>
                             </td>
                             <td>
-                              <span>{{customer.surname}}</span>
+                               <detail-field :label="'Surname'">
+                                <strong>{{customer.surname}}</strong>
+                              </detail-field>
                             </td>
                             <td>
-                              <span>{{customer.phone}}</span>
+                               <detail-field :label="'Phone'">
+                                <strong>{{customer.phone}}</strong>
+                              </detail-field>
                             </td>
                             <td>
-                              <span>{{customer.email}}</span>
+                               <detail-field :label="'Email'">
+                                <strong>{{customer.email}}</strong>
+                              </detail-field>
                             </td>
-                            <td>act</td>
+                             <td class="actions" :class="{'active':activeAction === customer.id}">
+                              <button class="show-actions" @click="toggleActions(customer)" ref="showActions">
+                                <icon :name="'more'" />
+                              </button>
+                              <div class="table-actions" v-show="activeAction === customer.id" :id="`element-${customer.id}`" ref="actionsBlock">
+                                <button>
+                                  <icon :name="'edit-2'"/>
+                                  Edit
+                                </button>
+                                <button>
+                                  <icon :name="'profile-1'"/>
+                                  Make applicant
+                                </button>
+                                <button @click="openModal(customer.id)">
+                                  <icon :name="'trash'"/>
+                                  Delete
+                                </button>
+                              </div>
+                            </td>
                           </tr>
                         </template>
                       </tbody>
                   </user-table>
+                   <modal 
+                    :toggle="showDeleteModal"
+                    @close="showDeleteModal = false"
+                    :item="itemToDelete"
+                  />
               </div>
 
               <button class="btn btn-borderless add-applicant" @click="showSlideOut = true">
@@ -238,6 +270,9 @@
         showSlideOut: false,
         birthDate: '',
         showAddPopup: false,
+        activeAction: null,
+        showDeleteModal: false,
+        itemToDelete: null,
         customers: [{
             id: 1,
             name: 'Ali',
@@ -316,10 +351,30 @@
       log: function (evt) {
         window.console.log(evt);
       },
+       toggleActions(item){
+        this.activeAction = item.id
+    },
       handleDocClick(event) { 
         let target = event.target.classList.contains('slideout-overlay');
         if(target)
           this.showSlideOut = false
+
+          if(this.activeAction === null) {
+          return
+        }
+        let clickedActionBtn = event.target.classList.contains('icon-more');
+        let clickedActionBlock = event.target.classList.contains('table-actions');
+        
+        if(!clickedActionBtn && !clickedActionBlock) {
+          this.activeAction = null;
+        }
+      },
+      openModal(item){
+        this.showDeleteModal = true,
+        this.itemToDelete = item
+      },
+      handleDelete(item){
+        console.log('id:',item)
       }
       
     },

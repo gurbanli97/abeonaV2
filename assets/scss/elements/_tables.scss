@@ -38,13 +38,11 @@
         padding-bottom: 28px;
 
         span {
-          color: $basic-7;
           font-size: 14px;
           line-height: 20px;
         }
 
         strong {
-          color: $basic-7;
           font-size: 14px;
           line-height: 20px;
         }
@@ -76,9 +74,8 @@
 
 
   .table-actions {
-    min-width: 148px;
     top: 20px;
-    left: -180%;
+    right: 0;
     position: absolute;
     z-index: 1;
     display: flex;
