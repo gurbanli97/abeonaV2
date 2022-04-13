@@ -1,6 +1,6 @@
 <template>
-  <b-form-group :label="label" :class="{'search-input': inputStyle === 'search'}">
-    <icon :name="'search-normal-1'" v-if="inputStyle === 'search'"/>
+  <b-form-group :label="label" :class="{'search-input': type === 'search'}">
+    <span v-if="type === 'search'"><icon :name="'search-normal-1'" /></span>
     <b-form-input
       autocomplete="off"
       v-model="fieldValue"
@@ -61,5 +61,8 @@ export default {
       }
     }
   },
+  methods:{
+   
+  }
 }
 </script>
