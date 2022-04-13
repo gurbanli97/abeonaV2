@@ -1,7 +1,7 @@
 <template>
   <div class="root">
-      <Sidebar/>
-      <section class="page" :class="{'sidebar-active':sidebarIsActive}">
+      <Sidebar v-if="$route.path !='/login'"/>
+      <section class="page" :class="{'sidebar-active':sidebarIsActive,'is-login':$route.path === '/login'}">
             <nuxt keep-alive />
       </section>
   </div>
@@ -15,7 +15,7 @@ export default {
   components: { Sidebar },
   name: "DefaultLayout",
    computed: {
-        ...mapState(['sidebarIsActive'])
+        ...mapState(['sidebarIsActive']),
   },
 }
 </script>
