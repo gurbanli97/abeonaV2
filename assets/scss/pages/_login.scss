@@ -30,6 +30,9 @@
         font-size: 14px;
         line-height: 20px;
     }
+    .form-group.is-invalid span i{
+        color: $danger-5;
+    }
 
     form {
         margin-top: 48px;
@@ -49,29 +52,31 @@
 
         .password-input {
             position: relative;
-        
-            input{
-                // padding-left: 52px;
+            span{
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 18px;
             }
-
             i {
                 cursor: pointer !important;
                 font-size: 20px;
-                position: absolute;
-                top: 50%;
-                right: 18px;
-                transform: translateY(-50%);
+               
                 color: $basic-7;
             }
         
         }
+
+       
     }
 }
 
 .login-box_right{
     padding: 48px 48px 24px 48px;
     width: 336px;
-    background: linear-gradient(213.17deg, #9180F4 0%, #8573F4 98.41%);
+    background: linear-gradient(to top, #1c1e32, #2a2c45, #383c59, #474c6e, #575c84);
     border-radius: 0px 8px 8px 0px;
 
     span{

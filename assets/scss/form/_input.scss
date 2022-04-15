@@ -18,6 +18,24 @@
             font-size: 13px;
             line-height: 16px;  
         }
+
+        &.is-invalid {
+            border-color: $danger-5;
+            background-image: none;
+        }
+    }
+
+    .form-group .form-control:focus {
+        border-color: #C0C5EA;
+    }
+
+    .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus{
+        border-color: $danger-5;
+    }
+    .invalid-feedback {
+        font-size: 12px;
+        line-height: 16px;
+        color: $danger-5;
     }
 
     .col-form-label {
