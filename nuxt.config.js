@@ -69,6 +69,7 @@ export default {
     { src: "~/plugins/vue-select" },
     { src: "~/plugins/vClickOutside" },
     { src: "~/plugins/vue-scrollto" },
+    { src: "~/plugins/vuelidate" },
     { src: '~/plugins/full-calendar', ssr: false},
     { src: "~/plugins/vue-ellipse",mode: 'client'},
   ],
@@ -85,6 +86,8 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+    'cookie-universal-nuxt',
     '@nuxtjs/moment',
     '@nuxtjs/toast',
     'vue-scrollto/nuxt',
@@ -102,6 +105,36 @@ export default {
        pathRewrite: { "^api/": "" }
      }
    },
+
+   auth: {
+    localStorage: false,
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          // required: true,
+          type: 'Token'
+        },
+        user: {
+          property: false, // here should be `false`, as you defined in user endpoint `propertyName`
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'api/v1/login', method: 'post' },
+          logout: false,
+          user: false
+        },
+       
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/login',
+      home: '/'
+    }
+  },
 
   toast: {
     position: "top-right",

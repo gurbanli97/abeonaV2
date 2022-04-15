@@ -98,7 +98,7 @@
                 </div>
                </NuxtLink>
                 <div class="logout" v-if="sidebarIsActive">
-                    <icon :name="'logout-1'"/>
+                    <span @click="handleLogout"><icon :name="'logout-1'"/></span>
                 </div>
             </div>
           </div>
@@ -147,6 +147,11 @@ export default {
              this.$refs.notificationTooltip.$emit('close')
              
              this.$router.push('/notifications')
+        },
+        async handleLogout(){
+            await this.$cookies.removeAll()
+
+            this.$router.push('/login')
         }
     //     handleDocClick(event) { 
     //     if(this.notificationsActive === false) {

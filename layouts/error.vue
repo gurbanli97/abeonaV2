@@ -1,14 +1,12 @@
 <template>
   <div class="root">
-    <Sidebar/>
+    <h1>Error page</h1>
   </div>
 </template>
 
 <script>
-import Sidebar from '../components/layout/Sidebar.vue'
 
 export default {
-  components: { Sidebar },
   name: "ErrorLayout",
 }
 </script>

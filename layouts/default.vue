@@ -1,7 +1,7 @@
 <template>
   <div class="root">
-      <Sidebar v-if="$route.path !='/login'"/>
-      <section class="page" :class="{'sidebar-active':sidebarIsActive,'is-login':$route.path === '/login'}">
+      <Sidebar/>
+      <section class="page" :class="{'sidebar-active':sidebarIsActive}">
             <nuxt keep-alive />
       </section>
   </div>
@@ -14,6 +14,7 @@ import { mapState} from 'vuex'
 export default {
   components: { Sidebar },
   name: "DefaultLayout",
+  middleware: 'auth',
    computed: {
         ...mapState(['sidebarIsActive']),
   },
