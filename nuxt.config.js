@@ -34,7 +34,6 @@ export default {
     height: '3px'
   },
 
-
   alias: {
     'images': resolve(__dirname, './assets/images'),
     'icons': resolve(__dirname, './assets/images/icons'),
@@ -87,11 +86,40 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/i18n',
     'cookie-universal-nuxt',
     '@nuxtjs/moment',
     '@nuxtjs/toast',
     'vue-scrollto/nuxt',
   ],
+
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.js',
+        iso: 'en-en'
+      },
+      {
+        code: 'ru',
+        file: 'ru.js',
+        iso: 'ru-ru'
+      },
+      {
+        code: 'az',
+        file: 'az.js',
+        iso: 'az-az'
+      }
+    ],
+    langDir: 'locales/',
+    strategy: 'prefix_except_default',
+    baseUrl: 'localhost:3000',
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+    },
+    detectBrowserLanguage: false
+  },
 
   axios: {
     // Do away with the baseUrl when using proxy
@@ -113,11 +141,12 @@ export default {
         token: {
           property: 'token',
           global: true,
-          // required: true,
+          required: true,
+          maxAge: 60 * 60 * 24 * 30,
           type: 'Token'
         },
         user: {
-          property: false, // here should be `false`, as you defined in user endpoint `propertyName`
+          property: false,
           autoFetch: true
         },
         endpoints: {
@@ -139,7 +168,7 @@ export default {
   toast: {
     position: "top-right",
     keepOnHover: true,
-    duration: 5000
+    duration: 3000
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

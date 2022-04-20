@@ -1,6 +1,6 @@
 <template>
   <div :class="['page-header',{'with-border':showBorder}]">
-    <b-row align-v="center" class="justify-content-between">
+    <b-row class="justify-content-between">
       <b-col class="d-flex align-items-center">
         <button class="btn go-back" @click="$router.go(-1)" v-if="showBackButton">
             <icon :name="'arrow-left'"/>

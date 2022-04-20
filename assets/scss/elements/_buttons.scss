@@ -4,14 +4,16 @@
     box-shadow: none;
     border: none;
     display: flex;
+    text-align: center;
     align-items: center;
+    justify-content: center;
+    padding: 0;
 
     &:focus, &.btn.focus {
         box-shadow: none;
     }
 
     &.btn-transparent {
-        padding: 0 16px;
         border-radius: 4px;
         border: 1px solid;
         font-size: 14px;
@@ -19,7 +21,6 @@
     }
 
     &.btn-borderless {
-        padding: 0;
         font-size: 12px;
         line-height: 16px;
         border:none;
@@ -31,7 +32,6 @@
         font-size: 14px;
         line-height: 16px;
         background-color: $success-5;
-        padding: 8px 16px;
     }
 
     &.go-back {
@@ -39,7 +39,6 @@
         display: flex;
         align-items: center;
         color: $basic-7;
-        padding: 0;
         margin-right: 19px;
     }
 
@@ -55,8 +54,6 @@
         border: 1px solid #8D92C1;
         box-sizing: border-box;
         border-radius: 4px;
-        padding: 8px 16px 8px 16px;
-        
         span {
             margin-left: 12px;
         }

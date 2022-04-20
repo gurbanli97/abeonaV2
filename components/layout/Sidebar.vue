@@ -44,7 +44,12 @@
                     </li>
                 </ul>
             </nav>
-
+            
+            <div class="locales">
+                <button class="btn btn-success" @click="$i18n.setLocale('en')">EN</button>
+                <button class="btn btn-success" @click="$i18n.setLocale('ru')">RU</button>
+                <button class="btn btn-success" @click="$i18n.setLocale('az')">AZ</button>
+            </div>
             <div class="sidebar-communication" :class="{'sidebar-active': sidebarIsActive}">
                 <div class="messages">
                     <icon :name="'message'"/>
@@ -145,13 +150,10 @@ export default {
         },
         closeNotyTooltip(){
              this.$refs.notificationTooltip.$emit('close')
-             
              this.$router.push('/notifications')
         },
         async handleLogout(){
-            await this.$cookies.removeAll()
-
-            this.$router.push('/login')
+            await this.$auth.logout()
         }
     //     handleDocClick(event) { 
     //     if(this.notificationsActive === false) {
