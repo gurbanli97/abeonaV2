@@ -6,6 +6,7 @@
           <th v-for="field in fields" :key="field">
             {{ field }}
           </th>
+          <th v-if="withActions"></th>
         </tr>
       </thead>
       <slot></slot>
@@ -20,6 +21,10 @@ export default {
     fields: {
       type: Array,
       default: () => ([])
+    },
+    withActions:{
+      type: Boolean,
+      default: false
     }
   }
 }
