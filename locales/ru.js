@@ -1,5 +1,5 @@
 export default {
-    'dashboard': 'главная панель',
+    'dashboard': 'главная',
     'consultations': 'консультации',
     'orders': 'заказы',
     'billing': 'счета',

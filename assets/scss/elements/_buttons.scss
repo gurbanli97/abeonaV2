@@ -1,5 +1,6 @@
 .btn {
     min-height: 32px;
+    padding: 12px 24px;
     outline: none;
     box-shadow: none;
     border: none;
@@ -7,7 +8,6 @@
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 0;
 
     &:focus, &.btn.focus {
         box-shadow: none;

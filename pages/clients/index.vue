@@ -6,7 +6,7 @@
             :type="'search'"
         >
         </form-field>
-        <button class="btn btn-success">Add new</button>
+        <button class="btn btn-success add-new">Add new</button>
     </page-header>
     <div class="container">
       <user-table :fields="fields" :withActions="true">

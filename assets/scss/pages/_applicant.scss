@@ -1,0 +1,280 @@
+.applicant.applicant_id {
+    h2 {
+        font-size: 16px;
+        line-height: 24px;
+        color: $basic-7;
+    }
+
+    .page-header {
+        .applicant-details {
+            background: #F2F6FF;
+            border-radius: 4px;
+            padding: 12px 16px;
+            color: $info-5;
+            font-size: 14px;
+            line-height: 16px;
+
+            i {
+                font-size: 16px;
+                margin-right: 10px;
+            }
+        }
+
+        .applicant-files {
+            background: $info-5;
+            border-radius: 4px;
+            padding: 12px 16px;
+            color: $white;
+            font-size: 14px;
+            line-height: 16px;
+
+            i {
+                font-size: 16px;
+                margin-right: 11px;
+            }
+        }
+    }
+
+    .applicant-id_inner .recent-orders .table-responsive {
+        margin-top: 24px;
+        margin-bottom: 56px;
+    }
+
+    .detail-field {
+        width: 228px;
+        max-width: 100%;
+    }
+
+    .passport-details {
+        border-bottom: 4px solid $dark-1;
+        padding-bottom: 64px;
+
+    }
+
+    .passport-upload_input {
+        margin-right: 64px;
+    }
+
+    .passport-upload_input label {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        min-width: 272px;
+        max-height: 60px;
+        background: #F2F8FF;
+        border: 1px dashed #94CBFF;
+        border-radius: 8px;
+        padding: 12px 16px;
+        cursor: pointer;
+
+        h3 {
+            font-size: 14px;
+            color: $basic-7;
+            margin-bottom: 0;
+        }
+
+        span {
+            font-size: 12px;
+            color: $basic-6;
+        }
+
+        strong {
+            background: $white;
+            border: 1px solid $info-3;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+            color: $dark-4;
+        }
+    }
+
+    .passport-active_checkbox {
+        label {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            span {
+                font-size: 14px;
+                line-height: 20px;
+                color: $basic-7;
+            }
+        }
+
+        input {
+            margin-right: 6px;
+            width: 20px;
+            height: 20px;
+            background: rgba(143, 155, 179, 0.16);
+            border: 1px solid $basic-5;
+            border-radius: 3px;
+        }
+    }
+
+
+    .visa-details {
+        padding-top: 32px;
+        padding-bottom: 400px;
+
+        .tabs .nav-tabs {
+            border: none;
+
+            .nav-item:not(:last-child) {
+                margin-right: 8px;
+            }
+
+            .nav-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 20px;
+                padding: 6px 16px;
+                background: $dark-3;
+                color: $white;
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .nav-link.active {
+                background: $success-5;
+                color: $white;
+            }
+        }
+
+
+
+        .visacopy-upload_input label {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            min-width: 272px;
+            max-height: 60px;
+            background: #F2F8FF;
+            border: 1px dashed #94CBFF;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+
+            h3 {
+                font-size: 14px;
+                color: $basic-7;
+                margin-bottom: 0;
+            }
+
+            span {
+                font-size: 12px;
+                color: $basic-6;
+            }
+
+            strong {
+                background: $white;
+                border: 1px solid $info-3;
+                border-radius: 6px;
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 16px;
+                color: $dark-4;
+            }
+        }
+    }
+
+
+    .visacopy-progress_inner {
+        max-width: 272px;
+        width: 100%;
+        display: flex;
+
+       .progress{
+           width: 238px !important;
+           background: $basic-3;
+           border-radius: 2px;
+       }
+
+       button{
+           margin-left: 8px;
+           font-size: 20px;
+           color: $dark-3;
+       }
+    }
+
+    .trips-inner{
+       .trip-item{
+           height: 48px;
+           margin-top: 24px;
+           width: 426px;
+           max-width: 100%;
+           background: #F7F9FC;
+           border: 1px solid #DEE1F4;
+           border-radius: 8px;
+           
+           cursor: pointer;
+
+
+           &.active{
+               height: 100%;
+                .trip-item_body{
+                    display:block;
+                    height: 100%;
+                }
+
+                .trip-item_head > i {
+                    transform: rotate(180deg);
+                }
+           }
+
+           .trip-item_head{
+            padding: 14px 16px 14px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            span{
+                font-size: 14px;
+                line-height: 20px;
+                color: $basic-7;
+                font-weight: 500;
+                i{
+                    margin-right: 24px;
+                    font-size: 20px;
+                }
+            }
+
+            i{
+                font-size: 20px;
+                color: $dark-4;
+            }
+           }
+
+
+           .trip-item_body {
+               display:none;
+               padding: 26px 25px 40px 25px;
+               transition: all .3s ease-out;
+
+               .form-field input{
+                   background-color: $white;
+               }
+               .mx-datepicker {
+                   background-color: $white;
+               }
+
+               .actions {
+                   margin-top: 32px;
+                   display: flex;
+                   align-items: center;
+                   justify-content: space-between;
+               }
+           }
+       }
+    }
+
+}
