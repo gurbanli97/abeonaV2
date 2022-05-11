@@ -13,7 +13,7 @@
             <nav>
                 <ul class="menu">
                     <li v-for="menu in navItems" :key="menu.title" v-b-tooltip.hover :id="`tooltip-target-${menu.id}`">
-                        <NuxtLink :to="menu.route" :exact="menu.route === '/'" v-if="sidebarIsActive">
+                        <NuxtLink :to="localePath(menu.route)" :exact="menu.route === '/'" v-if="sidebarIsActive">
                             <icon :name="menu.icon"/>
                             {{menu.title}}
                         </NuxtLink>

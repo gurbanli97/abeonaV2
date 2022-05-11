@@ -1,6 +1,6 @@
 <template>
     <div class="detail-field">
-        <span>{{label}}</span>
+        <span v-if="label">{{label}}</span>
         <slot></slot>
     </div>
 </template>
@@ -10,7 +10,6 @@ export default {
     props: {
         label: {
             type: String,
-            required: true
         }
     }
 

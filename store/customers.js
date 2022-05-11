@@ -21,7 +21,4 @@ export const actions = {
         commit('SET_CUSTOMERS',items);
         
       },
-
-      
-    
 }

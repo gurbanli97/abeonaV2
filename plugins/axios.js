@@ -3,10 +3,10 @@ export default function ({ $axios,store, error: nuxtError }) {
       config.headers['Content-Type'] = 'application/json';
     });
   
-    // $axios.onError(error => {
-    //   nuxtError({
-    //     statusCode: (error.response && error.response.status) || 500,
-    //     message: error.message || 'Server error',
-    //   });
-    // });
+    $axios.onError(error => {
+      nuxtError({
+        statusCode: (error.response && error.response.status) || 500,
+        message: error.message || 'Server error',
+      });
+    });
   }

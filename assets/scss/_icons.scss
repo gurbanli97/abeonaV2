@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icons/icomoon.eot?d25pla');
-  src:  url('../fonts/icons/icomoon.eot?d25pla#iefix') format('embedded-opentype'),
-    url('../fonts/icons/icomoon.ttf?d25pla') format('truetype'),
-    url('../fonts/icons/icomoon.woff?d25pla') format('woff'),
-    url('../fonts/icons/icomoon.svg?d25pla#icomoon') format('svg');
+  src:  url('../fonts/icons/icomoon.eot?t9k1ji');
+  src:  url('../fonts/icons/icomoon.eot?t9k1ji#iefix') format('embedded-opentype'),
+    url('../fonts/icons/icomoon.ttf?t9k1ji') format('truetype'),
+    url('../fonts/icons/icomoon.woff?t9k1ji') format('woff'),
+    url('../fonts/icons/icomoon.svg?t9k1ji#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -26,6 +26,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-folder-add:before {
+  content: "\e92c";
+}
+.icon-info-circle:before {
+  content: "\e92d";
+}
+.icon-clock:before {
+  content: "\e92a";
+}
+.icon-tick-circle:before {
+  content: "\e92b";
+}
 .icon-eye-slash:before {
   content: "\e928";
 }
