@@ -256,13 +256,12 @@
 </template>
 
 <script>
-  import DatePicker from 'vue2-datepicker'
+   
   import draggable from 'vuedraggable'
 
   export default {
     order: 1,
     components: {
-      DatePicker,
       draggable
     },
     data() {

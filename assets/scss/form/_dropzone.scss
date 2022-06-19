@@ -1,0 +1,180 @@
+.dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px !important;
+    padding-top: 20px !important;
+    min-height: 120px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .img-thumbnail_custom {
+    padding: 0.15rem;
+    background-color: #f3f4f7;
+    border: 1px solid #e2e7f1;
+    border-radius: 0.3rem;
+    max-width: 10%;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+    cursor: pointer !important;
+    height: auto;
+  }
+  
+  .img-thumbnail_custom:hover {
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+  }
+  
+  .img-thumbnail_custom_edit {
+    padding: 0.15rem;
+    background-color: #f3f4f7;
+    border: 1px solid #e2e7f1;
+    border-radius: 0.3rem;
+    max-width: 10%;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+    cursor: pointer !important;
+    height: auto;
+  }
+  
+  .img-thumbnail_custom_edit:hover {
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+  }
+  
+  .dropzone {
+    padding: 0 !important;
+  }
+  
+  .dropzone .dz-preview {
+    width: 100%;
+    margin: 0 !important;
+    height: 100% !important;
+    min-height: 100% !important;
+  }
+  
+  .dropzone .dz-preview.dz-file-preview .dz-details {
+    position: relative !important;
+  }
+  
+  .dropzone .dz-preview .dz-details .dz-size {
+    margin: 0 !important;
+  }
+  
+  .dropzone .dz-preview .dz-details {
+    padding: 0;
+  }
+  
+  .dz-message {
+    margin: 0 !important;
+  }
+  .dropzone .dz-preview {
+    margin: 0 auto !important;
+  }
+  .dropzone .dz-preview .dz-remove {
+    margin-left: 0 !important;
+    margin-top: 10px;
+    padding: 4px 8px !important;
+    color: $danger-5;
+    background-color: $danger-5;
+    font-size: 12px !important;
+    border: 1px solid $danger-5 !important;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    border-radius: 24px;
+    bottom: 0 !important;
+  }
+  
+  .dropzone .dz-preview .dz-remove:hover {
+    color: #fff;
+    background-color: $danger-5;
+    border-color: $danger-5;
+  }
+.dropzone{
+    background: $info-1 !important;
+    border: 1px dashed $info-3 !important;
+    border-radius: 8px !important;
+    max-width: 100%;
+
+    .dz-default.dz-message{
+        font-size: 16px;
+        line-height: 24px;
+        color: $basic-7;
+        font-weight: 600;
+    }
+}
+.dropzone .dz-preview .dz-details{
+    padding: 0 !important;
+    opacity: 1 !important;
+    color: $basic-7 !important;
+    position: relative !important;
+    background-color: $info-1 !important;
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 13px;
+    min-width: 100%;
+    max-width: 100%;
+    text-align: center !important;
+    color: rgba(0,0,0,0.9);
+    line-height: 150%;
+}
+
+.img-thumbnail-custom{
+    padding: 0.15rem;
+    background-color: #f3f4f7;
+    border: 1px solid #e2e7f1;
+    border-radius: 0.3rem;
+    max-width: 10%;
+    -webkit-transition: -webkit-transform 0.2s;
+    transition: -webkit-transform 0.2s;
+    transition: transform 0.2s;
+    transition: transform 0.2s, -webkit-transform 0.2s;
+    cursor: pointer !important;
+    height: auto;
+}
+
+.vue-dropzone>.dz-preview .dz-error-mark, .vue-dropzone>.dz-preview .dz-success-mark{
+    width: auto !important;
+    top: 50% !important;
+    transform: translate(-50%,-50%) !important;
+    left: 50% !important;
+}
+
+.dropzone-custom-message{
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h2{
+        font-size: 16px;
+        line-height: 24px;
+        color: $basic-7;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    span{
+        font-size: 12px;
+        line-height: 16px;
+        color: $basic-6;
+        font-weight: 400;
+    }
+    button{
+        padding: 10px 40px;
+        margin: 12px 0 16px 0;
+        background: $info-4;
+        border-radius: 6px;
+        color: $white !important;
+    }
+}

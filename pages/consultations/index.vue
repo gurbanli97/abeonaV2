@@ -71,6 +71,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  name: 'Consultations',
   data() {
     return {
       fields: ['Customer','Date & Time','Travel to','Specialist','Status'],

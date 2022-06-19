@@ -2,8 +2,6 @@ export const state = () => ({
     allNotifications: []
 })
 
-
-
 export const getters = {
     notifications: s => s.allNotifications,
 }
@@ -20,7 +18,4 @@ export const actions = {
         let items = response.data.data
         commit('SET_NOTIFICATIONS',items);
       },
-
-      
-    
 }

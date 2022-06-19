@@ -20,8 +20,5 @@ export const actions = {
         let items = response.data.data
         commit('SET_CONSULTATIONS',items);
         
-      },
-
-      
-    
+      }      
 }

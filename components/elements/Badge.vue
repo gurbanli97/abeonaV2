@@ -25,7 +25,11 @@ export default {
             'Online': 'light',
             'Pending': 'warning',
             'Completed': 'info',
-            'Cancelled': 'danger'
+            'Cancelled': 'danger',
+            'Processing': 'warning',
+            'Rejected': 'danger',
+            'Obtained': 'success',
+            'Applied': 'info'
           }[this.text]
         case 'priority':
           return {

@@ -22,6 +22,8 @@ export default {
     "@/assets/scss/style.scss"
   ],
 
+  ssr: false,
+
   alias: {
     'images': resolve(__dirname, './assets/images'),
     'icons': resolve(__dirname, './assets/images/icons'),
@@ -69,20 +71,23 @@ export default {
     { src: "~/plugins/vuelidate" },
     { src: '~/plugins/full-calendar', ssr: false},
     { src: "~/plugins/vue-ellipse",mode: 'client'},
+    { src: "~/plugins/vue-treeselect",mode: 'client',ssr: false},
+    { src: "~/plugins/vue-datepicker",mode: 'client',ssr: false},
   ],
-
   axios: {
     // Do away with the baseUrl when using proxy
     proxy: true,
-    baseURL: 'https://stg.abeona.pickvisa.com'
+    // baseURL: 'https://stg.abeona.pickvisa.com'
    },
    proxy: {
      // Simple proxy
      "/api/": {
-       target: "https://stg.abeona.pickvisa.com",
-       pathRewrite: { "^api/": "" }
+       target: "https://stg.abeona.pickvisa.com/",
+       pathRewrite: { "^api/": "" },
+      //  changeOrigin: true
      }
    },
+
 
    auth: {
     localStorage: false,
@@ -147,9 +152,7 @@ export default {
   //   port: 3000,
   //   host: '0.0.0.0'
   // },
-
   
-
   render: {
     bundleRenderer: {
       shouldPreload: (file, type) => {

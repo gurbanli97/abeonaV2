@@ -1,0 +1,70 @@
+.trips-inner{
+  .trip-item{
+      height: 48px;
+      margin-top: 24px;
+      width: 426px;
+      max-width: 100%;
+      background: #F7F9FC;
+      border: 1px solid #DEE1F4;
+      border-radius: 8px;
+      
+      cursor: pointer;
+
+
+      &.active{
+          height: 100%;
+           .trip-item_body{
+               display:block;
+               height: 100%;
+           }
+           .trip-item_head > i {
+               transform: rotate(180deg);
+           }
+      }
+
+      .trip-item_head{
+       padding: 14px 16px 14px 15px;
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+
+
+       span{
+           font-size: 14px;
+           line-height: 20px;
+           color: $basic-7;
+           font-weight: 500;
+           i{
+               margin-right: 24px;
+               font-size: 20px;
+           }
+       }
+
+       i{
+           font-size: 20px;
+           color: $dark-4;
+       }
+      }
+
+
+      .trip-item_body {
+          display:none;
+          padding: 26px 25px 40px 25px;
+          transition: all .3s ease-out;
+
+          .form-field input{
+              background-color: $white;
+          }
+          .mx-datepicker {
+              background-color: $white;
+          }
+
+          .actions {
+              margin-top: 32px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+          }
+      }
+  }
+}

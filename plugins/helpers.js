@@ -19,7 +19,8 @@ export default ({ app }, inject) => {
         Object.keys(query).forEach(key => {
           if (Array.isArray(query[key]) && query[key].length > 0) {
             query[key].forEach(subkey => {
-              queryEntities += `${key}[]=${subkey}&`;
+              // queryEntities += `${key}[]=${subkey}&`;
+              queryEntities += `${key}=${subkey}&`;
             })
           } else {
             if (query[key].length !== 0) {
