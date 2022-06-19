@@ -85,3 +85,34 @@
      color: $dark-3;
  }
 }
+
+.edit-visa {
+    color: $basic-7;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    i {
+        margin-right: 10px;
+    }
+}
+
+
+.slideout-forms-inner  {
+    .form-group{
+        max-width: 336px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    input {
+        height: 48px;
+    }
+
+    .btn-success{
+        width: 336px;
+        max-width: 100%;
+        margin: auto;
+        margin-top: 40px;
+        padding: 16px 0;
+        border-radius: 8px;
+    }
+}

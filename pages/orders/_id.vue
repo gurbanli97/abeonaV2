@@ -11,6 +11,7 @@
         <div class="order_id-inner">
           <order-details v-if="!order.details.passport_no"/>
           <passport-details v-else/>
+         
         </div>
     </div>
    </div>
@@ -23,11 +24,17 @@ import PassportDetails from '../../components/orders/PassportDetails.vue'
 export default {
     name: 'ItemById',
     components: {PassportDetails, OrderDetails},
+    data(){
+      return {
+      }
+    },
     computed:{
       ...mapGetters({
         order: 'orders/orderById',
         country_fullname: 'orders/country_fullname',
       })
+    },
+    methods: {
     },
    async asyncData({params,store}) {
      await Promise.all([
