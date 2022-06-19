@@ -1,33 +1,21 @@
 <template>
   <div :class="['page-header',{'with-border':showBorder}]">
     <b-row class="justify-content-between">
-      <b-col class="d-flex align-items-center">
+       <b-col class="d-flex align-items-center">
         <button class="btn go-back" @click="$router.go(-1)" v-if="showBackButton">
             <icon :name="'arrow-left'"/>
         </button>
-        <h1 class="page-title">{{ title }}</h1>
+        <h1 class="page-title" v-if="!showDetails">{{ title }}</h1>
+        <div class="detailed-title" v-else>
+         <h1 class="page-title">{{ title }}</h1>
+         <span>{{showDetails.country}}</span>
+          <span>{{showDetails.visa_type}}</span>
+        </div>
       </b-col>
 
       <b-col v-if="showActions" class="d-flex justify-content-end">
-          <!-- <button class="btn clear-filters" v-if="filtersActive" @click="clearFilters">
-                  <icon :name="'eraser-1'"/>
-                  <span>Clear filters</span>
-            </button> -->
           <slot>
-
           </slot>
-              <!-- 
-              <button class="btn open-filters" @click="filtersActive = !filtersActive">
-                  <icon :name="!filtersActive ? 'filter-search' : 'close-circle'"/>
-                  <span v-if="!filtersActive">Filters</span>
-                  <span v-else>Hide Filters</span>
-              </button>
-             <div class="d-flex justify-content-end open-calendar">
-                  <NuxtLink :to="'/consultations/calendar'" class="btn btn-success open-calendar">Calendar</NuxtLink>
-             </div>
-              <div class="d-flex justify-content-end add-consultation">
-                  <NuxtLink :to="'/consultations/add'" class="btn btn-success add-consultation">Add new</NuxtLink>
-             </div> -->
       </b-col>
     </b-row>
 
@@ -36,7 +24,7 @@
             <filters/>
         </b-col>
     </b-row>
-     <b-row v-show="!filtersActive && filtersLength">
+     <!-- <b-row v-show="!filtersActive && filtersLength">
         <b-col xl="3" class="mt-4" v-if="queryFilters.dateFrom">
         <query-field
             :placeholder="'Dates'"
@@ -73,7 +61,7 @@
             @delete-filter="test"
         />
         </b-col>
-    </b-row>
+    </b-row> -->
   </div>
 </template>
 
@@ -96,6 +84,10 @@ import Icon from '../elements/Icon.vue'
           showBorder:{
                type: Boolean,
                default: false
+          },
+           showDetails: {
+              type: [Object,Boolean],
+              default: false
           }
       },
       computed: {

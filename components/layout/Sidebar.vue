@@ -25,7 +25,7 @@
                         </NuxtLink>
                     </li>
 
-                    <li class="darkmode">
+                    <!-- <li class="darkmode">
                         <a class="nav-darkmode titled"  v-if="sidebarIsActive">
                             <icon :name="'moon'"/>
                             Darkmode
@@ -41,11 +41,11 @@
                              </b-tooltip>
                             <icon :name="'moon'"/>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
             
-            <div class="locales">
+            <div class="locales d-flex justify-content-evenly mt-4">
                 <button class="btn btn-success" @click="$i18n.setLocale('en')">EN</button>
                 <button class="btn btn-success" @click="$i18n.setLocale('ru')">RU</button>
                 <button class="btn btn-success" @click="$i18n.setLocale('az')">AZ</button>

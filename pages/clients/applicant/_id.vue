@@ -238,10 +238,9 @@
   import {
     mapGetters
   } from 'vuex'
-  import DatePicker from 'vue2-datepicker'
+   
   export default {
     components: {
-      DatePicker
     },
     data() {
       return {
@@ -306,13 +305,10 @@
         items.forEach(item => {
             if(item != event.target.closest('.trip-item'))
              item.classList.remove('active')
-        })
-
+        });
         if(event.target.closest('.trip-item').classList.contains('active'))
            event.target.closest('.trip-item').classList.remove('active')
         else event.target.closest('.trip-item').classList.add('active')
-
-       
       }
     },
     async asyncData({

@@ -1,5 +1,6 @@
 .v-select {
   position: relative;
+  max-height: 40px;
 
   &.vs--searching {
     .vs__selected {
@@ -50,7 +51,7 @@
   .vs__dropdown-toggle {
     width: 100%;
     max-height: 40px;
-    padding: 10px 0 10px 16px;
+    padding: 10px 0px 10px 16px;
     background-color: $basic-2;
     border: 1px solid #C0C5EA;
     border-radius: 8px;
@@ -86,11 +87,16 @@
   }
 
   .vs__selected-options {
+    padding-right: 30px;
+    max-height: 20px;
     position: relative;
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     min-height: 21px;
     min-width: 160px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     .vs__selected {
       position: relative;
@@ -107,7 +113,8 @@
     }
 
     .vs__selected {
-      padding: 0 5px;
+      line-height: 20px;
+      padding: 5px 5px;
       border: 1px solid $basic-7;
       border-radius: 4px;
     }
@@ -154,13 +161,54 @@
     display: none;
   }
 }
-
+.select-invalid{
+  font-size: 12px;
+  line-height: 16px;
+  color: $danger-5;
+}
 .vs__search::-webkit-search-cancel-button {
   display: none !important;
 }
 
 .v-select.is-invalid {
-  .vs__dropdown-toggle {
-    border-color: red;
+
+  &::after{
+    color: $danger-5;
   }
+  .vs__dropdown-toggle {
+    border-color: $danger-5;
+  }
+}
+
+
+
+.vue-treeselect {
+  min-width: 150px;
+  color: $basic-7;
+  font-size: 14px;
+  line-height: 20px;
+
+
+  .vue-treeselect__value-container {
+    // padding-left: 10px;
+  }
+  
+  .vue-treeselect__control{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    border: 1px solid $dark-2;
+    border-radius: 8px;
+  }
+
+  .vue-treeselect__placeholder {
+    line-height: 24px;
+    color: #8D92C1;
+  }
+  .vue-treeselect__x-container:hover {
+    color: $dark-4;
+  }
+}
+.vue-treeselect:not(.vue-treeselect--disabled) .vue-treeselect__control-arrow-container:hover .vue-treeselect__control-arrow{
+  color: $dark-4 !important;
 }

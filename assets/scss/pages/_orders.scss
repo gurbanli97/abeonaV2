@@ -1,3 +1,131 @@
 .orders{
-    background-color: #E5E5E5;
+    .page-header{
+        .btn.btn-success{
+            padding: 10px 16px;
+            align-self: center;
+            flex-shrink: 0;
+        }
+    }
+    background-color: $white;
+
+    .table-wrap {
+        position: relative;
+        overflow-x: scroll;
+        padding-bottom: 40px;
+        
+    }
+    .table-responsive .table {
+        .mx-datepicker {
+            background-color: #fff;
+            input::placeholder{
+                font-weight: 500;
+            }
+        }
+        td{
+            vertical-align: middle;
+        }
+        thead tr th {
+            width: 150px;
+
+            .form-group {
+                margin-bottom: 0;
+            }
+        }
+
+        .order-status{
+            display: flex;
+            align-items: center;
+            i{
+                margin-right: 8px;
+                font-size: 16px;
+            }
+            .icon-tick-circle {
+                color: $success-5;
+            }
+            .icon-close-circle-2{
+                color: $danger-5;
+            }
+
+            .icon-clock {
+                color: $warning-5;
+            }
+        }
+    }
+
+
+    .table_pagination {
+        margin: auto;
+        margin-top: 20px;
+        position: absolute;
+        bottom: 0;
+        left:0; 
+        right:0;
+        .page-link {
+            line-height: 24px;
+            padding: 0.5rem 1.75rem;
+            font-size: 20px;
+            color: $dark-4;
+        }
+
+        .page-item.active .page-link{
+             color: #fff;
+             background-color: $dark-4;
+             border-color: $dark-4;
+        }
+    }
+    
+    #payment_status_field{
+        color: $info-5;
+    }
+
+
+    
 }
+
+.passport-details_inner{
+    .passport-form_inputs {
+        h3{
+            font-size: 16px;
+            line-height: 24px;
+            color: $basic-7;
+        }
+        form{
+            .form-group{
+                max-width: 312px;
+            }
+        }
+    }
+}
+
+.order-details_inner{
+    .head {
+        h3{
+            font-size: 16px;
+            line-height: 24px;
+            color: $basic-7;
+        }
+
+        button{
+            font-size: 14px;
+            line-height: 16px;
+            color: $basic-7;
+            font-weight: 500;
+            i{
+                font-size: 20px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .detail-field {
+        height: 40px;
+        flex: 1 1 30%;
+        // width: 33%;
+        margin-bottom: 32px;
+    }
+}
+
+
+
+
+

@@ -23,6 +23,28 @@
     line-height: 32px;
 }
 
+.detailed-title{
+    display: flex;
+    align-items: center;
+    
+    span{
+        white-space: nowrap;
+        font-size: 20px;
+        line-height: 28px;
+        color: $dark-3;
+        display: inline-flex;
+    }
+    span:first-of-type::before,
+    span:first-of-type::after{
+        content: '';
+        display: inline;
+        margin: 0 8px;
+        height: auto;
+        width: 1px;
+        border: 1px solid $dark-1;
+    }
+}
+
 .filters {
     padding-top: 32px;
 }
