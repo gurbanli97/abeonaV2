@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-overlay" @click.self="handleBackdropClick" v-if="toggle">
+  <div class="modal-overlay" @click.self="$emit('close')" v-if="toggle">
       <div class="modal-content">
           <div class="modal-info">
               <img src="/warning.svg" alt="">
@@ -26,9 +26,9 @@ export default {
         this.$emit('close');
       }
     },
-    handleBackdropClick() {
-        this.$emit('close');
-    },
+    // handleBackdropClick() {
+    //     this.$emit('close');
+    // },
   },
   mounted() {
     window.addEventListener('keydown', this.handleEscapeKey);
