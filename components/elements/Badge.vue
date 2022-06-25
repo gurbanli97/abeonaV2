@@ -29,7 +29,9 @@ export default {
             'Processing': 'warning',
             'Rejected': 'danger',
             'Obtained': 'success',
-            'Applied': 'info'
+            'Applied': 'info',
+            'todo': 'warning',
+            'done': 'success'
           }[this.text]
         case 'priority':
           return {

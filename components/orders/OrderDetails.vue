@@ -88,13 +88,17 @@
                   </div>
                 </div>
               </b-tab>
-              <b-tab title="Task list"><p>I'm the second tab</p></b-tab>
+              <b-tab title="Task list">
+                <task-list></task-list>
+              </b-tab>
               <b-tab title="Documents"><p>I'm the second tab</p></b-tab>
               <b-tab title="Payment details"><p>I'm the first tab</p></b-tab>
               <b-tab title="Visa details">
                  <visa-details/>
               </b-tab>
-              <b-tab title="Passport"><p>I'm the first tab</p></b-tab>
+              <b-tab title="Passport">
+                <passport-details/>
+              </b-tab>
             </b-tabs>
        </div>
     </div>
@@ -104,8 +108,10 @@
 import { mapGetters } from 'vuex'
 import DetailField from '../elements/DetailField.vue'
 import VisaDetails from '../parts/VisaDetails.vue'
+import PassportDetails from '../parts/PassportDetails.vue'
+import TaskList from './TaskList.vue'
 export default {
-  components: { DetailField,VisaDetails },
+  components: { DetailField,VisaDetails, PassportDetails, TaskList },
   computed:{
     ...mapGetters({
       order: 'orders/orderById',

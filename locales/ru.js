@@ -1,8 +1,9 @@
 export default {
-    'dashboard': 'главная',
-    'consultations': 'консультации',
-    'orders': 'заказы',
-    'billing': 'счета',
-    'insure': 'страховка',
-    'clients': 'клиенты'
+    'Dashboard': 'Главная',
+    'Consultations': 'Консультации',
+    'Orders': 'Заказы',
+    'Billing': 'Счета',
+    'Insure': 'Страховка',
+    'Clients': 'Клиенты',
+    'Customer': 'Заказчик'
 }

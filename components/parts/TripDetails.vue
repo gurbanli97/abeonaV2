@@ -11,7 +11,10 @@
           <icon name="arrow-circle-down" />
         </div>
         <div class="trip-item_body">
-          <form-field label="Travel to" type="text" />
+           <b-form-group label="Country">
+                    <v-select>
+                    </v-select>
+            </b-form-group>
           <b-form-group label="Date from">
             <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" v-model="dateFrom" />
           </b-form-group>

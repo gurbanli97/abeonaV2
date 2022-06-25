@@ -1,6 +1,6 @@
 <template>
-	<div class="passport-details">
-		<div class="passport-details_inner mt-4">
+	<div class="add-passport">
+		<div class="add-passport_inner mt-4">
 			<div class="passport-form_inputs row">
 				<div class="col-8">
 					<div class="col-12">

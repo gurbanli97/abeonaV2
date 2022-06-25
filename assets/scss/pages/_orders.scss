@@ -82,7 +82,7 @@
     
 }
 
-.passport-details_inner{
+.add-passport_inner{
     .passport-form_inputs {
         h3{
             font-size: 16px;
@@ -122,6 +122,66 @@
         flex: 1 1 30%;
         // width: 33%;
         margin-bottom: 32px;
+    }
+
+
+    .order-tasks_inner {
+        table tbody tr td p{
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: $basic-7;
+        }
+        .add-task{
+            font-size: 14px;
+            line-height: 20px;
+            color: $dark-4;
+            i{
+                color: $success-5;
+                font-size: 20px;
+                margin-right: 8px;
+            }
+        }
+
+
+
+        .edit-task_attachments {
+            padding-bottom: 32px;
+            border-bottom: 1px solid $dark-1;
+        }
+
+        .edit-task_attachments > span {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: $basic-7;
+
+        }
+
+        .edit-task_attachments ul:not(:last-child) li {
+            margin-bottom: 20px;
+        }
+
+        .attachments-list_item {
+            display: flex;
+            align-items: center;
+
+            a {
+                color: $basic-7;
+                margin-left: 8px;
+                margin-right: auto;
+            }
+            .icon-gallery{
+                color: $danger-5;
+            }
+            .icon-document-text-2{
+                color: $info-5;
+            }
+
+            .icon-trash{
+                font-size: 20px;
+                color: $dark-4;
+            }
+        }
     }
 }
 

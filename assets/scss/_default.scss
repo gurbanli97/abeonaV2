@@ -34,9 +34,10 @@ body {
   background-color: transparent;
   font-weight: normal;
 
-  &.modal-open {
+  &.modal-open{
     overflow: hidden !important;
   }
+ 
 }
 
 .root{

@@ -12,7 +12,8 @@ export const state = () => ({
     customerOptions: [],
     orderIdOptions: [],
     allCountries: [],
-    visa_details: {}
+    visa_details: {},
+    order_tasks: []
 })
 
 export const getters = {
@@ -32,7 +33,8 @@ export const getters = {
     orderSourceOptions: s => s.orderSourceOptions.map(obj => ({ id: obj.source, label: obj.source })),
     customerOptions: s => s.customerOptions.map(obj => ({ id: obj.customer_id, label: obj.full_name })),
     orderIdOptions: s => s.orderIdOptions.map(obj => ({ id: obj.id, label: obj.id })),
-    visa_details: s => s.visa_details
+    visa_details: s => s.visa_details,
+    order_tasks: s => s.order_tasks
 }
 
 export const mutations = {
@@ -77,6 +79,9 @@ export const mutations = {
     },
     SET_VISA_DETAILS(state,items){
         state.visa_details = items
+    },
+    SET_ORDER_TASKS(state,items){
+        state.order_tasks = items
     }
 }
   
@@ -140,9 +145,20 @@ export const actions = {
         let items = response.data.data
         commit('SET_COUNTRIES',items);
     },
-    async fetchVisaDetails({commit},visa){
-        let response = await this.$axios.get(`api/v1/customers/passports/visas/${visa}`)
+    async fetchVisaDetails({commit},visa_id){
+        let response = await this.$axios.get(`api/v1/customers/passports/visas/${visa_id}`)
         let items = response.data.data
         commit('SET_VISA_DETAILS',items);
+    },
+    async fetchOrderTasks({commit},order_id){
+        let response = await this.$axios.get(`api/v1/tasks?order=${order_id}`)
+        let items = response.data
+        commit('SET_ORDER_TASKS',items);
+    },
+
+    async deleteTaskAttachment({commit},attachment_id){
+        let response = await this.$axios.delete(`api/v1/attachments/${attachment_id}`)
+        // let items = response.data
+        // commit('SET_ORDER_TASKS',items);
     }
 }

@@ -37,18 +37,18 @@
             <detail-field>
             </detail-field>
           </div>
-          <div class="col-12 visacopy-upload mt-5 d-flex flex-column align-items-start">
-            <div class="visacopy-upload_input mb-4">
-              <label for="visacopy-input">
+          <div class="col-12 visacopy-upload d-flex flex-column align-items-start">
+            <div class="attachment-upload_input mb-4">
+              <label for="attachment-input">
                 <div>
                   <h3>Visa copy (scan)</h3>
                   <span>png, jpg, pdf</span>
                 </div>
                 <strong>Choose</strong>
-                <input type="file" id="visacopy-input" hidden @change="handleUpload($event)">
+                <input type="file" id="attachment-input" hidden @change="handleUpload($event)">
               </label>
             </div>
-            <div class="visacopy-upload_progress" v-if="visacopy">
+            <div class="attachment-upload_progress" v-if="visacopy">
               <div class="visacopy-progress_inner d-flex flex-column align-items-start">
                 <span>{{visacopy}}</span>
                 <div class="progressbar d-flex align-items-center">
