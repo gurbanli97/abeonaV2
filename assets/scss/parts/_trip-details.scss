@@ -1,3 +1,12 @@
+.trips {
+    margin-top: 48px;
+    h3 {
+        font-size: 16px;
+        line-height: 24px;
+        color: #2E3A59;
+    }
+}
+
 .trips-inner{
   .trip-item{
       height: 48px;
@@ -64,7 +73,16 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
+
+
+              .btn-borderless {
+                color: $danger-5;
+              }
           }
       }
   }
+
+   .vs__dropdown-toggle{
+    background-color: #fff;
+   }
 }

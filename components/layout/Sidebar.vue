@@ -24,24 +24,6 @@
                             <icon :name="menu.icon"/>
                         </NuxtLink>
                     </li>
-
-                    <!-- <li class="darkmode">
-                        <a class="nav-darkmode titled"  v-if="sidebarIsActive">
-                            <icon :name="'moon'"/>
-                            Darkmode
-
-                            <label class="switch">
-                                <input type="checkbox" v-model="darkmode">
-                                <span class="slider round"></span>
-                            </label>
-                        </a>
-                         <a class="nav-darkmode no-title" href="#" v-else v-b-tooltip.hover id="tooltip-target-darkmode">
-                              <b-tooltip :customClass="'nav-tooltip'" target="tooltip-target-darkmode" triggers="hover" placement="right">
-                                Darkmode
-                             </b-tooltip>
-                            <icon :name="'moon'"/>
-                        </a>
-                    </li> -->
                 </ul>
             </nav>
             

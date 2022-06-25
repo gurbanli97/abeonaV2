@@ -54,18 +54,17 @@
         position: relative;
         width: 100%;
         max-width: 214px;
+        &:hover {
+          border-radius: 8px;
+          background-color: $dark-4;
+
+          a {
+            color: $dark-1;
+          }
+        }
 
         &:not(:last-child) {
           margin-bottom: 6px;
-
-          &:hover {
-            border-radius: 8px;
-            background-color: $dark-4;
-
-            a {
-              color: $dark-1;
-            }
-          }
         }
 
         .link-active {

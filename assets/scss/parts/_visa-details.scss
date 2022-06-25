@@ -29,62 +29,11 @@
 
 
 
-  .visacopy-upload_input label {
-      margin-bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      min-width: 272px;
-      max-height: 60px;
-      background: #F2F8FF;
-      border: 1px dashed #94CBFF;
-      border-radius: 8px;
-      padding: 12px 16px;
-      cursor: pointer;
-
-      h3 {
-          font-size: 14px;
-          color: $basic-7;
-          margin-bottom: 0;
-      }
-
-      span {
-          font-size: 12px;
-          color: $basic-6;
-      }
-
-      strong {
-          background: $white;
-          border: 1px solid $info-3;
-          border-radius: 6px;
-          padding: 8px 16px;
-          font-size: 14px;
-          font-weight: 400;
-          line-height: 16px;
-          color: $dark-4;
-      }
-  }
+  
 }
 
 
-.visacopy-progress_inner {
-  max-width: 272px;
-  width: 100%;
-  display: flex;
 
- .progress{
-     width: 238px !important;
-     background: $basic-3;
-     border-radius: 2px;
- }
-
- button{
-     margin-left: 8px;
-     font-size: 20px;
-     color: $dark-3;
- }
-}
 
 .edit-visa {
     color: $basic-7;

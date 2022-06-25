@@ -25,6 +25,8 @@
 @import "form/select";
 @import "form/datepicker";
 @import "form/dropzone";
+@import "form/textarea";
+@import "form/attachment";
 
 //Pages
 @import "pages/login";
@@ -39,4 +41,5 @@
 
 //Parts
 @import "parts/visa-details";
-@import "parts/trip-details"
+@import "parts/trip-details";
+@import "parts/passport-details";

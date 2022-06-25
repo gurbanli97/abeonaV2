@@ -131,7 +131,8 @@
 </template>
 
 <script>
- 
+import { mapGetters } from 'vuex'
+
 export default {
   props:{
     slideIsActive: {
@@ -141,17 +142,21 @@ export default {
     title: {
       type: String,
       required: true,
-    }
+    },
+  },
+  computed: {
+    ...mapGetters({
+      taskList: 'orders/order_tasks'
+    }),
   },
   methods: {
     handleEscapeKey(e) {
-      console.log(e)
       if (this.slideIsActive && e.key === 'Escape'){
         this.$emit('close-slide');
       }
     },
   },
-  mounted() {
+  updated() {
     window.addEventListener('keydown', this.handleEscapeKey);
   },
   beforeDestroy() {
