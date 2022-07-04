@@ -1,5 +1,10 @@
 export const state = () => ({
     allOrders: [],
+    pagination: {
+        total: 0,
+        limit: 10
+    },
+    orderGroupDetails: {},
     orderById: {},
     travelToOptions: [],
     visaTypeOptions: [],
@@ -12,12 +17,17 @@ export const state = () => ({
     customerOptions: [],
     orderIdOptions: [],
     allCountries: [],
-    visa_details: {},
-    order_tasks: []
+    visa_details: [],
+    trip_details: [],
+    payment_details: [],
+    passport_details: {},
+    order_tasks: [],
 })
 
 export const getters = {
     orders: s => s.allOrders,
+    orderGroupDetails: s => s.orderGroupDetails,
+    pagination: s => s.pagination,
     orderById: s => s.orderById,
     country_fullname: state => (alpha) =>{
         let country = state.allCountries.find(c => c.key === alpha)
@@ -34,15 +44,24 @@ export const getters = {
     customerOptions: s => s.customerOptions.map(obj => ({ id: obj.customer_id, label: obj.full_name })),
     orderIdOptions: s => s.orderIdOptions.map(obj => ({ id: obj.id, label: obj.id })),
     visa_details: s => s.visa_details,
-    order_tasks: s => s.order_tasks
+    trip_details: s => s.trip_details,
+    passport_details: s => s.passport_details,
+    payment_details: s => s.payment_details,
+    order_tasks: s => s.order_tasks,
 }
 
 export const mutations = {
    SET_ORDERS(state,items){
         state.allOrders = items
    },
+   SET_PAGINATION(state,total){
+    state.pagination.total = total
+   },
    SET_ORDER_BY_ID(state,item){
         state.orderById = item
+   },
+   SET_ORDER_GROUP_DETAILS(state,item){
+    state.orderGroupDetails = item
    },
    SET_TRAVEL_TO_OPTIONS(state,items){
        state.travelToOptions = items
@@ -77,9 +96,19 @@ export const mutations = {
     SET_COUNTRIES(state,items){
         state.allCountries = items
     },
-    SET_VISA_DETAILS(state,items){
-        state.visa_details = items
+    SET_ORDER_VISA_DETAILS(state,items){
+        state.visa_details.push(items)
     },
+    SET_ORDER_TRIP_DETAILS(state,items){
+        state.trip_details = items
+    },
+    SET_ORDER_PASSPORT_DETAILS(state,item){
+        state.passport_details = item
+    },
+    SET_ORDER_PAYMENT_DETAILS(state,items){
+        state.payment_details = items
+    },
+
     SET_ORDER_TASKS(state,items){
         state.order_tasks = items
     }
@@ -87,18 +116,26 @@ export const mutations = {
   
 export const actions = {
     async fetchOrders({commit},filters = {}) {
-        const url = this.$applyQueryToUrl("/api/v1.2/orders", filters);
+        const url = this.$applyQueryToUrl("/api/v2/multiple-order", filters);
         let response = await this.$axios.get(url)
         let items = response.data.data
         commit('SET_ORDERS',items);
+        commit('SET_PAGINATION',response.data.meta.total);
     },
     async fetchOrderById({commit,dispatch},id) {
-        let response = await this.$axios.get(`/api/v1/orders/${id}`)
+        let response = await this.$axios.get(`/api/v2/order/${id}`)
         let item = response.data.data
         if(item.visa){
             await dispatch('fetchVisaDetails',item.visa)
         }
         commit('SET_ORDER_BY_ID',item)
+    },
+    async fetchOrderGroupDetails({commit},id){
+          let response = await this.$axios.get(`/api/v2/order/${id}/order_group`)
+          let item = response.data.data
+
+          commit('SET_ORDER_GROUP_DETAILS',item)
+
     },   
     async fetchTravelToOptions({commit}) {
         let response = await this.$axios.get('/api/v1/orders/search?travel_to=all')
@@ -145,14 +182,29 @@ export const actions = {
         let items = response.data.data
         commit('SET_COUNTRIES',items);
     },
-    async fetchVisaDetails({commit},visa_id){
-        let response = await this.$axios.get(`api/v1/customers/passports/visas/${visa_id}`)
+    async fetchOrderVisaDetails({commit},order_id){
+        let response = await this.$axios.get(`api/v2/order/${order_id}/visa`)
         let items = response.data.data
-        commit('SET_VISA_DETAILS',items);
+        commit('SET_ORDER_VISA_DETAILS',items);
+    },
+    async fetchOrderTripDetails({commit},order_id){
+        let response = await this.$axios.get(`api/v2/order/${order_id}/trip`)
+        let items = response.data.data
+        commit('SET_ORDER_TRIP_DETAILS',items);
+    },
+    async fetchOrderPassportDetails({commit},order_id){
+        let response = await this.$axios.get(`api/v2/order/${order_id}/passport`)
+        let item = response.data.data
+        commit('SET_ORDER_PASSPORT_DETAILS',item);
+    },
+    async fetchOrderPaymentDetails({commit},order_id){
+        let response = await this.$axios.get(`api/v2/order/${order_id}/payments`)
+        let items = response.data.data
+        commit('SET_ORDER_PAYMENT_DETAILS',items);
     },
     async fetchOrderTasks({commit},order_id){
-        let response = await this.$axios.get(`api/v1/tasks?order=${order_id}`)
-        let items = response.data
+        let response = await this.$axios.get(`api/v2/order/${order_id}/tasks`)
+        let items = response.data.data
         commit('SET_ORDER_TASKS',items);
     },
 

@@ -14,19 +14,19 @@
                 </div>
                   <div class="col-12 mt-4 d-flex flex-wrap justify-content-between">
                      <detail-field :label="'Name'">
-                      <strong>{{order.details.customer_name}}</strong>
+                      <strong>{{order.applicant.name}}</strong>
                     </detail-field>
                      <detail-field :label="'Surname'">
-                      <strong>{{order.details.customer_surname}}</strong>
+                      <strong>{{order.applicant.surname}}</strong>
                     </detail-field>
                      <detail-field :label="'Phone'">
-                      <strong>{{order.details.phone}}</strong>
+                      <strong>{{order.applicant.phone}}</strong>
                     </detail-field>
                      <detail-field :label="'Passport number'">
                       <strong>{{order.details.passport_no}}</strong>
                     </detail-field>
                      <detail-field :label="'Email'">
-                      <strong>{{order.details.email}}</strong>
+                      <strong>{{order.applicant.email}}</strong>
                     </detail-field>
                      <detail-field :label="'Priority'">
                       <badge :category="'status'" :text="'Completed'">
@@ -69,30 +69,30 @@
                       <strong>{{order.details.customer_name}}</strong>
                     </detail-field>
                      <detail-field :label="'Order date'">
-                      <strong>{{$moment(order.order_date).format('DD.MM.YYYY - HH:mm')}}</strong>
+                      <strong>{{$moment(order.order_date).format('DD.MM.YYYY')}}</strong>
                     </detail-field>
                      <detail-field :label="'Due date'">
-                      <strong>{{order.details.customer_surname}}</strong>
+                      <strong>{{$moment(order.due_date).format('DD.MM.YYYY')}}</strong>
                     </detail-field>
                      <detail-field :label="'Source'">
-                      <strong>{{order.source.charAt(0).toUpperCase() + order.source.slice(1)}}</strong>
+                      <strong>{{order.source}}</strong>
                     </detail-field>
                       <detail-field :label="'Order type'">
                       <strong>{{order.order_type}}</strong>
                     </detail-field>
                      <detail-field :label="'Status'">
-                      <badge :category="'status'" :text="'Completed'">
-                            Processing
-                      </badge>
+                      <badge :category="'status'" :text="'Completed'"/>
                     </detail-field>
                   </div>
                 </div>
               </b-tab>
               <b-tab title="Task list">
-                <task-list></task-list>
+                <task-list/>
               </b-tab>
               <b-tab title="Documents"><p>I'm the second tab</p></b-tab>
-              <b-tab title="Payment details"><p>I'm the first tab</p></b-tab>
+              <b-tab title="Payment details">
+                <payment-details/>
+              </b-tab>
               <b-tab title="Visa details">
                  <visa-details/>
               </b-tab>
@@ -110,17 +110,21 @@ import DetailField from '../elements/DetailField.vue'
 import VisaDetails from '../parts/VisaDetails.vue'
 import PassportDetails from '../parts/PassportDetails.vue'
 import TaskList from './TaskList.vue'
+import PaymentDetails from './PaymentDetails.vue'
 export default {
-  components: { DetailField,VisaDetails, PassportDetails, TaskList },
+  components: { DetailField,VisaDetails, PassportDetails, TaskList, PaymentDetails },
+  data(){
+    return {
+      showSlideOut: false
+    }
+  },
   computed:{
     ...mapGetters({
       order: 'orders/orderById',
       country_fullname: 'orders/country_fullname',
     })
   },
-  async asyncData({store}){
-    await store.dispatch("orders/fetchCountries")
-  }
+  
 }
 </script>
 

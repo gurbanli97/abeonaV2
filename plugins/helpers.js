@@ -2,7 +2,12 @@ export default ({ app }, inject) => {
     // inject("localePath", (url = "", params = {}, query = {}) => {
     //   return app.localePath({ name: url.replace("/", ""), params, query }, app.i18n.locale);
     // });
-  
+
+    inject("capitalizeString", string => {
+      if(string)
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    });
+    
     inject("mapObjectToQuery", (object) => {
       const newObj = {};
       for (const [key, value] of Object.entries(object)) {
@@ -38,5 +43,8 @@ export default ({ app }, inject) => {
   
       return url;
     });
+
+   
+    
   }
   

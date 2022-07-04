@@ -32,7 +32,24 @@
             }
         }
 
-        .order-status{
+        tbody tr td ul:last-child span {
+            color: $basic-6;
+            font-size: 12px;
+            line-height: 16px;
+
+            strong{
+                display: inline-block;
+                background: $basic-3;
+                border-radius: 4px;
+                padding: 2px 8px;
+                font-size: 12px;
+                line-height: 16px;
+                color: $dark-4;
+                margin-left: 8px;
+            }
+        }
+
+        .order-status_field span{
             display: flex;
             align-items: center;
             i{
@@ -50,12 +67,16 @@
                 color: $warning-5;
             }
         }
+
+        .payment_status_field{
+            color: $info-5;
+        }
     }
 
 
     .table_pagination {
         margin: auto;
-        margin-top: 20px;
+        margin: 20px 0;
         position: absolute;
         bottom: 0;
         left:0; 
@@ -74,11 +95,7 @@
         }
     }
     
-    #payment_status_field{
-        color: $info-5;
-    }
-
-
+   
     
 }
 
@@ -182,6 +199,21 @@
                 color: $dark-4;
             }
         }
+    }
+
+   
+}
+
+.order-group_switch {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 48px;
+
+    & > span {
+        font-size: 14px;
+        line-height: 16px;
+        color: $basic-7;
+        font-weight: 500;
     }
 }
 

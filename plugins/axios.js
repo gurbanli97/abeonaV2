@@ -4,9 +4,11 @@ export default function ({ $axios,store, error: nuxtError }) {
     });
   
     $axios.onError(error => {
-      nuxtError({
-        statusCode: (error.response && error.response.status) || 500,
-        message: error.message || 'Server error',
-      });
+      const statusCode = error.response?.status;
+      const message = error.message || 'Server error';
+
+      if ([404, 500].includes(statusCode)) {
+        nuxtError({ statusCode, message });
+      }
     });
   }
