@@ -156,7 +156,7 @@ export default {
       }
     },
   },
-  updated() {
+  created(){
     window.addEventListener('keydown', this.handleEscapeKey);
   },
   beforeDestroy() {

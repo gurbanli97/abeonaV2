@@ -82,7 +82,7 @@ export default {
    proxy: {
      // Simple proxy
      "/api/": {
-       target: "https://stg.abeona.pickvisa.com/",
+       target: "http://abeonav2.pickvisa.com/",
        pathRewrite: { "^api/": "" },
       //  changeOrigin: true
      }

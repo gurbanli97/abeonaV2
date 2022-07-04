@@ -1,6 +1,13 @@
 <template>
   <div class="orders">
     <page-header :title="'Orders'" showActions>
+      <div class="order-group_switch">
+           <span>Group</span>
+           <label class="switch">
+            <input type="checkbox" v-model="showByGroup">
+            <span class="slider round"></span>
+          </label>
+      </div>
       <button class="btn clear-filters" v-if="filtersActive" @click="clearFilters">
                   <icon :name="'eraser-1'"/>
                   <span>Clear filters</span>
@@ -10,7 +17,8 @@
                   <span v-if="!filtersActive">Filters</span>
                   <span v-else>Hide Filters</span>
               </button>
-      <button class="btn btn-success" @click="$router.push('orders/add')">Add new</button>
+      <button class="btn btn-success" @click="$router.push('orders/add')">Export as excel</button>
+      
       
     </page-header>
     <div class="container">
@@ -161,35 +169,74 @@
                   
                 </tr>
               </thead>
-              <tbody>
-                <tr v-for="order in orders" :key="order.id" @click="$router.push(`/orders/${order.id}`)">
+              <tbody v-if="showByGroup">
+                <tr v-for="order in groupOrders" :key="order.id" @click="$router.push(`orders/group-order/${order.id}`)">
                   <td>
-                    <strong>{{order.customer.name}}{{order.customer.surname}}</strong>
+                    <ul>
+                      <li><strong>{{order.client.name}}{{order.client.surname}}</strong></li>
+                      <li><span>Applicants:<strong>{{order.orders.length}}</strong></span></li>
+                    </ul>
                   </td>
                   <td>
                     <strong>{{order.id}}</strong>
                   </td>
                    <td>
-                    <span>{{order.trip.travel_to}}</span>
+                    <!-- <span>{{order.trip.travel_to}}</span> -->
                   </td>
                    <td>
-                    <strong>{{order.trip.visa_type}}</strong>
+                    <!-- <strong>{{order.trip.visa_type}}</strong> -->
                   </td>
-                   <td id="payment_status_field">
-                    <span>{{order.payment_status}}</span>
+                   <td class="payment_status_field">
+                    <!-- <span>{{order.payment_status}}</span> -->
                   </td>
                   <td>
-                    <span class="order-status">
-                      <icon 
+                    <span class="order-status_field">
+                      <!-- <icon 
                         :name="iconType(order.status)"
-                      />
-                      {{order.status}}
+                      /> -->
+                      <!-- {{order.status}} -->
                     </span>
                   </td>
                    <td>
-                      <badge :category="'status'" :text="order.visa.status">
+                      <!-- <badge :category="'status'" :text="order.visa.status">
                           {{order.visa.status}}
-                      </badge>
+                      </badge> -->
+                  </td>
+                    <td>
+                    <span>{{$moment(order.order_date).format('DD.MM.YYYY - HH:mm')}}</span>
+                  </td>
+                </tr>
+              </tbody>
+               <tbody v-else>
+                <tr v-for="order in orders" :key="order.id" @click="$router.push(`/orders/${order.id}`)">
+                  <td>
+                    
+                      <strong>{{order.client.name}}{{order.client.surname}}</strong>
+                  </td>
+                  <td>
+                    <strong>{{order.id}}</strong>
+                  </td>
+                   <td>
+                    <!-- <span>{{order.trip.travel_to}}</span> -->
+                  </td>
+                   <td>
+                    <!-- <strong>{{order.trip.visa_type}}</strong> -->
+                  </td>
+                   <td id="payment_status_field">
+                    <!-- <span>{{order.payment_status}}</span> -->
+                  </td>
+                  <td>
+                    <span class="order-status">
+                      <!-- <icon 
+                        :name="iconType(order.status)"
+                      /> -->
+                      <!-- {{order.status}} -->
+                    </span>
+                  </td>
+                   <td>
+                      <!-- <badge :category="'status'" :text="order.visa.status">
+                          {{order.visa.status}}
+                      </badge> -->
                   </td>
                     <td>
                     <span>{{$moment(order.order_date).format('DD.MM.YYYY - HH:mm')}}</span>
@@ -199,18 +246,18 @@
             </table>
           </div>
         </div>
-                <!-- <div class="table_pagination">
+                <div class="table_pagination">
                    <client-only>
                     <b-pagination
                       first-number
                       last-number
                       align="center"
-                      v-model="current_page"
+                      v-model="currentPage"
                       :total-rows="pagination.total"
                       :per-page="pagination.limit"
                     />
                    </client-only>
-                </div> -->
+                </div>
       </div>
     </div>
   </div>
@@ -226,6 +273,8 @@ export default {
   name: 'Orders',
   data(){
     return {
+      showByGroup: false,
+      currentPage: 1,
       filtersActive: false,
       order_dates: [],
       filters: {
@@ -246,6 +295,16 @@ export default {
         if(this.$route.path === '/orders')
          this.$store.dispatch("orders/fetchOrders", query)
       },
+      currentPage(){
+        console.log('asdsad')
+        this.$router.push({
+            query: {
+              page: this.currentPage,
+              limit: this.pagination.limit,
+              ...this.$mapObjectToQuery(this.filters)
+            }
+          });
+      }
   },
   computed:{
     ...mapGetters({
@@ -260,7 +319,14 @@ export default {
       orderTypeOptions: 'orders/orderTypeOptions',
       orderSourceOptions: 'orders/orderSourceOptions',
       orderIdOptions: 'orders/orderIdOptions',
+      pagination: 'orders/pagination'
     }),
+    groupOrders(){
+      return this.orders.filter(i => i.is_multiple_order)
+    },
+    singleOrders(){
+      return this.orders.filter(i => !i.is_multiple_order)
+    }
   },
   methods: {
       iconType(status){
@@ -319,6 +385,7 @@ export default {
   },
   mounted(){
     this.$router.push({query: null});
+    console.log(this.groupOrders)
   },
  
   async asyncData({store}) {

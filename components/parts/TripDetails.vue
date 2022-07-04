@@ -6,7 +6,7 @@
         <div class="trip-item_head" @click="handleTripActivation($event,trip.id)">
           <span class="d-flex align-items-center">
             <icon name="plane" />
-            To {{trip.country}}
+            To {{country_fullname(trip.travel_to)}}
           </span>
           <icon name="arrow-circle-down" />
         </div>
@@ -16,11 +16,11 @@
                     </v-select>
             </b-form-group>
           <b-form-group label="Date from">
-            <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" v-model="dateFrom" />
+            <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" :value="form[trip.id].date_from" @input="handleTripInput(trip.id, 'date_from', $event)" />
           </b-form-group>
 
           <b-form-group label="Date to">
-            <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" v-model="dateTo" />
+            <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" :value="form[trip.id].date_to" @input="handleTripInput(trip.id, 'date_to', $event)" />
           </b-form-group>
 
           <div class="actions">
@@ -34,25 +34,18 @@
 </template>
 
 <script>
-  export default {
+import { mapGetters } from 'vuex'
+export default {
     data() {
       return {
-        trips: [{
-            id: 1,
-            country: 'Germany'
-          },
-          {
-            id: 2,
-            country: 'Azerb'
-          },
-          {
-            id: 3,
-            country: 'France'
-          }
-        ],
-        dateFrom: '',
-        dateTo: ''
+        form: {}
       }
+    },
+    computed: {
+      ...mapGetters({
+        trips: 'orders/trip_details',
+        country_fullname: 'orders/country_fullname'
+      }),
     },
     methods: {
       handleTripActivation(event, trip) {
@@ -65,7 +58,19 @@
         if (event.target.closest('.trip-item').classList.contains('active'))
           event.target.closest('.trip-item').classList.remove('active')
         else event.target.closest('.trip-item').classList.add('active')
+      },
+      handleTripInput(tripId, key, value) {
+        this.$set(this.form[tripId], key, value)
+        this.$forceUpdate()
       }
+    },
+    created () {
+      for (let i in this.trips) {
+        this.form[this.trips[i].id] = {...this.trips[i]}
+      }
+    },
+    mounted(){
+      console.log(this.trips)
     }
   }
 </script>

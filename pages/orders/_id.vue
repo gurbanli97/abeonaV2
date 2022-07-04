@@ -1,7 +1,7 @@
 <template>
    <div class="orders order_id">
       <page-header 
-      :title="`${order.details.customer_name} ${order.details.customer_surname}`" 
+      :title="`${order.applicant.name} ${order.applicant.surname}`" 
       :showBackButton="true" 
       :showDetails="{
         country: country_fullname(order.details.destination),
@@ -39,6 +39,10 @@ export default {
      await Promise.all([
         store.dispatch("orders/fetchOrderById",params.id),
         store.dispatch("orders/fetchCountries"),
+        store.dispatch("orders/fetchOrderVisaDetails",params.id),
+        store.dispatch("orders/fetchOrderTripDetails",params.id),
+        store.dispatch("orders/fetchOrderPassportDetails",params.id),
+        store.dispatch("orders/fetchOrderPaymentDetails",params.id),
         store.dispatch('orders/fetchOrderTasks',params.id)
      ])
   },

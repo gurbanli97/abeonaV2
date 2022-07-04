@@ -11,7 +11,7 @@
                 <td style="width: 400px">
                   <p>{{task.title}}</p>
                 </td>
-                <td>{{task.assignee ? task.assignee.display_name : 'None'}}</td>
+                <td>{{task.assignee.display_name ? task.assignee.display_name : 'None'}}</td>
                 <td>{{task.due_date ? $moment(task.due_date).format('DD.MM.YYYY') : 'None'}}</td>
                 <td>  
                   <badge :category="'status'" :text="task.status"/>
@@ -152,7 +152,7 @@
                   </div> -->
                   <button class="btn btn-success" type="submit">Save</button>
                </b-form>
-
+               <modal :item="itemToDelete" :toggle="showDeleteModal"/> 
             </template>
       </slide-out>
       </div>
@@ -161,16 +161,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Modal from '../elements/Modal.vue'
 import UserTable from '../tables/UserTable.vue'
 export default {
-  components: { UserTable },
+  components: { UserTable, Modal },
   name: 'Tasks',
   data(){
     return {
+      progressValue: 0,
+      max: 100,
+      showDeleteModal: false,
       taskAttachment: '',
       showAddSlideOut: false,
       showEditSlideOut: false,
       itemToEdit: null,
+      itemToDelete: null,
       dateFrom: '',
       tableFields: ['Topic','Assigned to','Due date','Status']
     }
@@ -182,9 +187,6 @@ export default {
     editSlideOutItem(){
       return this.taskList.find(t => t.id === this.itemToEdit)
     },
-  },
-  updated(){
-    console.log(this.editSlideOutItem)
   },
   methods: {
     checkAttachmentFileType(file){
@@ -202,14 +204,43 @@ export default {
           return 'document-text-2'
       }
     },
+    handleUpload(event) {
+        console.log(event.target.files);
+
+        let formData = new FormData();
+        formData.append('file', event.target.files[0])
+        this.taskAttachment = event.target.files[0].name
+
+        this.$axios.post('/api/v1/attachments',
+            formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              },
+              onUploadProgress: function (progressEvent) {
+                this.progressValue = parseInt(Math.round((progressEvent.loaded / progressEvent
+                  .total) * 100));
+
+                console.log(this.progressValue)
+              }.bind(this)
+            }
+          ).then(function () {
+            console.log('SUCCESS!!');
+
+          })
+          .catch(function () {
+            console.log('FAILURE!!');
+          });
+      },
     handleEditSlideOut(id){
       this.showEditSlideOut = true,
       this.itemToEdit = id
     },
     handleAttachmentDelete(id){
       this.$store.dispatch('orders/deleteTaskAttachment',id)
-      
     }
+  },
+  mounted(){
+    console.log(this.taskList)
   }
 }
 </script>

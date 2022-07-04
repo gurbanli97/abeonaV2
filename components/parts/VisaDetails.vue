@@ -1,7 +1,7 @@
 <template>
   <div class="visa-details">
     <b-tabs>
-      <b-tab title="Schengen">
+      <b-tab v-for="visa in visas" :title="visa.country" :key="visa.id">
         <button class="btn edit-visa ml-auto" @click="showSlideOut = true">
           <icon :name="'edit-2'"/>
           Edit
@@ -9,30 +9,28 @@
         <div class="row">
           <div class="col-12 d-flex justify-content-between flex-wrap mb-4">
             <detail-field label='Country'>
-              <strong>{{visa.full_country}}</strong>
+              <strong>{{visa.country}}</strong>
             </detail-field>
             <detail-field label='Issue date'>
               <strong>{{visa.issue_date}}</strong>
             </detail-field>
             <detail-field label='From date'>
-              <strong>C123230</strong>
+              <strong>{{visa.from_date}}</strong>
             </detail-field>
             <detail-field label='Expiry date'>
               <strong>{{visa.expire_date}}</strong>
             </detail-field>
             <detail-field label='Entries'>
-              <strong>C123230</strong>
+              <strong>{{visa.entries}}</strong>
             </detail-field>
             <detail-field label='Visa type'>
               <strong>{{visa.visa_type}}</strong>
             </detail-field>
             <detail-field label='Validity'>
-              <strong>C123230</strong>
+              <strong>{{visa.validity}}</strong>
             </detail-field>
             <detail-field :label="'Status'">
-              <badge :category="'status'" :text="visa.status">
-                {{visa.status}}
-              </badge>
+              <badge :category="'status'" :text="$capitalizeString(visa.status)"/>
             </detail-field>
             <detail-field>
             </detail-field>
@@ -134,9 +132,7 @@
 </template>
 
 <script>
-  import {
-    mapGetters
-  } from 'vuex'
+  import { mapGetters } from 'vuex'
   import TripDetails from './TripDetails.vue'
   export default {
     components: {
@@ -151,9 +147,12 @@
     },
     computed: {
       ...mapGetters({
-        visa: 'orders/visa_details'
+        visas: 'orders/visa_details',
       })
     },
+    mounted(){
+      console.log(this.visas)
+    }
   }
 </script>
 

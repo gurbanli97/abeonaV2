@@ -1,0 +1,28 @@
+.group-order_inner{
+  .detail-field{
+    width: 192px;
+    max-width: 100%;
+  }
+  h3{
+    font-size: 14px;
+    line-height: 20px;
+    color: $basic-7;
+  }
+  .group-client_details {
+    padding-top: 32px;
+    padding-bottom: 24px;
+
+    .row{
+      margin-top: 20px;      
+    }
+
+  }
+  .group-applicant_details {
+    margin-top: 24px;
+
+    table{
+      margin-top: 20px;
+    }
+  }
+  
+}
