@@ -21,6 +21,14 @@ $primary-color: #1284e7;
     align-items: center;
     justify-content: space-between;
 
+    &.is-invalid{
+        border: 1px solid $danger-5;
+    }
+    
+    &.is-invalid::after{
+        color: $danger-5;
+    }
+
     &::after{
         content: "\e903";
         font-family: 'icomoon' !important;
@@ -53,6 +61,7 @@ $primary-color: #1284e7;
         }
 
     }
+    
 
     .mx-input-wrapper .mx-icon-clear,
     .mx-input-wrapper .mx-icon-calendar {

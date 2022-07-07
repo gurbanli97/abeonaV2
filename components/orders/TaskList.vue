@@ -1,7 +1,7 @@
 <template>
   <div class="order-tasks">
       <div class="order-tasks_inner">
-        <button class="btn ml-auto add-task" @click="showAddSlideOut = true">
+        <button class="btn ml-auto add-task" @click="handleAddSlideOut">
           <icon name="plus-circle"/>
           Add task
         </button>
@@ -11,8 +11,8 @@
                 <td style="width: 400px">
                   <p>{{task.title}}</p>
                 </td>
-                <td>{{task.assignee.display_name ? task.assignee.display_name : 'None'}}</td>
-                <td>{{task.due_date ? $moment(task.due_date).format('DD.MM.YYYY') : 'None'}}</td>
+                <td><strong>{{task.assignee.display_name ? task.assignee.display_name : 'None'}}</strong></td>
+                <td><span>{{task.due_date ? $moment(task.due_date).format('DD.MM.YYYY') : 'None'}}</span></td>
                 <td>  
                   <badge :category="'status'" :text="task.status"/>
                 </td>
@@ -31,75 +31,161 @@
             title="Add task" 
             >
              <template #body>
-               <b-form>
-                  <b-form-group label="Topic">
-                    <b-form-textarea
-                    placeholder="Enter  "
-                    rows="3"
-                    max-rows="3"
-                    no-resize
-                  />
+               <b-form @submit.prevent="handleAddTaskFormSubmit" ref="addTaskForm">
+                  <b-form-group label="Title">
+                     <form-field 
+                     :placeholder="'Enter'" 
+                     v-model="addTaskForm.title"
+                     :is-invalid="$v.addTaskForm.title.$error" 
+                     >
+                    <b-form-invalid-feedback v-if="!$v.addTaskForm.title.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
+                  </form-field>
                   </b-form-group>
-                  <b-form-group label="Assigned to">
-                    <v-select>
-                    </v-select>
-                  </b-form-group>
-                    <b-form-group label="Due date">
-                      <date-picker
-                      value-type="format" 
-                      format="YYYY-MM-DD" 
-                      placeholder="Choose date"
-                      v-model="dateFrom"
-                          />
-                  </b-form-group>
-                   <b-form-group label="Due date time">
-                      <date-picker
-                      value-type="format" 
-                      format="YYYY-MM-DD" 
-                      placeholder="Choose date"
-                      v-model="dateFrom"
-                          />
-                  </b-form-group>
-                     <b-form-group label="Status">
-                    <v-select>
-                    </v-select>
-                  </b-form-group>
-                  <button class="btn btn-success" type="submit">Save task</button>
-               </b-form>
-
-            </template>
-      </slide-out>
-      <slide-out
-            v-if="itemToEdit" 
-            :slideIsActive="showEditSlideOut" 
-            @close-slide="showEditSlideOut = false" 
-            title="Edit task" 
-            >
-             <template #body>
-               <b-form>
-                  <b-form-group label="Topic">
+                  <b-form-group label="Description">
                     <b-form-textarea
                     placeholder="Enter"
                     rows="3"
                     max-rows="3"
                     no-resize
+                    v-model="addTaskForm.description"
+                    :class="{'is-invalid':$v.addTaskForm.description.$error}" 
                   />
+                    <b-form-invalid-feedback v-if="!$v.addTaskForm.description.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
                   </b-form-group>
                   <b-form-group label="Assigned to">
-                    <v-select>
+                    <v-select
+                     v-model="addTaskForm.user"
+                     :options="userListOptions"
+                     :reduce="data => data.value"
+                     :class="{'is-invalid':$v.addTaskForm.user.$error}"
+                     >
                     </v-select>
+                     <span class="select-invalid" v-if="$v.addTaskForm.user.$error">
+                         Input can't be empty
+                     </span>
                   </b-form-group>
                     <b-form-group label="Due date">
                       <date-picker
                       value-type="format" 
                       format="YYYY-MM-DD" 
                       placeholder="Choose date"
-                      v-model="dateFrom"
+                      v-model="addTaskForm.due_date"
+                      :class="{'is-invalid':$v.addTaskForm.due_date.$error}"
                           />
+                      <span class="select-invalid" v-if="$v.addTaskForm.due_date.$error">
+                      Input can't be empty
+                     </span>
+                  </b-form-group>
+                  <b-form-group label="Label">
+                     <form-field 
+                     :placeholder="'Enter'"
+                      v-model="addTaskForm.label"
+                     :is-invalid="$v.addTaskForm.label.$error" 
+                     >
+                    <b-form-invalid-feedback v-if="!$v.addTaskForm.label.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
+                  </form-field>
                   </b-form-group>
                      <b-form-group label="Status">
-                    <v-select>
+                    <v-select 
+                      v-model="addTaskForm.status"
+                      :options="taskStatusOptions"
+                      :reduce="data => data.value"
+                       :class="{'is-invalid':$v.addTaskForm.status.$error}"
+                     >
                     </v-select>
+                     <span class="select-invalid" v-if="$v.addTaskForm.status.$error">
+                         Input can't be empty
+                     </span>
+                  </b-form-group>
+                  <button :class="['btn','btn-success',{'pending':pending}]" type="submit">Save task</button>
+               </b-form>
+
+            </template>
+      </slide-out>
+      <slide-out
+            v-if="itemToEdit"
+            :slideIsActive="showEditSlideOut" 
+            @close-slide="showEditSlideOut = false" 
+            title="Edit task" 
+            >
+             <template #body>
+               <b-form @submit.prevent="handleEditTaskFormSubmit">
+                 <b-form-group label="Title">
+                     <form-field 
+                     :placeholder="'Enter'" 
+                     v-model="editTaskForm.title"
+                     :is-invalid="$v.editTaskForm.title.$error" 
+                     >
+                    <b-form-invalid-feedback v-if="!$v.editTaskForm.title.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
+                  </form-field>
+                  </b-form-group>
+                  <b-form-group label="Description">
+                    <b-form-textarea
+                    placeholder="Enter"
+                    rows="3"
+                    max-rows="3"
+                    no-resize
+                    v-model="editTaskForm.description"
+                    :class="{'is-invalid':$v.editTaskForm.description.$error}" 
+                  />
+                    <b-form-invalid-feedback v-if="!$v.editTaskForm.description.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
+                  </b-form-group>
+                  <b-form-group label="Assigned to">
+                    <v-select
+                     v-model="editTaskForm.user"
+                     :options="userListOptions"
+                     :reduce="data => data.value"
+                     :class="{'is-invalid':$v.editTaskForm.user.$error}"
+                     >
+                    </v-select>
+                     <span class="select-invalid" v-if="$v.editTaskForm.user.$error">
+                         Input can't be empty
+                     </span>
+                  </b-form-group>
+                    <b-form-group label="Due date">
+                      <date-picker
+                      value-type="format" 
+                      format="YYYY-MM-DD" 
+                      :placeholder="$moment(editTaskForm.due_date).format('YYYY-MM-DD')"
+                      v-model="editTaskForm.due_date"
+                      :class="{'is-invalid':$v.editTaskForm.due_date.$error}"
+                          />
+                      <span class="select-invalid" v-if="$v.editTaskForm.due_date.$error">
+                      Input can't be empty
+                     </span>
+                  </b-form-group>
+                  <b-form-group label="Label">
+                     <form-field 
+                     :placeholder="'Enter'"
+                      v-model="editTaskForm.label"
+                     :is-invalid="$v.editTaskForm.label.$error" 
+                     >
+                    <b-form-invalid-feedback v-if="!$v.editTaskForm.label.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
+                  </form-field>
+                  </b-form-group>
+                     <b-form-group label="Status">
+                    <v-select 
+                      v-model="editTaskForm.status"
+                      :options="taskStatusOptions"
+                      :reduce="data => data.value"
+                       :class="{'is-invalid':$v.editTaskForm.status.$error}"
+                     >
+                    </v-select>
+                     <span class="select-invalid" v-if="$v.editTaskForm.status.$error">
+                         Input can't be empty
+                     </span>
                   </b-form-group>
                  <b-form-group>
                    <div class="edit-task_attachments" v-if="editSlideOutItem.attachments.length ">
@@ -161,6 +247,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { required } from 'vuelidate/lib/validators'
 import Modal from '../elements/Modal.vue'
 import UserTable from '../tables/UserTable.vue'
 export default {
@@ -168,6 +255,7 @@ export default {
   name: 'Tasks',
   data(){
     return {
+      pending: false,
       progressValue: 0,
       max: 100,
       showDeleteModal: false,
@@ -177,12 +265,50 @@ export default {
       itemToEdit: null,
       itemToDelete: null,
       dateFrom: '',
-      tableFields: ['Topic','Assigned to','Due date','Status']
+      tableFields: ['Topic','Assigned to','Due date','Status'],
+      addTaskForm: {
+        title: '',
+        order: this.$route.params.id,
+        description: '',
+        user: null,
+        due_date: '',
+        label: '',
+        status: ''
+      },
+      editTaskForm: {
+        title: '',
+        order_id: this.$route.params.id,
+        description: '',
+        user: null,
+        due_date: '',
+        label: 'asdsad',
+        status: ''
+      }
     }
+  },
+  validations: {
+      addTaskForm: {
+        title: {required},
+        description: {required},
+        user: {required},
+        due_date: {required},
+        label: {required},
+        status: {required}
+      },
+      editTaskForm: {
+        title: {required},
+        description: {required},
+        user: {required},
+        due_date: {required},
+        label: {required},
+        status: {required}
+      }
   },
   computed: {
     ...mapGetters({
-      taskList: 'orders/order_tasks'
+      taskList: 'orders/order_tasks',
+      userListOptions: 'orders/userListOptions',
+      taskStatusOptions: 'orders/taskStatusOptions',
     }),
     editSlideOutItem(){
       return this.taskList.find(t => t.id === this.itemToEdit)
@@ -231,16 +357,56 @@ export default {
             console.log('FAILURE!!');
           });
       },
-    handleEditSlideOut(id){
-      this.showEditSlideOut = true,
+    async handleAddSlideOut(){
+      this.showAddSlideOut = true
+    }, 
+     handleEditSlideOut(id){
       this.itemToEdit = id
+      if(this.editSlideOutItem){
+        console.log(this.orderTaskById)
+        this.editTaskForm.title = this.editSlideOutItem.title
+        this.editTaskForm.description = this.editSlideOutItem.description
+        this.editTaskForm.user = this.editSlideOutItem.assignee?.id
+        this.editTaskForm.status = this.editSlideOutItem.status
+        this.editTaskForm.due_date = this.editSlideOutItem.due_date
+      }
+        this.showEditSlideOut = true
     },
     handleAttachmentDelete(id){
       this.$store.dispatch('orders/deleteTaskAttachment',id)
+    },
+    async handleAddTaskFormSubmit(){
+      this.$v.addTaskForm.$touch();
+       if (this.$v.addTaskForm.$invalid){
+          this.$toast.error('Please fill in all required fields')
+          return
+      }
+      this.pending = true
+      await this.$store.dispatch('orders/createNewTask',this.addTaskForm)
+      await this.$store.dispatch('orders/fetchOrderTasks',this.$route.params.id)
+      this.pending = false
+      this.addTaskForm = {}
+      this.$v.addTaskForm.$reset()
+      this.addTaskForm.order= this.$route.params.id
+      this.showAddSlideOut = false
+    },
+     async handleEditTaskFormSubmit(){
+      this.$v.editTaskForm.$touch();
+       if (this.$v.editTaskForm.$invalid){
+          this.$toast.error('Please fill in all required fields')
+          return
+      }
+      this.pending = true
+      await this.$store.dispatch('orders/updateExistingOrderTask',{task_id: this.itemToEdit,form:this.editTaskForm})
+      await this.$store.dispatch('orders/fetchOrderTasks',this.$route.params.id)
+      this.pending = false
+      this.$v.editTaskForm.$reset()
+      this.editTaskForm.order_id= this.$route.params.id
+      this.showEditSlideOut = false
     }
   },
   mounted(){
-    console.log(this.taskList)
+    console.log(this.editSlideOutItem)
   }
 }
 </script>

@@ -89,10 +89,6 @@ export default {
       passport: 'orders/passport_details'
     })
   },
-  mounted(){
-    console.log(this.passport)
-  }
-
 }
 </script>
 
