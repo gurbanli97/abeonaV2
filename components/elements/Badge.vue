@@ -30,8 +30,10 @@ export default {
             'Rejected': 'danger',
             'Obtained': 'success',
             'Applied': 'info',
-            'todo': 'warning',
-            'done': 'success'
+            'To Do': 'warning',
+            'Done': 'success',
+            'Doing': 'info',
+            'Review': 'light'
           }[this.text]
         case 'priority':
           return {

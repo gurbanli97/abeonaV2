@@ -51,9 +51,6 @@ export default {
       paymentDetails: 'orders/payment_details'
     })
   },
-  mounted(){
-    console.log(this.paymentDetails)
-  }
 }
 </script>
 

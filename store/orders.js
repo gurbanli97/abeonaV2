@@ -17,11 +17,14 @@ export const state = () => ({
     customerOptions: [],
     orderIdOptions: [],
     allCountries: [],
-    visa_details: [],
+    visa_details: {},
     trip_details: [],
     payment_details: [],
     passport_details: {},
     order_tasks: [],
+    order_task_by_id: {},
+    user_list: [],
+    task_status_list: []
 })
 
 export const getters = {
@@ -48,6 +51,14 @@ export const getters = {
     passport_details: s => s.passport_details,
     payment_details: s => s.payment_details,
     order_tasks: s => s.order_tasks,
+    user_list: s => s.user_list,
+    taskStatusOptions: s => s.task_status_list.map(obj => ({label: obj.value,value: obj.value})),
+    userListOptions: s => s.user_list?.map(obj => ({label: obj.display_name,value: obj.id})),
+    order_task_by_id: (state) => (id) => {
+        if(id)
+        state.order_tasks.find(i => i.id == id)
+        else return
+    }
 }
 
 export const mutations = {
@@ -97,7 +108,7 @@ export const mutations = {
         state.allCountries = items
     },
     SET_ORDER_VISA_DETAILS(state,items){
-        state.visa_details.push(items)
+        state.visa_details = items
     },
     SET_ORDER_TRIP_DETAILS(state,items){
         state.trip_details = items
@@ -111,7 +122,17 @@ export const mutations = {
 
     SET_ORDER_TASKS(state,items){
         state.order_tasks = items
-    }
+    },
+    SET_ORDER_TASK_BY_ID(state,item){
+        state.order_task_by_id = item
+    },
+
+    SET_USER_LIST(state,items){
+        state.user_list = items
+    },
+    SET_TASK_STATUS_LIST(state,items){
+        state.task_status_list = items
+    },
 }
   
 export const actions = {
@@ -207,6 +228,44 @@ export const actions = {
         let items = response.data.data
         commit('SET_ORDER_TASKS',items);
     },
+    async fetchOrderTaskById({commit},task_id){
+        let response = await this.$axios.get(`api/v2/task/${task_id}`)
+        let item = response.data.data
+        commit('SET_ORDER_TASK_BY_ID',item);
+    },
+    async fetchUserList({commit,state}){
+        if(state.user_list.length)
+            return
+        let response = await this.$axios.get('/api/v2/user')
+        let items = response.data
+        commit('SET_USER_LIST',items);
+    },
+    async fetchTaskStatusList({commit,state}){
+        if(state.task_status_list.length)
+            return
+        let response = await this.$axios.get('/api/v2/task/statusses')
+        let items = response.data.data
+        commit('SET_TASK_STATUS_LIST',items);
+    },
+
+    async createNewOrderTask({commit},form){
+       try{
+            let response = await this.$axios.post('/api/v2/task/',form)
+            this.$toast.success(response.data.message)
+        }
+        catch(err){
+            this.$toast.error(err)
+        }
+    },
+    async updateExistingOrderTask({commit},{task_id,form}){
+        try{
+             let response = await this.$axios.patch(`/api/v2/task/${task_id}`,form)
+             this.$toast.success(response.data.message)
+         }
+         catch(err){
+             this.$toast.error(err)
+         }
+     },
 
     async deleteTaskAttachment({commit},attachment_id){
         let response = await this.$axios.delete(`api/v1/attachments/${attachment_id}`)

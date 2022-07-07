@@ -31,4 +31,61 @@
     .tab-content {
         // padding: 40px 0;
     }
+   
+}
+
+.order-details_inner {
+    .application-form_tab:last-child {
+        background: #FFFFFF;
+        border: 1px solid $info-5;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        transition: all .2s linear;
+        padding: 12px 16px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: $info-5;
+
+            a{
+                color: $white;
+
+                &.active{
+                    color: $white;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+
+            &::before{
+                color: $white;
+            }
+        }
+
+        &::before{
+            content: "\e909";
+            display: inline-flex;
+            font-family: 'icomoon' !important;
+            color: $info-5;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        
+        a{
+            padding: 0;
+            color: $info-5;
+            font-size: 14px;
+            line-height: 16px;
+            border: none;
+
+            &.active{
+                color: $info-5;
+                border: none;
+                background-color: inherit;
+            }
+        }
+    }
 }

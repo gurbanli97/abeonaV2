@@ -15,12 +15,12 @@
                     <v-select>
                     </v-select>
             </b-form-group>
-          <b-form-group label="Date from">
-            <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" :value="form[trip.id].date_from" @input="handleTripInput(trip.id, 'date_from', $event)" />
+          <b-form-group label="Date from" >
+              <date-picker value-type="format" format="YYYY-MM-DD" :placeholder="trip.date_from" v-model="form.date_from" />
           </b-form-group>
 
           <b-form-group label="Date to">
-            <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" :value="form[trip.id].date_to" @input="handleTripInput(trip.id, 'date_to', $event)" />
+              <date-picker value-type="format" format="YYYY-MM-DD" :placeholder="trip.date_to" v-model="form.date_to"  />
           </b-form-group>
 
           <div class="actions">
@@ -38,7 +38,10 @@ import { mapGetters } from 'vuex'
 export default {
     data() {
       return {
-        form: {}
+        form: {
+          date_from: '',
+          date_to: '',
+        }
       }
     },
     computed: {
@@ -59,19 +62,14 @@ export default {
           event.target.closest('.trip-item').classList.remove('active')
         else event.target.closest('.trip-item').classList.add('active')
       },
-      handleTripInput(tripId, key, value) {
-        this.$set(this.form[tripId], key, value)
-        this.$forceUpdate()
-      }
     },
     created () {
-      for (let i in this.trips) {
-        this.form[this.trips[i].id] = {...this.trips[i]}
-      }
+       
     },
     mounted(){
       console.log(this.trips)
-    }
+    },
+    
   }
 </script>
 

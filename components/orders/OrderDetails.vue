@@ -99,7 +99,10 @@
               <b-tab title="Passport">
                 <passport-details/>
               </b-tab>
+              <b-tab title="Application form" title-item-class="application-form_tab" @click.prevent="$router.push('/orders')">
+              </b-tab>
             </b-tabs>
+
        </div>
     </div>
 </template>
@@ -123,8 +126,7 @@ export default {
       order: 'orders/orderById',
       country_fullname: 'orders/country_fullname',
     })
-  },
-  
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="visa-details">
     <b-tabs>
-      <b-tab v-for="visa in visas" :title="visa.country" :key="visa.id">
+      <b-tab>
         <button class="btn edit-visa ml-auto" @click="showSlideOut = true">
           <icon :name="'edit-2'"/>
           Edit
@@ -57,12 +57,9 @@
                     <icon name="close-circle-2" />
                   </button>
                 </div>
-
-
               </div>
             </div>
           </div>
-
           <trip-details />
         </div>
       </b-tab>
@@ -147,11 +144,11 @@
     },
     computed: {
       ...mapGetters({
-        visas: 'orders/visa_details',
+        visa: 'orders/visa_details',
       })
     },
     mounted(){
-      console.log(this.visas)
+      console.log(this.visa)
     }
   }
 </script>

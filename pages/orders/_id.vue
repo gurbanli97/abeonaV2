@@ -2,12 +2,20 @@
    <div class="orders order_id">
       <page-header 
       :title="`${order.applicant.name} ${order.applicant.surname}`" 
-      :showBackButton="true" 
+      showBackButton
+      showActions
       :showDetails="{
         country: country_fullname(order.details.destination),
         visa_type: order.details.visa_type
       }"
+      
       >
+      <div class="order-status_select">
+      <span>Order status:</span>
+        <v-select>
+        </v-select>
+    </div>
+    <button class="btn btn-success">Save</button>
     </page-header>
     <div class="container">
         <div class="order_id-inner">
@@ -43,7 +51,9 @@ export default {
         store.dispatch("orders/fetchOrderTripDetails",params.id),
         store.dispatch("orders/fetchOrderPassportDetails",params.id),
         store.dispatch("orders/fetchOrderPaymentDetails",params.id),
-        store.dispatch('orders/fetchOrderTasks',params.id)
+        store.dispatch('orders/fetchOrderTasks',params.id),
+        store.dispatch('orders/fetchUserList'),
+        store.dispatch('orders/fetchTaskStatusList')
      ])
   },
 }

@@ -4,6 +4,11 @@
       showBackButton 
       showActions
     >
+    <div class="order-status_select">
+      <span>Order status:</span>
+        <v-select>
+        </v-select>
+    </div>
     <button class="btn btn-success">Save</button>
     </page-header>
     <div class="container">
