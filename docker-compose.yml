@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: "always"
+    ports:
+      - "81:81"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./_nginx/vhost/:/etc/nginx/vhost.d:ro
+      - ./_nginx/conf.d/client_max_body_size.conf:/etc/nginx/conf.d/client_max_body_size.conf:ro
+      - ./static/ssr:/code/static
+      - ./static/admin:/code/static/admin
+      - ./media:/code/media
+
+  stg_web: &stg_web
+    container_name: stg_app
+    build: .
+    restart: "always"
+    environment:
+      - DEBUG=True
+      - VIRTUAL_HOST=client-abeonav2.pickvisa.com
+      - VIRTUAL_PORT=3000
+      - HTTP_PORT=3000
+      - FB_ACCESS_TOKEN=EAAjW0yNyaZBoBAEmktJRDZAYSzDwMNaz1foWYClsPw7YZA2rxVezCOxQYIOnZAbRGUCRJekddQ7tCmpDBnZBft6rYHZCvp8xPfks343RMttOsAr9nl5iwEa8xIf9ePvEaRBBv1SfoPLWVOqyqXWmRaaVjdTPUA4aZAUWBf5nSXiRbLbV9Jj2FyaiFjRs8F1xq0ZD
+      - FB_VERIFY_TOKEN=4wAdEQEJezk3fhVgdubDg2HtptAL4LaJ
+      - COUNTRY_TOKEN=3817c04b-710e-43af-be90-d87bab67cbff
+      - SERVICES_TOKEN=Token 08582a913f9d27ba7124645843ec2d3ad121597a
+      - PICKVISA_TOKEN=testcompany_c240db08f5b7ee6228f7a01135da7686
+      - AF_PICKVISA_TOKEN=Token 0600a548bd6d65911552aa982c74a252fb578130
+      - DJANGO_SETTINGS_MODULE=abeona.settings.stg
+    volumes:
+      - .:/code
+      - ./uwsgi.ini:/conf/uwsgi.ini
+    ports:
+      - 3000:3000
+  
+networks:
+  default:
+    external:
+      name: nginx-proxy
