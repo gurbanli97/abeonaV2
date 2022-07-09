@@ -3,12 +3,12 @@
       <div class="modal-content">
           <div class="modal-info">
               <img src="/warning.svg" alt="">
-              <h2>Are you sure to delete consultation?</h2>
+              <h2>Are you sure to delete this item?</h2>
               <span>If you delete, you can’t bring it again</span>
           </div>
           <div class="modal-actions">
-              <button class="btn" @click="$nuxt.$emit('modal-delete-click', item)">Yes, delete</button>
-              <button class="btn" @click.stop="handleBackdropClick" >Cancel</button>
+              <button class="btn" @click="$emit('modal-delete-click', item)">Yes, delete</button>
+              <button class="btn" @click="handleBackdropClick" >Cancel</button>
           </div>
       </div>
   </div>
@@ -26,9 +26,9 @@ export default {
         this.$emit('close');
       }
     },
-    // handleBackdropClick() {
-    //     this.$emit('close');
-    // },
+    handleBackdropClick() {
+        this.$emit('close');
+    },
   },
   mounted() {
     window.addEventListener('keydown', this.handleEscapeKey);

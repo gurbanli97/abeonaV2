@@ -4,9 +4,9 @@
           <div class="passport-details_inner">
             <b-tabs>
               <b-tab :title="`Passport: ${passport.document_number}`">
-                <button class="btn btn-success ml-auto">---</button>
+                <!-- <button class="btn btn-success ml-auto">---</button> -->
                 <div class="row">
-                  <div class="col-12 d-flex  justify-content-between mb-4">
+                  <div class="col-12 d-flex  justify-content-between mb-4 mt-5">
                     <detail-field label='Passport number'>
                       <strong>{{passport.document_number}}</strong>
                     </detail-field>

@@ -11,10 +11,13 @@
                 <td style="width: 400px">
                   <p>{{task.title}}</p>
                 </td>
+                <td>
+                  <strong>{{task.id}}</strong>
+                </td>
                 <td><strong>{{task.assignee.display_name ? task.assignee.display_name : 'None'}}</strong></td>
                 <td><span>{{task.due_date ? $moment(task.due_date).format('DD.MM.YYYY') : 'None'}}</span></td>
                 <td>  
-                  <badge :category="'status'" :text="task.status"/>
+                  <badge :category="'status'" :text="$capitalizeString(task.status)"/>
                 </td>
                 <td>
                   <button @click="handleEditSlideOut(task.id)">
@@ -103,6 +106,43 @@
                          Input can't be empty
                      </span>
                   </b-form-group>
+                 <b-form-group>
+                    <div class="add_attachment mt-4" v-for="(attachment,index) in addTaskForm.attachments" :key="index">
+                      <div class="attachment-upload_input mb-4" v-if="!addTaskForm.attachments[index]['file']">
+                          <label :for='index'>
+                            <div>
+                              <h3>Add an attachment</h3>
+                              <span>png, jpg, pdf</span>
+                            </div>
+                            <strong>Choose</strong>
+                            <input type="file" :id="index" hidden @change="handleUpload($event,'addTaskForm')">
+                          </label>
+                           
+                        </div>
+                        <div class="attachment-upload_progress" v-if="addTaskForm.attachments[index]['file']">
+                          <div class="attachment-progress_inner d-flex flex-column align-items-start">
+                            <!-- <span>{{editTaskForm.attachments[index]['file']}}</span> -->
+                            <img :src="addTaskForm.attachments[index]['file']" alt="" style="width:50px;height: auto;margin:auto;">
+                          </div>
+                        </div>
+                         <b-form-group class="mt-4" label="Document type">
+                            <v-select
+                            v-model="addTaskForm.attachments[index]['document_id']"
+                            :options="documentListOptions"
+                            :reduce="data => data.value"
+                            :class="{'is-invalid':$v.addTaskForm.user.$error}"
+                            >
+                            </v-select>
+                            <span class="select-invalid" v-if="$v.addTaskForm.user.$error">
+                                Input can't be empty
+                            </span>
+                          </b-form-group>
+                    </div>
+                     <button class="btn ml-auto add-task"  @click.prevent="handleAddMoreAttachments('addTaskForm')">
+                        <icon name="plus-circle"/>
+                        Add more
+                      </button>
+                 </b-form-group>
                   <button :class="['btn','btn-success',{'pending':pending}]" type="submit">Save task</button>
                </b-form>
 
@@ -202,33 +242,41 @@
                   </div>
                  </b-form-group>
                  <b-form-group>
-                    <div class="add_attachment">
-                      <div class="attachment-upload_input mb-4">
-                          <label for="attachment-input">
+                    <div class="add_attachment mt-4" v-for="(attachment,index) in editTaskForm.attachments" :key="index">
+                      <div class="attachment-upload_input mb-4" v-if="!editTaskForm.attachments[index]['file']">
+                          <label :for='index'>
                             <div>
                               <h3>Add an attachment</h3>
                               <span>png, jpg, pdf</span>
                             </div>
                             <strong>Choose</strong>
-                            <input type="file" id="attachment-input" hidden @change="handleUpload($event)">
+                            <input type="file" :id="index" hidden @change="handleUpload($event,'editTaskForm')">
                           </label>
+                           
                         </div>
-                        <div class="attachment-upload_progress" v-if="taskAttachment">
+                        <div class="attachment-upload_progress" v-if="editTaskForm.attachments[index]['file']">
                           <div class="attachment-progress_inner d-flex flex-column align-items-start">
-                            <span>{{taskAttachment}}</span>
-                            <div class="progressbar d-flex align-items-center">
-                              <b-progress height="4px" :max="max">
-                                <b-progress-bar :value="progressValue"></b-progress-bar>
-                              </b-progress>
-                              <button class="btn">
-                                <icon name="close-circle-2" />
-                              </button>
-                            </div>
-
-
+                            <!-- <span>{{editTaskForm.attachments[index]['file']}}</span> -->
+                            <img :src="editTaskForm.attachments[index]['file']" alt="" style="width:50px;height: auto;margin:auto;">
                           </div>
                         </div>
+                         <b-form-group class="mt-4" label="Document type">
+                            <v-select
+                            v-model="editTaskForm.attachments[index]['document_id']"
+                            :options="documentListOptions"
+                            :reduce="data => data.value"
+                            :class="{'is-invalid':$v.editTaskForm.user.$error}"
+                            >
+                            </v-select>
+                            <span class="select-invalid" v-if="$v.editTaskForm.user.$error">
+                                Input can't be empty
+                            </span>
+                          </b-form-group>
                     </div>
+                     <button class="btn ml-auto add-task"  @click.prevent="handleAddMoreAttachments('editTaskForm')">
+                        <icon name="plus-circle"/>
+                        Add more
+                      </button>
                  </b-form-group>
                   <!-- <div class="edit-task_comments">
                     <h4></h4>
@@ -259,13 +307,12 @@ export default {
       progressValue: 0,
       max: 100,
       showDeleteModal: false,
-      taskAttachment: '',
       showAddSlideOut: false,
       showEditSlideOut: false,
       itemToEdit: null,
       itemToDelete: null,
       dateFrom: '',
-      tableFields: ['Topic','Assigned to','Due date','Status'],
+      tableFields: ['Topic','Task id','Assigned to','Due date','Status'],
       addTaskForm: {
         title: '',
         order: this.$route.params.id,
@@ -273,7 +320,13 @@ export default {
         user: null,
         due_date: '',
         label: '',
-        status: ''
+        status: '',
+        attachments: [
+         {
+           document_id: '',
+           file: ''
+         }
+        ]
       },
       editTaskForm: {
         title: '',
@@ -281,8 +334,14 @@ export default {
         description: '',
         user: null,
         due_date: '',
-        label: 'asdsad',
-        status: ''
+        label: '',
+        status: '',
+         attachments: [
+         {
+           document_id: '',
+           file: null
+         }
+        ]
       }
     }
   },
@@ -309,9 +368,10 @@ export default {
       taskList: 'orders/order_tasks',
       userListOptions: 'orders/userListOptions',
       taskStatusOptions: 'orders/taskStatusOptions',
+      documentListOptions: 'orders/documentListOptions'
     }),
     editSlideOutItem(){
-      return this.taskList.find(t => t.id === this.itemToEdit)
+      return this.taskList.find(task => task.id === this.itemToEdit)
     },
   },
   methods: {
@@ -330,45 +390,26 @@ export default {
           return 'document-text-2'
       }
     },
-    handleUpload(event) {
-        console.log(event.target.files);
-
-        let formData = new FormData();
-        formData.append('file', event.target.files[0])
-        this.taskAttachment = event.target.files[0].name
-
-        this.$axios.post('/api/v1/attachments',
-            formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data'
-              },
-              onUploadProgress: function (progressEvent) {
-                this.progressValue = parseInt(Math.round((progressEvent.loaded / progressEvent
-                  .total) * 100));
-
-                console.log(this.progressValue)
-              }.bind(this)
-            }
-          ).then(function () {
-            console.log('SUCCESS!!');
-
-          })
-          .catch(function () {
-            console.log('FAILURE!!');
-          });
-      },
+    handleUpload(event,form) {
+       var reader = new FileReader()
+        reader.readAsDataURL(event.target.files[0])
+        reader.onload = () => {
+            this[form].attachments[event.target.id]['file'] = reader.result
+        };
+      
+    },
     async handleAddSlideOut(){
       this.showAddSlideOut = true
     }, 
-     handleEditSlideOut(id){
+      handleEditSlideOut(id){
       this.itemToEdit = id
       if(this.editSlideOutItem){
-        console.log(this.orderTaskById)
         this.editTaskForm.title = this.editSlideOutItem.title
         this.editTaskForm.description = this.editSlideOutItem.description
         this.editTaskForm.user = this.editSlideOutItem.assignee?.id
         this.editTaskForm.status = this.editSlideOutItem.status
         this.editTaskForm.due_date = this.editSlideOutItem.due_date
+        this.editTaskForm.label = this.editSlideOutItem.label
       }
         this.showEditSlideOut = true
     },
@@ -382,7 +423,7 @@ export default {
           return
       }
       this.pending = true
-      await this.$store.dispatch('orders/createNewTask',this.addTaskForm)
+      await this.$store.dispatch('orders/createNewOrderTask',this.addTaskForm)
       await this.$store.dispatch('orders/fetchOrderTasks',this.$route.params.id)
       this.pending = false
       this.addTaskForm = {}
@@ -390,7 +431,7 @@ export default {
       this.addTaskForm.order= this.$route.params.id
       this.showAddSlideOut = false
     },
-     async handleEditTaskFormSubmit(){
+    async handleEditTaskFormSubmit(){
       this.$v.editTaskForm.$touch();
        if (this.$v.editTaskForm.$invalid){
           this.$toast.error('Please fill in all required fields')
@@ -403,11 +444,15 @@ export default {
       this.$v.editTaskForm.$reset()
       this.editTaskForm.order_id= this.$route.params.id
       this.showEditSlideOut = false
+    },
+    handleAddMoreAttachments(form){
+      const newAttachment =  {
+           document_id: '',
+           file: null
+      }
+      this[form].attachments.push(newAttachment)
     }
   },
-  mounted(){
-    console.log(this.editSlideOutItem)
-  }
 }
 </script>
 
