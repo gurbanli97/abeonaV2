@@ -1,8 +1,8 @@
 <template>
   <div class="visa-details">
     <b-tabs>
-      <b-tab>
-        <button class="btn edit-visa ml-auto" @click="showSlideOut = true">
+      <b-tab :title="visa.country">
+        <button class="btn edit-visa ml-auto" @click="handleEditSlideOut(visa.id)">
           <icon :name="'edit-2'"/>
           Edit
         </button>
@@ -60,7 +60,7 @@
               </div>
             </div>
           </div>
-          <trip-details />
+          <trip-details v-if="visa.trips.length"/>
         </div>
       </b-tab>
       <b-tab title="Visa free">
@@ -73,9 +73,21 @@
             title="Edit visa details" 
             >
              <template #body>
-               <b-form>
-                  <b-form-group label="Country">
-                    <v-select>
+               <b-form @submit.prevent="handleEditVisaFormSubmit">
+                  <b-form-group label="Travel Country">
+                    <v-select
+                      :options="countryListOptions"
+                      :reduce="data => data.value"
+                      v-model="editVisaForm.country"
+                    >
+                    </v-select>
+                  </b-form-group>
+                  <b-form-group label="Residency">
+                    <v-select
+                      :options="countryListOptions"
+                      :reduce="data => data.value"
+                      v-model="editVisaForm.residency"
+                    >
                     </v-select>
                   </b-form-group>
                     <b-form-group label="Issue date">
@@ -83,7 +95,7 @@
                       value-type="format" 
                       format="YYYY-MM-DD" 
                       placeholder="Choose date"
-                      v-model="dateFrom"
+                      v-model="editVisaForm.issue_date"
                           />
                   </b-form-group>
                    <b-form-group label="From date">
@@ -91,7 +103,7 @@
                       value-type="format" 
                       format="YYYY-MM-DD" 
                       placeholder="Choose date"
-                      v-model="dateFrom"
+                      v-model="editVisaForm.from_date"
                           />
                   </b-form-group>
                     <b-form-group label="Expiry date">
@@ -99,25 +111,33 @@
                       value-type="format" 
                       format="YYYY-MM-DD" 
                       placeholder="Choose date"
-                      v-model="dateFrom"
+                      v-model="editVisaForm.expire_date"
                           />
                   </b-form-group>
                     <b-form-group label="Entries">
                     <form-field :placeholder="'Enter'"
+                    v-model="editVisaForm.entries"
                     >
                     </form-field>
                   </b-form-group>
                       <b-form-group label="Visa type">
-                    <v-select>
-                    </v-select>
+                    <form-field :placeholder="'Enter'"
+                    v-model="editVisaForm.visa_type"
+                    >
+                    </form-field>
                   </b-form-group>
                        <b-form-group label="Validity">
                     <form-field :placeholder="'Enter'"
+                    v-model="editVisaForm.validity"
                     >
                     </form-field>
                   </b-form-group>
                      <b-form-group label="Status">
-                    <v-select>
+                    <v-select
+                      :options="visaStatusOptions"
+                      :reduce="data => data.value"
+                      v-model="editVisaForm.status"
+                    >
                     </v-select>
                   </b-form-group>
                   <button class="btn btn-success" type="submit">Save</button>
@@ -137,19 +157,58 @@
     },
     data() {
       return {
+        itemToEdit: '',
         showSlideOut: false,
         visacopy: '',
         dateFrom: '',
+        editVisaForm:{
+          from_date: '',
+          status: '',
+          validity: '',
+          country: '',
+          residency: '',
+          issue_date: '',
+          expire_date: '',
+          entries: '',
+          visa_type: '',
+          notes: '',
+        }
       }
     },
     computed: {
       ...mapGetters({
         visa: 'orders/visa_details',
-      })
+        visaStatusOptions: 'orders/applicantVisaStatusOptions',
+        countryListOptions: 'orders/countryListOptions'
+      }),
     },
-    mounted(){
-      console.log(this.visa)
-    }
+    methods: {
+       handleEditSlideOut(id){
+        this.itemToEdit = id,
+        this.showSlideOut = true
+        
+        for(const [key,val] of Object.entries(this.visa)){
+          if(key in this.editVisaForm)
+            this.editVisaForm[key] = val
+        }
+      },
+      async handleEditVisaFormSubmit(){
+        const preparedForm = this.editVisaForm
+
+        for(const [key,val] of Object.entries(preparedForm)){
+          if(!preparedForm[key])
+            delete preparedForm[key]           
+       }
+       
+       await this.$store.dispatch('orders/updateExistingVisaDetails',{
+         visa_id: this.itemToEdit,
+         form:preparedForm,
+         })
+        
+      await this.$store.dispatch('orders/fetchOrderById', this.$route.params.id)
+         this.showSlideOut = false
+      }
+    },
   }
 </script>
 

@@ -24,7 +24,9 @@ export const state = () => ({
     order_tasks: [],
     order_task_by_id: {},
     user_list: [],
-    task_status_list: []
+    document_list: [],
+    task_status_list: [],
+    visa_status_list: [],
 })
 
 export const getters = {
@@ -52,13 +54,16 @@ export const getters = {
     payment_details: s => s.payment_details,
     order_tasks: s => s.order_tasks,
     user_list: s => s.user_list,
-    taskStatusOptions: s => s.task_status_list.map(obj => ({label: obj.value,value: obj.value})),
+    documentListOptions: s => s.document_list?.map(obj => ({label: obj.name,value: obj.id})),
+    taskStatusOptions: s => s.task_status_list?.map(obj => ({label: obj.value,value: obj.key})),
     userListOptions: s => s.user_list?.map(obj => ({label: obj.display_name,value: obj.id})),
+    countryListOptions: s => s.allCountries?.map(obj => ({label: obj.value,value: obj.key})),
     order_task_by_id: (state) => (id) => {
         if(id)
         state.order_tasks.find(i => i.id == id)
         else return
-    }
+    },
+    applicantVisaStatusOptions: s => s.visa_status_list.map(obj => ({label: obj.status_value,value: obj.status_key}))
 }
 
 export const mutations = {
@@ -109,6 +114,13 @@ export const mutations = {
     },
     SET_ORDER_VISA_DETAILS(state,items){
         state.visa_details = items
+        // if(Array.isArray(items))
+        //     state.visa_details = items
+        // else {
+        //     if(state.visa_details.some(obj => obj.id == items.id))
+        //       return
+        //     state.visa_details.push(items)  
+        // }
     },
     SET_ORDER_TRIP_DETAILS(state,items){
         state.trip_details = items
@@ -133,9 +145,18 @@ export const mutations = {
     SET_TASK_STATUS_LIST(state,items){
         state.task_status_list = items
     },
+
+    SET_DOCUMENT_LIST(state,items){
+        state.document_list = items
+    },
+
+    SET_VISA_STATUS_LIST(state,items){
+        state.visa_status_list = items
+    },
 }
   
 export const actions = {
+    //Get actions
     async fetchOrders({commit},filters = {}) {
         const url = this.$applyQueryToUrl("/api/v2/multiple-order", filters);
         let response = await this.$axios.get(url)
@@ -146,8 +167,8 @@ export const actions = {
     async fetchOrderById({commit,dispatch},id) {
         let response = await this.$axios.get(`/api/v2/order/${id}`)
         let item = response.data.data
-        if(item.visa){
-            await dispatch('fetchVisaDetails',item.visa)
+        if(item.applicant_visa){
+            await dispatch('fetchOrderVisaDetails',item.applicant_visa)
         }
         commit('SET_ORDER_BY_ID',item)
     },
@@ -247,7 +268,24 @@ export const actions = {
         let items = response.data.data
         commit('SET_TASK_STATUS_LIST',items);
     },
+    async fetchDocumentList({commit,state},order_id){
+        if(state.task_status_list.length)
+            return
+        let response = await this.$axios.get(`/api/v2/document?order_id=${order_id}`)
+        let items = response.data.data
+        commit('SET_DOCUMENT_LIST',items);
+    },
 
+    async fetchVisaStatusList({commit,state}){
+        if(state.visa_status_list.length)
+            return
+        let response = await this.$axios.get('/api/v2/applicants_visa/statuses')
+        let items = response.data
+        commit('SET_VISA_STATUS_LIST',items);
+    },
+
+
+    //Post actions
     async createNewOrderTask({commit},form){
        try{
             let response = await this.$axios.post('/api/v2/task/',form)
@@ -257,6 +295,8 @@ export const actions = {
             this.$toast.error(err)
         }
     },
+
+    //Update actions
     async updateExistingOrderTask({commit},{task_id,form}){
         try{
              let response = await this.$axios.patch(`/api/v2/task/${task_id}`,form)
@@ -267,9 +307,40 @@ export const actions = {
          }
      },
 
+     async updateExistingVisaDetails({commit},{visa_id,form}){
+        try{
+             let response = await this.$axios.patch(`/api/v2/applicants_visa/${visa_id}`,form)
+             this.$toast.success(response.data.message)
+         }
+         catch(err){
+             this.$toast.error(err)
+         }
+     },
+
+     async updateExistingTripDetails({commit},{trip_id,form}){
+        try{
+             let response = await this.$axios.patch(`/api/v2/trip/${trip_id}`,form)
+             this.$toast.success(response.data.message)
+         }
+         catch(err){
+             this.$toast.error(err)
+         }
+     },
+
+    //Delete actions
     async deleteTaskAttachment({commit},attachment_id){
-        let response = await this.$axios.delete(`api/v1/attachments/${attachment_id}`)
+        let response = await this.$axios.delete(`api/v2/attachment/${attachment_id}`)
         // let items = response.data
         // commit('SET_ORDER_TASKS',items);
+    },
+
+    async deleteVisaTripItem({commit},trip_id){
+        try{
+            await this.$axios.delete(`api/v2/trip/${trip_id}`)
+            this.$toast.success('Trip item deleted succesfully')
+        }
+        catch(err){
+            this.$toast.error(err)
+        }
     }
 }
