@@ -385,7 +385,6 @@ export default {
   },
   mounted(){
     this.$router.push({query: null});
-    console.log(this.groupOrders)
   },
  
   async asyncData({store}) {

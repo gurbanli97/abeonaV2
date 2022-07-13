@@ -118,8 +118,6 @@
               </div>
             </b-col>
           </b-col>
-
-
         </div>
         <aside>
           <div class="checkout col-4">

@@ -89,7 +89,9 @@
               <b-tab title="Task list">
                 <task-list/>
               </b-tab>
-              <b-tab title="Documents"><p>I'm the second tab</p></b-tab>
+              <b-tab title="Documents">
+                <documents/>
+              </b-tab>
               <b-tab title="Payment details">
                 <payment-details/>
               </b-tab>
@@ -99,7 +101,7 @@
               <b-tab title="Passport">
                 <passport-details/>
               </b-tab>
-              <b-tab title="Application form" title-item-class="application-form_tab" @click.prevent="$router.push('/orders')">
+              <b-tab title="Application form" title-item-class="application-form_tab" @click.prevent="$router.push('/orders/application-form')">
               </b-tab>
             </b-tabs>
 
@@ -112,10 +114,11 @@ import { mapGetters } from 'vuex'
 import DetailField from '../elements/DetailField.vue'
 import VisaDetails from '../parts/VisaDetails.vue'
 import PassportDetails from '../parts/PassportDetails.vue'
+import Documents from '../parts/Documents.vue'
 import TaskList from './TaskList.vue'
 import PaymentDetails from './PaymentDetails.vue'
 export default {
-  components: { DetailField,VisaDetails, PassportDetails, TaskList, PaymentDetails },
+  components: { DetailField,VisaDetails, PassportDetails, TaskList, PaymentDetails,Documents },
   data(){
     return {
       showSlideOut: false

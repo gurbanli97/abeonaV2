@@ -72,7 +72,7 @@ export default {
     { src: '~/plugins/full-calendar', ssr: false,mode:'client'},
     { src: "~/plugins/vue-ellipse",ssr: false,mode: 'client'},
     { src: "~/plugins/vue-treeselect",mode: 'client',ssr: false},
-    { src: "~/plugins/vue-datepicker",mode: 'client',ssr: false},
+    { src: "~/plugins/vue-datepicker"},
   ],
   axios: {
     // Do away with the baseUrl when using proxy

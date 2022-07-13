@@ -159,7 +159,95 @@
                 margin-right: 8px;
             }
         }
+        
 
+        .edit-task_comments  {
+
+            .comments-list {
+                padding-top: 16px;
+            }
+
+            .comments-list_item {
+                margin-bottom: 24px;
+            }
+
+            .comments-list_item-header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+
+            }
+
+            .comments-list_item-profile {
+                display: flex;
+                align-items: center;
+                img{
+                    width: 25px;
+                    height: 25px; 
+                    margin-right: 8px;
+                 }
+                 & > span {
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: $basic-6;
+                }
+            }
+
+            .comment-list_item-actions{
+                display: flex;
+                align-items: center;
+
+                & > span {
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: $basic-7;
+                }
+
+                .btn > i{
+                    font-size: 16px;
+                    color: $dark-3;
+                }
+            }
+
+            .comments-list_item-body {
+                p{
+                    color: $basic-7;
+                    font-size: 14px;
+                    line-height: 20px;
+                    word-break: break-all;
+                }
+            }
+            
+            .comments-add-new {
+                margin-top: 32px;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                .form-group {
+                    input{
+                        background: $basic-2;
+                        border: 1px solid $basic-4;
+                        border-radius: 20px;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .btn {
+                    top: 0;
+                    height: 40px;
+                    padding: 0;
+                    right: 20px;
+                    position: absolute;
+                    border-radius: 20px;
+                    margin-bottom: 0;
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: $info-5;
+                }
+            }
+        }
 
 
         .edit-task_attachments {
@@ -199,6 +287,9 @@
                 color: $dark-4;
             }
         }
+
+
+
     }
 
    

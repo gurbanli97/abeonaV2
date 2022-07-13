@@ -4,7 +4,7 @@
           <div class="modal-info">
               <img src="/warning.svg" alt="">
               <h2>Are you sure to delete this item?</h2>
-              <span>If you delete, you can’t bring it again</span>
+              <span>If you delete it, you can’t bring it again</span>
           </div>
           <div class="modal-actions">
               <button class="btn" @click="$emit('modal-delete-click', item)">Yes, delete</button>
@@ -17,7 +17,11 @@
 <script>
 export default {
     props: {
-        toggle: Boolean,
+        toggle: {
+          type: Boolean,
+          default: false,
+          required: true
+        },
         item: Number
     },
     methods: {

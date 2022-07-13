@@ -29,6 +29,7 @@
           </user-table>
 
             <slide-out 
+            v-if="showAddSlideOut"
             :slideIsActive="showAddSlideOut" 
             @close-slide="showAddSlideOut = false" 
             title="Add task" 
@@ -227,6 +228,7 @@
                          Input can't be empty
                      </span>
                   </b-form-group>
+                   
                  <b-form-group>
                    <div class="edit-task_attachments" v-if="editSlideOutItem.attachments.length ">
                     <span>Attachments</span>
@@ -278,12 +280,39 @@
                         Add more
                       </button>
                  </b-form-group>
-                  <!-- <div class="edit-task_comments">
-                    <h4></h4>
-                     <ul>
-                        <li></li>
+                  <b-form-group>
+                   <div class="edit-task_comments">
+                    <span  v-if="taskComments.length">Comments</span>
+                     <template v-if="taskComments.length">
+                      <ul class="comments-list" v-for="comment in taskComments" :key="comment.id">
+                        <li class="comments-list_item">
+                          <div class="comments-list_item-header">
+                           <div class="comments-list_item-profile">
+                             <img :src="`http://abeonav2.pickvisa.com/${comment.author.profile_pic}`" alt="">
+                            <span>{{comment.author.display_name}}</span>
+                           </div>
+                            <div class="comment-list_item-actions">
+                              <span>{{$moment(comment.created_at).format('DD.MM.YYYY - HH:mm')}}</span>
+                              <button class="btn" @click.prevent="handleTaskCommentDelete(comment.id)">
+                                <icon name="trash"/>
+                              </button>
+                            </div>
+                          </div>
+                          <div class="comments-list_item-body">
+                            <p>{{comment.content}}</p>
+                          </div>
+                        </li>
                       </ul>
-                  </div> -->
+                     </template>
+                      <div class="comments-add-new" >
+                          <form-field 
+                            placeholder="New comment"
+                            v-model="newCommentForm.content"
+                            />
+                        <button class="btn" @click.prevent="handleAddNewComment">Add</button>
+                      </div>
+                  </div>
+                 </b-form-group>
                   <button class="btn btn-success" type="submit">Save</button>
                </b-form>
                <modal :item="itemToDelete" :toggle="showDeleteModal"/> 
@@ -298,8 +327,9 @@ import { mapGetters } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import Modal from '../elements/Modal.vue'
 import UserTable from '../tables/UserTable.vue'
+import Icon from '../elements/Icon.vue'
 export default {
-  components: { UserTable, Modal },
+  components: { UserTable, Modal, Icon },
   name: 'Tasks',
   data(){
     return {
@@ -313,6 +343,10 @@ export default {
       itemToDelete: null,
       dateFrom: '',
       tableFields: ['Topic','Task id','Assigned to','Due date','Status'],
+      newCommentForm: {
+        task_id: '',
+        content: ''
+      },
       addTaskForm: {
         title: '',
         order: this.$route.params.id,
@@ -368,7 +402,8 @@ export default {
       taskList: 'orders/order_tasks',
       userListOptions: 'orders/userListOptions',
       taskStatusOptions: 'orders/taskStatusOptions',
-      documentListOptions: 'orders/documentListOptions'
+      documentListOptions: 'orders/documentListOptions',
+      taskComments: 'orders/task_comments',
     }),
     editSlideOutItem(){
       return this.taskList.find(task => task.id === this.itemToEdit)
@@ -391,6 +426,7 @@ export default {
       }
     },
     handleUpload(event,form) {
+      console.log(event,form)
        var reader = new FileReader()
         reader.readAsDataURL(event.target.files[0])
         reader.onload = () => {
@@ -401,8 +437,9 @@ export default {
     async handleAddSlideOut(){
       this.showAddSlideOut = true
     }, 
-      handleEditSlideOut(id){
+    async handleEditSlideOut(id){
       this.itemToEdit = id
+      await this.$store.dispatch('orders/fetchTaskComments',id)
       if(this.editSlideOutItem){
         this.editTaskForm.title = this.editSlideOutItem.title
         this.editTaskForm.description = this.editSlideOutItem.description
@@ -413,8 +450,8 @@ export default {
       }
         this.showEditSlideOut = true
     },
-    handleAttachmentDelete(id){
-      this.$store.dispatch('orders/deleteTaskAttachment',id)
+    async handleAttachmentDelete(id){
+      await this.$store.dispatch('orders/deleteTaskAttachment',id)
     },
     async handleAddTaskFormSubmit(){
       this.$v.addTaskForm.$touch();
@@ -451,7 +488,18 @@ export default {
            file: null
       }
       this[form].attachments.push(newAttachment)
-    }
+    },
+
+    async handleAddNewComment(){
+      this.newCommentForm.task_id = this.itemToEdit
+      await this.$store.dispatch('orders/createNewTaskComment',this.newCommentForm)
+      this.newCommentForm.content = ''
+      await this.$store.dispatch('orders/fetchTaskComments',this.itemToEdit)
+    },
+    async handleTaskCommentDelete(id){
+      await this.$store.dispatch('orders/deleteTaskComment',id)
+      await this.$store.dispatch('orders/fetchTaskComments',this.itemToEdit)
+    },
   },
 }
 </script>

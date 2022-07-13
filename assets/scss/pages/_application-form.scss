@@ -1,0 +1,136 @@
+.application-form_inner {
+  display: flex;
+  flex-direction: column;
+
+  .step-indicators {
+    padding-top: 24px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      &>span {
+        font-size: 14px;
+        line-height: 20px;
+        color: $basic-7;
+        font-weight: 500;
+      }
+
+      &:nth-child(1) {
+        margin-right: 144px;
+
+        &::after {
+          content: '';
+          display: inline;
+          border-bottom: 1px dashed $dark-2;
+          position: absolute;
+          right: -180%;
+          top: 20%;
+          height: 1px;
+          width: 120px;
+        }
+      }
+
+      &:nth-child(3) {
+        margin-left: 144px;
+
+        &::before {
+          content: '';
+          display: inline;
+          border-bottom: 1px dashed $dark-2;
+          position: absolute;
+          left: -180%;
+          top: 20%;
+          height: 1px;
+          width: 120px;
+        }
+      }
+
+    }
+
+    .step-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid $basic-6;
+      background: $white;
+      border-radius: 50%;
+      margin-bottom: 18px;
+
+      span {
+        color: $basic-7;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+      }
+
+      &.active {
+        border: 1px solid $success-5;
+      }
+
+      &.filled {
+        border: 1px solid $success-5;
+        background-color: $success-5;
+
+        span {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .step-forms {
+    padding-top: 48px;
+
+    .row {
+      padding-top: 32px;
+    }
+
+    h2 {
+      font-size: 20px;
+      line-height: 28px;
+      color: $success-6;
+    }
+
+    .form-group {
+      width: 312px;
+      max-width: 100%;
+    }
+  }
+
+
+  .actions{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .btn-transparent{
+      margin-right: 12px;
+      width: 137px;
+      height: 40px;
+      color: $success-5;
+      border: 1px solid $success-5;
+      border-radius: 4px;
+    }
+
+    .btn-success{
+      width: 172px;
+      height: 40px;
+    }
+   
+  }
+}
