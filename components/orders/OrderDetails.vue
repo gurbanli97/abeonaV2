@@ -92,6 +92,9 @@
               <b-tab title="Documents">
                 <documents/>
               </b-tab>
+               <b-tab title="Comments">
+                <comments/>
+              </b-tab>
               <b-tab title="Payment details">
                 <payment-details/>
               </b-tab>
@@ -117,8 +120,9 @@ import PassportDetails from '../parts/PassportDetails.vue'
 import Documents from '../parts/Documents.vue'
 import TaskList from './TaskList.vue'
 import PaymentDetails from './PaymentDetails.vue'
+import Comments from './Comments.vue'
 export default {
-  components: { DetailField,VisaDetails, PassportDetails, TaskList, PaymentDetails,Documents },
+  components: { DetailField,VisaDetails, PassportDetails, TaskList, PaymentDetails,Documents,Comments },
   data(){
     return {
       showSlideOut: false

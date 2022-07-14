@@ -28,6 +28,7 @@ export const state = () => ({
     task_status_list: [],
     visa_status_list: [],
     task_comments: [],
+    order_comments: [],
 })
 
 export const getters = {
@@ -42,7 +43,7 @@ export const getters = {
     travelToOptions: s => s.travelToOptions?.map(obj => ({ id: obj.code, label: obj.county_name })),
     visaTypeOptions: s => s.visaTypeOptions?.map(obj => ({ id: obj.visa_type, label: obj.visa_type })),
     paymentStatusOptions: s => s.paymentStatusOptions?.map(obj => ({ id: obj.status_key, label: obj.status_value})),
-    orderStatusOptions: s => s.orderStatusOptions?.map(obj => ({ id: obj.status_key, label: obj.status_value })),
+    orderStatusOptions: s => s.orderStatusOptions?.map(obj => ({ id: obj.key, label: obj.value })),
     visaStatusOptions: s => s.visaStatusOptions?.map(obj => ({ id: obj.status_key, label: obj.status_value })),
     orderPriorityOptions: s => s.orderPriorityOptions?.map(obj => ({ id: obj.priority_key, label: obj.priority_value })),
     orderTypeOptions: s => s.orderTypeOptions?.map(obj => ({ id: obj.type_key, label: obj.type_value })),
@@ -55,6 +56,7 @@ export const getters = {
     payment_details: s => s.payment_details,
     order_tasks: s => s.order_tasks,
     task_comments: s => s.task_comments,
+    order_comments: s => s.order_comments,
     user_list: s => s.user_list,
     document_list: s => s.document_list,
     documentListOptions: s => s.document_list?.map(obj => ({label: obj.name,value: obj.id})),
@@ -117,13 +119,6 @@ export const mutations = {
     },
     SET_ORDER_VISA_DETAILS(state,items){
         state.visa_details = items
-        // if(Array.isArray(items))
-        //     state.visa_details = items
-        // else {
-        //     if(state.visa_details.some(obj => obj.id == items.id))
-        //       return
-        //     state.visa_details.push(items)  
-        // }
     },
 
     SET_ORDER_TRIP_DETAILS(state,items){
@@ -145,6 +140,9 @@ export const mutations = {
 
     SET_TASK_COMMENTS(state,items){
         state.task_comments = items
+    },
+    SET_ORDER_COMMENTS(state,items){
+        state.order_comments = items
     },
 
     SET_USER_LIST(state,items){
@@ -206,7 +204,7 @@ export const actions = {
     },
 
     async fetchOrderStatusOptions({commit}) {
-        let response = await this.$axios.get('/api/v1/orders/search?order_status=all')
+        let response = await this.$axios.get('/api/v2/order-statuses')
         let items = response.data.data
         commit('SET_ORDER_STATUS_OPTIONS',items);
     },
@@ -315,6 +313,12 @@ export const actions = {
         commit('SET_TASK_COMMENTS',items);
     },
 
+    async fetchOrderComments({commit},order_id){
+        let response = await this.$axios.get(`/api/v2/comments?order_id=${order_id}`)
+        let items = response.data.data
+        commit('SET_ORDER_COMMENTS',items);
+    },
+
 
     //Post actions
     async createNewOrderTask({commit},form){
@@ -338,6 +342,16 @@ export const actions = {
      },
 
     //Update actions
+    async updateOrderStatus({commit},{status,order_id}){
+        try{
+             let response = await this.$axios.patch(`/api/v2/order/${order_id}`,{status})
+             this.$toast.success(response.data.message)
+         }
+         catch(err){
+             this.$toast.error(err)
+         }
+     },
+
     async updateExistingOrderTask({commit},{task_id,form}){
         try{
              let response = await this.$axios.patch(`/api/v2/task/${task_id}`,form)

@@ -188,7 +188,7 @@
   font-size: 14px;
   line-height: 20px;
 
-
+  
   .vue-treeselect__value-container {
     // padding-left: 10px;
   }
@@ -211,4 +211,8 @@
 }
 .vue-treeselect:not(.vue-treeselect--disabled) .vue-treeselect__control-arrow-container:hover .vue-treeselect__control-arrow{
   color: $dark-4 !important;
+}
+
+.vue-treeselect--single .vue-treeselect__input-container {
+  height: 30px !important;
 }

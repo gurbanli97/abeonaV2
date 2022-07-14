@@ -13,7 +13,7 @@
                     class="list-group customer-provides"
                     :list="customerProvides"
                     group="people"
-                    :move="handleAttachmentStatusChange"
+                    @end="handleAttachmentStatusChange"
                      :emptyInsertThreshold="100"
                   >
                   <div class="list-group-item" v-for="(document) in customerProvides" :key="document.id">
@@ -37,7 +37,7 @@
                 <draggable 
                  class="list-group we-handle"
                  :list="weHandle" group="people" 
-                 :move="handleAttachmentStatusChange"
+                 @end="handleAttachmentStatusChange"
                  :emptyInsertThreshold="100"
                  >
                   <div class="list-group-item" v-for="(document) in weHandle" :key="document.id">
@@ -62,7 +62,7 @@
                 class="list-group ready" 
                 :list="ready" 
                 group="people" 
-                :move="handleAttachmentStatusChange"
+                @end="handleAttachmentStatusChange"
                 :emptyInsertThreshold="100"
                 >
                   <div class="list-group-item" v-for="(document) in ready" :key="document.id">
@@ -124,7 +124,7 @@ export default {
           form.status = 'ready'
         }
         console.log(form)
-        await this.$store.dispatch('orders/updateDocumentStatus',{document_id: event.draggedContext.element.id, form})
+        await this.$store.dispatch('orders/updateDocumentStatus',{document_id: event.item._underlying_vm_.id, form})
         await this.$store.dispatch('orders/fetchDocumentList',this.$route.params.id)
       }
     }
