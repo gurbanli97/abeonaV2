@@ -35,6 +35,13 @@
         background-color: $success-5;
     }
 
+    &.btn-info {
+        color: $white;
+        font-size: 14px;
+        line-height: 16px;
+        background-color: $info-5;
+    }
+
     &.go-back {
         margin: 0;
         display: flex;

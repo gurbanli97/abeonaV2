@@ -1,20 +1,14 @@
 <template>
   <div class="calendar">
-      <page-header :title="'Calendar'" :showActions="true" :showBackButton="true"/>
-      <div class="container">
-          <client-only>
-              <full-calendar/>
-          </client-only>
-      </div>
+    <page-header :title="'Calendar'" :show-actions="true" :show-back-button="true" />
+    <div class="container">
+      <client-only>
+        <full-calendar />
+      </client-only>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
-
-<style>
-
-</style>

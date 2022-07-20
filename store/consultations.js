@@ -1,24 +1,21 @@
 export const state = () => ({
-    allConsultations: []
+  allConsultations: [],
 })
 
-
-
 export const getters = {
-    consultations: s => s.allConsultations,
+  consultations: (s) => s.allConsultations,
 }
 
 export const mutations = {
-   SET_CONSULTATIONS(state,items){
-        state.allConsultations = items
-    },
+  SET_CONSULTATIONS(state, items) {
+    state.allConsultations = items
+  },
 }
-  
+
 export const actions = {
-    async fetchConsultations({commit}) {
-        let response = await this.$axios.get('/api/v2/consultations')
-        let items = response.data.data
-        commit('SET_CONSULTATIONS',items);
-        
-      }      
+  async fetchConsultations({ commit }) {
+    let response = await this.$axios.get('/api/v2/consultations')
+    let items = response.data.data
+    commit('SET_CONSULTATIONS', items)
+  },
 }

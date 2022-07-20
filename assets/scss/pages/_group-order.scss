@@ -25,4 +25,15 @@
     }
   }
   
+
+  .add-invoice{
+    font-size: 14px;
+    line-height: 20px;
+    color: $dark-4;
+    i{
+        color: $success-5;
+        font-size: 20px;
+        margin-right: 8px;
+    }
+}
 }

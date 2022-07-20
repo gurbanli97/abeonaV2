@@ -1,15 +1,13 @@
 <template>
   <div class="data-table">
-          <slot></slot>
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'DataTable'
+  name: 'DataTable',
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

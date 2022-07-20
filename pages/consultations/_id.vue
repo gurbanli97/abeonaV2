@@ -1,6 +1,6 @@
 <template>
   <div class="consultations consultation_id">
-    <page-header :title="'Consultation details'" :showActions="true" :showBackButton="true" :showBorder="true" />
+    <page-header :title="'Consultation details'" :show-actions="true" :show-back-button="true" :show-border="true" />
     <div class="container">
       <div class="add-consultation-inner row justify-content-between">
         <div class="main col-8">
@@ -24,7 +24,6 @@
                   <detail-field :label="'Citizen of'">
                     <strong>Azerbaijan</strong>
                   </detail-field>
-
                 </b-col>
                 <b-col xl="6">
                   <detail-field :label="'Resident of'">
@@ -78,13 +77,13 @@
             <b-col xl="6" class="pl-0">
               <div class="drag-box">
                 <div class="box-title">
-                  <span>Customer provide</span>
+                  <span>Customer provides</span>
                   <div class="item-count">
-                    <span>{{list1.length}}</span>
+                    <span>{{ list1.length }}</span>
                   </div>
                 </div>
                 <draggable class="list-group" :list="list1" group="people" @change="log">
-                  <div class="list-group-item" v-for="(element) in list1" :key="element.name">
+                  <div v-for="element in list1" :key="element.name" class="list-group-item">
                     <p>{{ element.name }}</p>
 
                     <badge :category="'document'" :text="element.document_type" />
@@ -101,11 +100,11 @@
                 <div class="box-title">
                   <span>We handle</span>
                   <div class="item-count">
-                    <span>{{list2.length}}</span>
+                    <span>{{ list2.length }}</span>
                   </div>
                 </div>
                 <draggable class="list-group" :list="list2" group="people" @change="log">
-                  <div class="list-group-item" v-for="(element) in list2" :key="element.name">
+                  <div v-for="element in list2" :key="element.name" class="list-group-item">
                     <p>{{ element.name }}</p>
 
                     <badge :category="'document'" :text="element.document_type" />
@@ -128,7 +127,7 @@
                 <span>Add service</span>
               </button>
 
-              <div class="add-service-popup" v-show="showAddPopup">
+              <div v-show="showAddPopup" class="add-service-popup">
                 <div class="popup-head">
                   <span>Add service</span>
                   <button @click="showAddPopup = false">
@@ -137,8 +136,7 @@
                 </div>
                 <b-form class="popup-form">
                   <b-form-group label="Section">
-                    <v-select :closeOnSelect="true" :clearable="false">
-                    </v-select>
+                    <v-select :close-on-select="true" :clearable="false"> </v-select>
                   </b-form-group>
                   <b-form-group>
                     <form-field :placeholder="'Enter'" :label="'Service name'" />
@@ -197,9 +195,7 @@
             <div class="visachance-score_progress">
               <client-only>
                 <vue-ellipse-progress :progress="100" dot="7">
-                  <span slot="legend-value">
-                    %
-                  </span>
+                  <span slot="legend-value"> % </span>
                   <div slot="legend-caption">
                     <p class="mb-0">Excellent</p>
                   </div>
@@ -207,137 +203,136 @@
               </client-only>
             </div>
             <button class="btn">
-              <icon :name="'message-question'"/>
+              <icon :name="'message-question'" />
               View questions
             </button>
           </div>
         </aside>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-   
-  import draggable from 'vuedraggable'
+import draggable from 'vuedraggable'
 
-  export default {
-    order: 1,
-    components: {
-      draggable,
-    },
-    data() {
-      return {
-        gradient: {
-          radial: false,
-          colors: [
-            {
-              color: '#EF3565',
-              offset: 0,
-              opacity: '1',
-            },
-            {
-              color: '#8068E0',
-              offset: 0,
-              opacity: '1',
-            },
-            {
-              color: '#42CCF6',
-              offset: 0,
-              opacity: '1',
-            },
-            {
-              color: '#5CE09C',
-              offset: 0,
-              opacity: '1',
-            },
-          ]
+export default {
+  order: 1,
+  components: {
+    draggable,
+  },
+  data() {
+    return {
+      gradient: {
+        radial: false,
+        colors: [
+          {
+            color: '#EF3565',
+            offset: 0,
+            opacity: '1',
+          },
+          {
+            color: '#8068E0',
+            offset: 0,
+            opacity: '1',
+          },
+          {
+            color: '#42CCF6',
+            offset: 0,
+            opacity: '1',
+          },
+          {
+            color: '#5CE09C',
+            offset: 0,
+            opacity: '1',
+          },
+        ],
+      },
+      birthDate: '',
+      showAddPopup: false,
+      customers: [
+        {
+          id: 1,
+          name: 'Ali',
+          surname: 'Gurbanli',
+          phone: '+994507224461',
+          email: 'ali.e.gurbanli@gmail.com',
         },
-        birthDate: '',
-        showAddPopup: false,
-        customers: [{
-            id: 1,
-            name: 'Ali',
-            surname: 'Gurbanli',
-            phone: '+994507224461',
-            email: 'ali.e.gurbanli@gmail.com'
-          },
-          {
-            id: 2,
-            name: 'Ali',
-            surname: 'Gurbanli',
-            phone: '+994507224461',
-            email: 'ali.e.gurbanli@gmail.com'
-          },
-          {
-            id: 3,
-            name: 'Ali',
-            surname: 'Gurbanli',
-            phone: '+994507224461',
-            email: 'ali.e.gurbanli@gmail.com'
-          }
-        ],
-        fields: ['Name', 'Surname', 'Phone', 'Email'],
-        list1: [{
-            name: "Bank account statement/Evidence of sufficient funds",
-            document_type: 'Translated',
-            id: 1
-          },
-          {
-            name: "Work reference from e-government portal",
-            document_type: 'Translated',
-            id: 2
-          },
-          {
-            name: "Jean",
-            document_type: 'Copy',
-            id: 3
-          },
-          {
-            name: "Gerard",
-            document_type: 'Original',
-            id: 4
-          }
-        ],
-        list2: [{
-            name: "Juan",
-            id: 5
-          },
-          {
-            name: "Edgard",
-            id: 6
-          },
-          {
-            name: "Johnson",
-            id: 7
-          }
-        ]
-      };
-    },
-    methods: {
-      // add: function () {  
-      //   this.list.push({
-      //     name: "Juan"
-      //   });
-      // },
-      // replace: function () {
-      //   this.list = [{
-      //     name: "Edgard"
-      //   }];
-      // },
-      // clone: function (el) {
-      //   return {
-      //     name: el.name + " cloned"
-      //   };
-      // },
-      log: function (evt) {
-        window.console.log(evt);
-      }
+        {
+          id: 2,
+          name: 'Ali',
+          surname: 'Gurbanli',
+          phone: '+994507224461',
+          email: 'ali.e.gurbanli@gmail.com',
+        },
+        {
+          id: 3,
+          name: 'Ali',
+          surname: 'Gurbanli',
+          phone: '+994507224461',
+          email: 'ali.e.gurbanli@gmail.com',
+        },
+      ],
+      fields: ['Name', 'Surname', 'Phone', 'Email'],
+      list1: [
+        {
+          name: 'Bank account statement/Evidence of sufficient funds',
+          document_type: 'Translated',
+          id: 1,
+        },
+        {
+          name: 'Work reference from e-government portal',
+          document_type: 'Translated',
+          id: 2,
+        },
+        {
+          name: 'Jean',
+          document_type: 'Copy',
+          id: 3,
+        },
+        {
+          name: 'Gerard',
+          document_type: 'Original',
+          id: 4,
+        },
+      ],
+      list2: [
+        {
+          name: 'Juan',
+          id: 5,
+        },
+        {
+          name: 'Edgard',
+          id: 6,
+        },
+        {
+          name: 'Johnson',
+          id: 7,
+        },
+      ],
     }
-  };
+  },
+  methods: {
+    // add: function () {
+    //   this.list.push({
+    //     name: "Juan"
+    //   });
+    // },
+    // replace: function () {
+    //   this.list = [{
+    //     name: "Edgard"
+    //   }];
+    // },
+    // clone: function (el) {
+    //   return {
+    //     name: el.name + " cloned"
+    //   };
+    // },
+    log: function (evt) {
+      window.console.log(evt)
+    },
+  },
+}
 </script>
 
-<style>
-
-</style>
+<style></style>

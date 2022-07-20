@@ -187,7 +187,7 @@
   color: $basic-7;
   font-size: 14px;
   line-height: 20px;
-
+  cursor: pointer !important;
   
   .vue-treeselect__value-container {
     // padding-left: 10px;
@@ -215,4 +215,8 @@
 
 .vue-treeselect--single .vue-treeselect__input-container {
   height: 30px !important;
+}
+
+.vue-treeselect__input {
+  cursor: pointer;
 }

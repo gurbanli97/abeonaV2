@@ -1,22 +1,22 @@
 <template>
   <div class="root">
-      <Sidebar/>
-      <section class="page" :class="{'sidebar-active':sidebarIsActive}">
-            <nuxt keep-alive />
-      </section>
+    <Sidebar />
+    <section class="page" :class="{ 'sidebar-active': sidebarIsActive }">
+      <nuxt keep-alive />
+    </section>
   </div>
 </template>
 
 <script>
 import Sidebar from '../components/layout/Sidebar.vue'
-import { mapState} from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
+  name: 'DefaultLayout',
   components: { Sidebar },
-  name: "DefaultLayout",
   middleware: 'auth',
-   computed: {
-        ...mapState(['sidebarIsActive']),
+  computed: {
+    ...mapState(['sidebarIsActive']),
   },
 }
 </script>

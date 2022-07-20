@@ -1,9 +1,9 @@
 <template>
-  <b-form-group :label="label" :class="{'search-input': type === 'search'}">
+  <b-form-group :label="label" :class="{ 'search-input': type === 'search' }">
     <span v-if="type === 'search'"><icon :name="'search-normal-1'" /></span>
     <b-form-input
-      autocomplete="off"
       v-model="fieldValue"
+      autocomplete="off"
       :type="type"
       :placeholder="placeholder"
       :class="{
@@ -18,51 +18,51 @@
 
 <script>
 export default {
-  name: "FormField",
+  name: 'FormField',
   props: {
     label: {
-      type: String
+      type: String,
+      default: '',
     },
     type: {
       type: String,
-      default: "text"
+      default: 'text',
     },
     value: {
       type: [String, Number],
-      default: ""
+      default: '',
     },
     placeholder: {
-      type: String
+      type: String,
+      default: '',
     },
     isInvalid: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hasError: {
       type: Boolean,
-      default: false
+      default: false,
     },
     hasSuccess: {
       type: Boolean,
-      default: false
+      default: false,
     },
     inputStyle: {
       type: String,
-      default: "default"
-    }
+      default: 'default',
+    },
   },
   computed: {
     fieldValue: {
       get() {
-        return this.value;
+        return this.value
       },
       set(value) {
-        this.$emit("input", value);
-      }
-    }
+        this.$emit('input', value)
+      },
+    },
   },
-  methods:{
-   
-  }
+  methods: {},
 }
 </script>

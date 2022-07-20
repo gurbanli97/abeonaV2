@@ -9,51 +9,51 @@ export default {
   props: {
     category: {
       type: String,
-      validator: value => [
-        'status',
-        'priority',
-        'document'
-      ].includes(value)
+      validator: (value) => ['status', 'priority', 'document'].includes(value),
+      default: '',
     },
-    text: String
+    text: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
-    className () {
+    className() {
       switch (this.category) {
         case 'status':
           return {
-            'Online': 'light',
-            'Pending': 'warning',
-            'Completed': 'info',
-            'Cancelled': 'danger',
-            'Processing': 'warning',
-            'Rejected': 'danger',
-            'Obtained': 'success',
-            'Applied': 'info',
+            Online: 'light',
+            Pending: 'warning',
+            Completed: 'info',
+            Cancelled: 'danger',
+            Processing: 'warning',
+            Rejected: 'danger',
+            Obtained: 'success',
+            Applied: 'info',
             'To Do': 'warning',
-            'Done': 'success',
-            'Doing': 'info',
-            'Review': 'light'
+            Done: 'success',
+            Doing: 'info',
+            Review: 'light',
           }[this.text]
         case 'priority':
           return {
-            'Online': 'light',
-            'Pending': 'warning',
-            'Medium': 'info',
-            'Important': 'danger'
+            Online: 'light',
+            Pending: 'warning',
+            Medium: 'info',
+            Important: 'danger',
           }[this.text]
-           case 'document':
+        case 'document':
           return {
-            'Copy': 'danger',
-            'Original': 'warning',
-            'Translated': 'success',
+            Copy: 'danger',
+            Original: 'warning',
+            Translated: 'success',
           }[this.text]
+        default:
+          return ''
       }
     },
-  }
+  },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -3,6 +3,12 @@
     display: flex;
     padding-top: 16px;
     padding-right: 10px;
+
+
+    .forms .form-group{
+      width: 312px;
+      max-width: 100%;
+    }
 }
 
 .consultations {
@@ -19,18 +25,30 @@
         }
     }
     h3 {
-        margin-bottom: 24px;
         font-size: 16px;
         color: $basic-7;
         line-height: 24px;
     }
 
-    .main .client-details form {
-        padding-bottom: 24px;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        border-bottom-color: $basic-3;
+    .main .forms form {
+        margin-top: 24px;
     }
+
+    .main .forms > div {
+        padding-bottom: 12px;
+
+        &:not(:first-child){
+            padding-top: 24px;
+        }
+
+        &:not(:last-child){
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: $basic-3;
+        }
+       
+    }
+
 
     .applicants {
         margin-top: 40px;
@@ -237,7 +255,7 @@
 
     .checkout {
         color: $basic-7;
-        padding: 24px 32px 10px 24px;
+        padding: 32px 24px 24px 24px;
         min-width: 336px;
         max-width: 336px;
         background: $warning-2;
@@ -245,6 +263,7 @@
         height: max-content;
 
         ul {
+            margin-top: 16px;
             li {
                 display: flex;
                 justify-content: space-between;
