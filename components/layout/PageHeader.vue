@@ -13,7 +13,7 @@
         </div>
       </b-col>
 
-      <b-col v-if="showActions" class="d-flex justify-content-end">
+      <b-col v-if="showActions" class="d-flex justify-content-end align-items-center">
         <slot> </slot>
       </b-col>
     </b-row>

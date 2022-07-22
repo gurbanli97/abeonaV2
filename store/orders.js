@@ -1,3 +1,4 @@
+import { transformOptions } from '~/helpers/select_options'
 export const state = () => ({
   allOrders: [],
   pagination: {
@@ -6,27 +7,29 @@ export const state = () => ({
   },
   orderGroupDetails: {},
   orderById: {},
-  travelToOptions: [],
-  visaTypeOptions: [],
-  paymentStatusOptions: [],
-  orderStatusOptions: [],
-  visaStatusOptions: [],
-  orderPriorityOptions: [],
-  orderTypeOptions: [],
-  orderSourceOptions: [],
-  customerOptions: [],
-  orderIdOptions: [],
+  selectOptions: {
+    travelTo: [],
+    visaType: [],
+    paymentStatus: [],
+    orderStatus: [],
+    orderType: [],
+    orderSource: [],
+    orderPriority: [],
+    visaStatus: [],
+    customers: [],
+    orderId: [],
+    taskStatus: [],
+    users: [],
+  },
   allCountries: [],
   visa_details: {},
   trip_details: [],
   payment_details: [],
-  passport_details: {},
+  applicant_passports: [],
   order_tasks: [],
   order_task_by_id: {},
   user_list: [],
   document_list: [],
-  task_status_list: [],
-  visa_status_list: [],
   task_comments: [],
   order_comments: [],
 })
@@ -40,20 +43,19 @@ export const getters = {
     let country = state.allCountries.find((c) => c.key === alpha)
     return country.value
   },
-  travelToOptions: (s) => s.travelToOptions?.map((obj) => ({ id: obj.code, label: obj.county_name })),
-  visaTypeOptions: (s) => s.visaTypeOptions?.map((obj) => ({ id: obj.visa_type, label: obj.visa_type })),
-  paymentStatusOptions: (s) => s.paymentStatusOptions?.map((obj) => ({ id: obj.status_key, label: obj.status_value })),
-  orderStatusOptions: (s) => s.orderStatusOptions?.map((obj) => ({ id: obj.key, label: obj.value })),
-  visaStatusOptions: (s) => s.visaStatusOptions?.map((obj) => ({ id: obj.status_key, label: obj.status_value })),
-  orderPriorityOptions: (s) =>
-    s.orderPriorityOptions?.map((obj) => ({ id: obj.priority_key, label: obj.priority_value })),
-  orderTypeOptions: (s) => s.orderTypeOptions?.map((obj) => ({ id: obj.type_key, label: obj.type_value })),
-  orderSourceOptions: (s) => s.orderSourceOptions?.map((obj) => ({ id: obj.source, label: obj.source })),
-  customerOptions: (s) => s.customerOptions?.map((obj) => ({ id: obj.customer_id, label: obj.full_name })),
-  orderIdOptions: (s) => s.orderIdOptions?.map((obj) => ({ id: obj.id, label: obj.id })),
+  travelToOptions: (s) => s.selectOptions.travelTo?.map(transformOptions),
+  visaTypeOptions: (s) => s.selectOptions.visaType?.map(transformOptions),
+  paymentStatusOptions: (s) => s.selectOptions.paymentStatus?.map(transformOptions),
+  orderStatusOptions: (s) => s.selectOptions.orderStatus?.map(transformOptions),
+  visaStatusOptions: (s) => s.selectOptions.visaStatus?.map(transformOptions),
+  orderPriorityOptions: (s) => s.orderPriorityOptions?.map(transformOptions),
+  orderTypeOptions: (s) => s.selectOptions.orderType?.map(transformOptions),
+  orderSourceOptions: (s) => s.selectOptions.orderSource?.map(transformOptions),
+  customerOptions: (s) => s.selectOptions.customers?.map(transformOptions),
+  orderIdOptions: (s) => s.selectOptions.orderId?.map(transformOptions),
   visa_details: (s) => s.visa_details,
   trip_details: (s) => s.trip_details,
-  passport_details: (s) => s.passport_details,
+  applicant_passports: (s) => s.applicant_passports,
   payment_details: (s) => s.payment_details,
   order_tasks: (s) => s.order_tasks,
   task_comments: (s) => s.task_comments,
@@ -61,53 +63,32 @@ export const getters = {
   user_list: (s) => s.user_list,
   document_list: (s) => s.document_list,
   documentListOptions: (s) => s.document_list?.map((obj) => ({ label: obj.name, value: obj.id })),
-  taskStatusOptions: (s) => s.task_status_list?.map((obj) => ({ label: obj.value, value: obj.key })),
-  userListOptions: (s) => s.user_list?.map((obj) => ({ label: obj.display_name, value: obj.id })),
+  taskStatusOptions: (s) => s.selectOptions.taskStatus?.map((obj) => ({ label: obj.value, value: obj.key })),
+  userListOptions: (s) => s.selectOptions.users?.map((obj) => ({ label: obj.display_name, value: obj.id })),
   countryListOptions: (s) => s.allCountries?.map((obj) => ({ label: obj.value, value: obj.key })),
   order_task_by_id: (state) => (id) => {
     if (id) state.order_tasks.find((i) => i.id == id)
     else return
   },
   applicantVisaStatusOptions: (s) =>
-    s.visa_status_list.map((obj) => ({ label: obj.status_value, value: obj.status_key })),
+    s.selectOptions.visaStatus.map((obj) => ({ label: obj.status_value, value: obj.status_key })),
 }
 
 export const mutations = {
-  SET_ORDERS(state, items) {
-    state.allOrders = items
+  SET_ORDERS(state, { orders }) {
+    state.allOrders = orders.data
   },
-  SET_PAGINATION(state, total) {
-    state.pagination.total = total
+  SET_PAGINATION(state, { orders }) {
+    state.pagination.total = orders.meta.total
   },
-  SET_ORDER_BY_ID(state, item) {
-    state.orderById = item
+  SET_ORDER_BY_ID(state, { order }) {
+    state.orderById = order.data
   },
-  SET_ORDER_GROUP_DETAILS(state, item) {
-    state.orderGroupDetails = item
+  SET_ORDER_GROUP_DETAILS(state, { order_group }) {
+    state.orderGroupDetails = order_group.data
   },
-  SET_TRAVEL_TO_OPTIONS(state, items) {
-    state.travelToOptions = items
-  },
-  SET_VISA_TYPE_OPTIONS(state, items) {
-    state.visaTypeOptions = items
-  },
-  SET_PAYMENT_STATUS_OPTIONS(state, items) {
-    state.paymentStatusOptions = items
-  },
-  SET_ORDER_STATUS_OPTIONS(state, items) {
-    state.orderStatusOptions = items
-  },
-  SET_VISA_STATUS_OPTIONS(state, items) {
-    state.visaStatusOptions = items
-  },
-  SET_ORDER_PRIORITY_OPTIONS(state, items) {
-    state.orderPriorityOptions = items
-  },
-  SET_ORDER_TYPE_OPTIONS(state, items) {
-    state.orderTypeOptions = items
-  },
-  SET_ORDER_SOURCE_OPTIONS(state, items) {
-    state.orderSourceOptions = items
+  SET_SELECT_OPTIONS(state, { key, options }) {
+    state.selectOptions[key] = options.data
   },
   SET_CUSTOMER_OPTIONS(state, items) {
     state.customerOptions = items
@@ -115,209 +96,170 @@ export const mutations = {
   SET_ORDER_ID_OPTIONS(state, items) {
     state.orderIdOptions = items
   },
-  SET_COUNTRIES(state, items) {
-    state.allCountries = items
+  SET_COUNTRIES(state, { countries }) {
+    state.allCountries = countries.data
   },
-  SET_ORDER_VISA_DETAILS(state, items) {
-    state.visa_details = items
+  SET_ORDER_VISA_DETAILS(state, { visa }) {
+    state.visa_details = visa.data
   },
-
-  SET_ORDER_TRIP_DETAILS(state, items) {
-    state.trip_details = items
+  SET_ORDER_TRIP_DETAILS(state, { trip }) {
+    state.trip_details = trip.data
   },
-  SET_ORDER_PASSPORT_DETAILS(state, item) {
-    state.passport_details = item
+  SET_APPLICANT_PASSPORTS(state, { passport }) {
+    state.applicant_passports = passport.data
   },
-  SET_ORDER_PAYMENT_DETAILS(state, items) {
-    state.payment_details = items
-  },
-
-  SET_ORDER_TASKS(state, items) {
-    state.order_tasks = items
-  },
-  SET_ORDER_TASK_BY_ID(state, item) {
-    state.order_task_by_id = item
+  SET_ORDER_PAYMENT_DETAILS(state, { payment }) {
+    state.payment_details = payment.data
   },
 
-  SET_TASK_COMMENTS(state, items) {
-    state.task_comments = items
+  SET_ORDER_TASKS(state, { tasks }) {
+    state.order_tasks = tasks.data
   },
-  SET_ORDER_COMMENTS(state, items) {
-    state.order_comments = items
-  },
-
-  SET_USER_LIST(state, items) {
-    state.user_list = items
-  },
-  SET_TASK_STATUS_LIST(state, items) {
-    state.task_status_list = items
+  SET_ORDER_TASK_BY_ID(state, { task }) {
+    state.order_task_by_id = task.data
   },
 
-  SET_DOCUMENT_LIST(state, items) {
-    state.document_list = items
+  SET_TASK_COMMENTS(state, { taskComments }) {
+    state.task_comments = taskComments.data
   },
-
-  SET_VISA_STATUS_LIST(state, items) {
-    state.visa_status_list = items
+  SET_ORDER_COMMENTS(state, { orderComments }) {
+    state.order_comments = orderComments.data
+  },
+  SET_DOCUMENT_LIST(state, { documents }) {
+    state.document_list = documents.data
   },
 }
 
 export const actions = {
-  //Get actions
+  //////////////////Get actions
   async fetchOrders({ commit }, filters = {}) {
     const url = this.$applyQueryToUrl('/api/v2/multiple-order', filters)
-    let response = await this.$axios.get(url)
-    let items = response.data.data
-    commit('SET_ORDERS', items)
-    commit('SET_PAGINATION', response.data.meta.total)
+    const { data: orders } = await this.$axios.get(url)
+    commit('SET_ORDERS', { orders })
+    commit('SET_PAGINATION', { orders })
   },
   async fetchOrderById({ commit, dispatch }, id) {
-    let response = await this.$axios.get(`/api/v2/order/${id}`)
-    let item = response.data.data
-    if (item.applicant_visa) {
-      await dispatch('fetchOrderVisaDetails', item.applicant_visa)
+    const { data: order } = await this.$axios.get(`/api/v2/order/${id}`)
+    if (order.data.applicant_visa) {
+      await dispatch('fetchOrderVisaDetails', order.data.applicant_visa)
     }
-    commit('SET_ORDER_BY_ID', item)
+    await dispatch('fetchApplicantPassports', order.data.applicant.id)
+    commit('SET_ORDER_BY_ID', { order })
   },
   async fetchOrderGroupDetails({ commit }, id) {
-    let response = await this.$axios.get(`/api/v2/order/${id}/order_group`)
-    let item = response.data.data
-
-    commit('SET_ORDER_GROUP_DETAILS', item)
+    const { data: order_group } = await this.$axios.get(`/api/v2/order/${id}/order_group`)
+    commit('SET_ORDER_GROUP_DETAILS', { order_group })
   },
 
   async fetchTravelToOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?travel_to=all')
-    let items = response.data.data
-    commit('SET_TRAVEL_TO_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?travel_to=all')
+    commit('SET_SELECT_OPTIONS', { key: 'travelTo', options })
   },
 
   async fetchVisaTypeOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?visa_type=all')
-    let items = response.data.data
-    commit('SET_VISA_TYPE_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?visa_type=all')
+    commit('SET_SELECT_OPTIONS', { key: 'visaType', options })
   },
 
   async fetchPaymentStatusOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?payment_status=all')
-    let items = response.data.data
-    commit('SET_PAYMENT_STATUS_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?payment_status=all')
+    commit('SET_SELECT_OPTIONS', { key: 'paymentStatus', options })
   },
 
   async fetchOrderStatusOptions({ commit }) {
-    let response = await this.$axios.get('/api/v2/order-statuses')
-    let items = response.data.data
-    commit('SET_ORDER_STATUS_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v2/order-statuses')
+    commit('SET_SELECT_OPTIONS', { key: 'orderStatus', options })
   },
 
   async fetchVisaStatusOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?visa_status=all')
-    let items = response.data.data
-    commit('SET_VISA_STATUS_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?visa_status=all')
+    commit('SET_SELECT_OPTIONS', { key: 'visaStatus', options })
   },
 
   async fetchOrderPriorityOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?order_priority=all')
-    let items = response.data.data
-    commit('SET_ORDER_PRIORITY_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?order_priority=all')
+    commit('SET_SELECT_OPTIONS', { key: 'orderPriority', options })
   },
 
   async fetchOrderTypeOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?order_type=all')
-    let items = response.data.data
-    commit('SET_ORDER_TYPE_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?order_type=all')
+    commit('SET_SELECT_OPTIONS', { key: 'orderType', options })
   },
 
   async fetchOrderSourceOptions({ commit }) {
-    let response = await this.$axios.get('/api/v1/orders/search?order_source=all')
-    let items = response.data.data
-    commit('SET_ORDER_SOURCE_OPTIONS', items)
+    const { data: options } = await this.$axios.get('/api/v1/orders/search?order_source=all')
+    commit('SET_SELECT_OPTIONS', { key: 'orderSource', options })
   },
 
   async fetchCountries({ commit }) {
-    let response = await this.$axios.get('/api/v1/countries')
-    let items = response.data.data
-    commit('SET_COUNTRIES', items)
+    const { data: countries } = await this.$axios.get('/api/v1/countries')
+    commit('SET_COUNTRIES', { countries })
   },
 
   async fetchOrderVisaDetails({ commit }, order_id) {
-    let response = await this.$axios.get(`api/v2/order/${order_id}/visa`)
-    let items = response.data.data
-    commit('SET_ORDER_VISA_DETAILS', items)
+    const { data: visa } = await this.$axios.get(`api/v2/order/${order_id}/visa`)
+    commit('SET_ORDER_VISA_DETAILS', { visa })
   },
 
   async fetchOrderTripDetails({ commit }, order_id) {
-    let response = await this.$axios.get(`api/v2/order/${order_id}/trip`)
-    let items = response.data.data
-    commit('SET_ORDER_TRIP_DETAILS', items)
+    const { data: trip } = await this.$axios.get(`api/v2/order/${order_id}/trip`)
+    commit('SET_ORDER_TRIP_DETAILS', { trip })
   },
 
-  async fetchOrderPassportDetails({ commit }, order_id) {
-    let response = await this.$axios.get(`api/v2/order/${order_id}/passport`)
-    let item = response.data.data
-    commit('SET_ORDER_PASSPORT_DETAILS', item)
+  async fetchApplicantPassports({ commit }, applicant_id) {
+    const { data: passport } = await this.$axios.get(`api/v2/applicants/${applicant_id}/passports`)
+    commit('SET_APPLICANT_PASSPORTS', { passport })
   },
 
   async fetchOrderPaymentDetails({ commit }, order_id) {
-    let response = await this.$axios.get(`api/v2/order/${order_id}/payments`)
-    let items = response.data.data
-    commit('SET_ORDER_PAYMENT_DETAILS', items)
+    const { data: payment } = await this.$axios.get(`api/v2/order/${order_id}/payments`)
+    commit('SET_ORDER_PAYMENT_DETAILS', { payment })
   },
 
   async fetchOrderTasks({ commit }, order_id) {
-    let response = await this.$axios.get(`api/v2/order/${order_id}/tasks`)
-    let items = response.data.data
-    commit('SET_ORDER_TASKS', items)
+    const { data: tasks } = await this.$axios.get(`api/v2/order/${order_id}/tasks`)
+    commit('SET_ORDER_TASKS', { tasks })
   },
 
   async fetchOrderTaskById({ commit }, task_id) {
-    let response = await this.$axios.get(`api/v2/task/${task_id}`)
-    let item = response.data.data
-    commit('SET_ORDER_TASK_BY_ID', item)
+    const { data: task } = await this.$axios.get(`api/v2/task/${task_id}`)
+    commit('SET_ORDER_TASK_BY_ID', { task })
   },
 
   async fetchUserList({ commit, state }) {
     if (state.user_list.length) return
-    let response = await this.$axios.get('/api/v2/user')
-    let items = response.data
-    commit('SET_USER_LIST', items)
+    const { data: options } = await this.$axios.get('/api/v2/user')
+    commit('SET_SELECT_OPTIONS', { key: 'users', options })
   },
 
   async fetchTaskStatusList({ commit, state }) {
-    if (state.task_status_list.length) return
-    let response = await this.$axios.get('/api/v2/task/statusses')
-    let items = response.data.data
-    commit('SET_TASK_STATUS_LIST', items)
+    if (state.selectOptions.taskStatus.length) return
+    const { data: options } = await this.$axios.get('/api/v2/task/statusses')
+    commit('SET_SELECT_OPTIONS', { key: 'taskStatus', options })
   },
 
   async fetchDocumentList({ commit }, order_id) {
-    // if(state.task_status_list.length)
-    //     return
-    let response = await this.$axios.get(`/api/v2/document?order_id=${order_id}`)
-    let items = response.data.data
-    commit('SET_DOCUMENT_LIST', items)
+    const { data: documents } = await this.$axios.get(`/api/v2/document?order_id=${order_id}`)
+    commit('SET_DOCUMENT_LIST', { documents })
   },
 
   async fetchVisaStatusList({ commit, state }) {
-    if (state.visa_status_list.length) return
-    let response = await this.$axios.get('/api/v2/applicants_visa/statuses')
-    let items = response.data
-    commit('SET_VISA_STATUS_LIST', items)
+    if (state.selectOptions.visaStatus.length) return
+    const { data: options } = await this.$axios.get('/api/v2/applicants_visa/statuses')
+    commit('SET_SELECT_OPTIONS', { key: 'visaStatus', options })
   },
 
   async fetchTaskComments({ commit }, task_id) {
-    let response = await this.$axios.get(`/api/v2/comments?task_id=${task_id}`)
-    let items = response.data.data
-    commit('SET_TASK_COMMENTS', items)
+    const { data: taskComments } = await this.$axios.get(`/api/v2/comments?task_id=${task_id}`)
+    commit('SET_TASK_COMMENTS', { taskComments })
   },
 
   async fetchOrderComments({ commit }, order_id) {
-    let response = await this.$axios.get(`/api/v2/comments?order_id=${order_id}`)
-    let items = response.data.data
-    commit('SET_ORDER_COMMENTS', items)
+    const { data: orderComments } = await this.$axios.get(`/api/v2/comments?order_id=${order_id}`)
+    commit('SET_ORDER_COMMENTS', { orderComments })
   },
 
-  //Post actions
+  //////////////////Post actions
   async createNewOrderTask(_, form) {
     try {
       let response = await this.$axios.post('/api/v2/task/', form)
@@ -336,7 +278,17 @@ export const actions = {
     }
   },
 
-  //Update actions
+  async createApplicantPassport({ dispatch }, form) {
+    try {
+      let response = await this.$axios.post('/api/v2/applicant-passport', form)
+      this.$toast.success(response.data.message)
+      await dispatch('fetchApplicantPassports', form.applicant_id)
+    } catch (err) {
+      this.$toast.error(err)
+    }
+  },
+
+  //////////////////Update actions
   async updateOrderStatus(_, { status, order_id }) {
     try {
       let response = await this.$axios.patch(`/api/v2/order/${order_id}`, { status })
@@ -382,11 +334,9 @@ export const actions = {
     }
   },
 
-  //Delete actions
+  //////////////////Delete actions
   async deleteTaskAttachment(_, attachment_id) {
     await this.$axios.delete(`api/v2/attachment/${attachment_id}`)
-    // let items = response.data
-    // commit('SET_ORDER_TASKS',items);
   },
 
   async deleteTaskComment(_, comment_id) {

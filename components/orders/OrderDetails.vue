@@ -38,7 +38,7 @@
             </div>
             <div class="col-12 mt-4 d-flex flex-wrap justify-content-between">
               <DetailField :label="'Citizen of'">
-                <strong>{{ country_fullname(order.details.citizenship) }}</strong>
+                <!-- <strong>{{ country_fullname(order.details.citizenship) }}</strong> -->
               </DetailField>
               <DetailField :label="'Resident of'">
                 <strong>{{ country_fullname(order.details.residency) }}</strong>
@@ -95,7 +95,7 @@
         <b-tab title="Visa details">
           <VisaDetails />
         </b-tab>
-        <b-tab title="Passport">
+        <b-tab v-if="applicantPassports.length" title="Passport">
           <PassportDetails />
         </b-tab>
       </b-tabs>
@@ -122,6 +122,7 @@ export default {
     ...mapGetters({
       order: 'orders/orderById',
       country_fullname: 'orders/country_fullname',
+      applicantPassports: 'orders/applicant_passports',
     }),
   },
 }

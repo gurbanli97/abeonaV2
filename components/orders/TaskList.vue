@@ -449,6 +449,11 @@ export default {
         this.$toast.error('Please fill in all required fields')
         return
       }
+      this.addTaskForm.attachments.forEach((element) => {
+        if (!element.document_id || !element.file) {
+          this.addTaskForm.attachments.splice(element, 1)
+        }
+      })
       this.pending = true
       await this.$store.dispatch('orders/createNewOrderTask', this.addTaskForm)
       await this.$store.dispatch('orders/fetchOrderTasks', this.$route.params.id)
@@ -464,6 +469,11 @@ export default {
         this.$toast.error('Please fill in all required fields')
         return
       }
+      this.editTaskForm.attachments.forEach((element) => {
+        if (!element.document_id || !element.file) {
+          this.editTaskForm.attachments.splice(element, 1)
+        }
+      })
       this.pending = true
       await this.$store.dispatch('orders/updateExistingOrderTask', {
         task_id: this.itemToEdit,
@@ -488,6 +498,7 @@ export default {
       await this.$store.dispatch('orders/createNewTaskComment', this.newCommentForm)
       this.newCommentForm.content = ''
       await this.$store.dispatch('orders/fetchTaskComments', this.itemToEdit)
+      await this.$store.dispatch('orders/fetchOrderTasks', this.$route.params.id)
     },
     async handleTaskCommentDelete(id) {
       await this.$store.dispatch('orders/deleteTaskComment', id)

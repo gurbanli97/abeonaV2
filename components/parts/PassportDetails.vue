@@ -3,9 +3,18 @@
     <h3>Applicant passports</h3>
     <div class="passport-details_inner">
       <b-tabs>
-        <b-tab :title="`Passport: ${passport.document_number}`">
+        <b-tab
+          v-for="passport in applicantPassports"
+          :key="passport.id"
+          :title="`Passport: ${passport.document_number}`"
+        >
           <!-- <button class="btn btn-success ml-auto">---</button> -->
           <div class="row">
+            <div class="col-12 d-flex justify-content-center mt-5">
+              <a :href="`http://abeonav2.pickvisa.com/${passport.file}`" target="_blank">
+                <img :src="`http://abeonav2.pickvisa.com/${passport.file}`" alt="" style="width: 200px" />
+              </a>
+            </div>
             <div class="col-12 d-flex justify-content-between mb-4 mt-5">
               <detail-field label="Passport number">
                 <strong>{{ passport.document_number }}</strong>
@@ -48,7 +57,7 @@
                 <strong>{{ passport.expired_reason }}</strong>
               </detail-field>
             </div>
-            <div class="col-12 passport-upload mt-5 d-flex align-items-center">
+            <!-- <div class="col-12 passport-upload mt-5 d-flex align-items-center">
               <div class="passport-upload_input">
                 <label for="passport-input">
                   <div>
@@ -65,7 +74,7 @@
                   <span>This passport is active</span>
                 </label>
               </div>
-            </div>
+            </div> -->
           </div>
         </b-tab>
       </b-tabs>
@@ -81,7 +90,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      passport: 'orders/passport_details',
+      applicantPassports: 'orders/applicant_passports',
     }),
   },
 }
