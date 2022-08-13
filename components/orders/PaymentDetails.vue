@@ -5,7 +5,7 @@
         <icon name="plus-circle" />
         Add invoice
       </button>
-      <UserTable :fields="tableFields">
+      <DataTable :fields="tableFields">
         <tbody>
           <tr v-for="payment in paymentDetails" :key="payment.id">
             <td>
@@ -34,16 +34,16 @@
             </td>
           </tr>
         </tbody>
-      </UserTable>
+      </DataTable>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import UserTable from '../tables/UserTable.vue'
+import DataTable from '../tables/DataTable.vue'
 export default {
-  components: { UserTable },
+  components: { DataTable },
   data() {
     return {
       tableFields: [

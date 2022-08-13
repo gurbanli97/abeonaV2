@@ -1,3 +1,4 @@
+import countries from '../countries.json'
 export default (_, inject) => {
   // inject("localePath", (url = "", params = {}, query = {}) => {
   //   return app.localePath({ name: url.replace("/", ""), params, query }, app.i18n.locale);
@@ -41,5 +42,10 @@ export default (_, inject) => {
     }
 
     return url
+  })
+
+  inject('getCountryName', (alpha) => {
+    const country = countries.find((country) => country.code === alpha)
+    return country ? country.name : '---'
   })
 }

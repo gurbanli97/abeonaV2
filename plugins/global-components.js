@@ -7,7 +7,6 @@ import FormField from '@/components/form/FormField'
 import QueryField from '@/components/form/QueryField'
 import DetailField from '@/components/elements/DetailField'
 import PageHeader from '@/components/layout/PageHeader'
-import UserTable from '@/components/tables/UserTable'
 import DataTable from '@/components/tables/DataTable'
 import SlideOut from '@/components/elements/SlideOut'
 
@@ -18,6 +17,5 @@ Vue.component('FormField', FormField)
 Vue.component('QueryField', QueryField)
 Vue.component('DetailField', DetailField)
 Vue.component('PageHeader', PageHeader)
-Vue.component('UserTable', UserTable)
 Vue.component('DataTable', DataTable)
 Vue.component('SlideOut', SlideOut)

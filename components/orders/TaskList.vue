@@ -5,7 +5,7 @@
         <Icon name="plus-circle" />
         Add task
       </button>
-      <UserTable :fields="tableFields" :with-actions="true">
+      <DataTable :fields="tableFields" :with-actions="true">
         <tbody>
           <tr v-for="task in taskList" :key="task.id">
             <td style="width: 200px">
@@ -37,7 +37,7 @@
             </td>
           </tr>
         </tbody>
-      </UserTable>
+      </DataTable>
 
       <slide-out
         v-if="showAddSlideOut"
@@ -317,11 +317,11 @@
 import { mapGetters } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 import Modal from '../elements/Modal.vue'
-import UserTable from '../tables/UserTable.vue'
+import DataTable from '../tables/DataTable.vue'
 import Icon from '../elements/Icon.vue'
 export default {
   name: 'Tasks',
-  components: { UserTable, Modal, Icon },
+  components: { DataTable, Modal, Icon },
   data() {
     return {
       pending: false,

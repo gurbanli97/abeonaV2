@@ -5,7 +5,7 @@
         <Icon name="plus-circle" />
         Add comment
       </button>
-      <UserTable :fields="tableFields" :with-actions="true">
+      <DataTable :fields="tableFields" :with-actions="true">
         <tbody>
           <tr v-for="comment in commentList" :key="comment.id">
             <td>
@@ -24,7 +24,7 @@
             </td>
           </tr>
         </tbody>
-      </UserTable>
+      </DataTable>
 
       <slide-out :slide-is-active="showAddSlideOut" title="Add comment" @close-slide="showAddSlideOut = false">
         <template #body>
@@ -48,11 +48,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import Modal from '../elements/Modal.vue'
-import UserTable from '../tables/UserTable.vue'
+import DataTable from '../tables/DataTable.vue'
 import Icon from '../elements/Icon.vue'
 export default {
   name: 'Comments',
-  components: { UserTable, Modal, Icon },
+  components: { DataTable, Modal, Icon },
   data() {
     return {
       pending: false,

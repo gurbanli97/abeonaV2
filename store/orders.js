@@ -1,4 +1,4 @@
-import { transformOptions } from '~/helpers/select_options'
+import { transformOptions } from '~/functions/select_options'
 export const state = () => ({
   allOrders: [],
   pagination: {
@@ -32,6 +32,7 @@ export const state = () => ({
   document_list: [],
   task_comments: [],
   order_comments: [],
+  appointmentTypes: [],
 })
 
 export const getters = {
@@ -39,10 +40,6 @@ export const getters = {
   orderGroupDetails: (s) => s.orderGroupDetails,
   pagination: (s) => s.pagination,
   orderById: (s) => s.orderById,
-  country_fullname: (state) => (alpha) => {
-    let country = state.allCountries.find((c) => c.key === alpha)
-    return country.value
-  },
   travelToOptions: (s) => s.selectOptions.travelTo?.map(transformOptions),
   visaTypeOptions: (s) => s.selectOptions.visaType?.map(transformOptions),
   paymentStatusOptions: (s) => s.selectOptions.paymentStatus?.map(transformOptions),
@@ -66,6 +63,7 @@ export const getters = {
   taskStatusOptions: (s) => s.selectOptions.taskStatus?.map((obj) => ({ label: obj.value, value: obj.key })),
   userListOptions: (s) => s.selectOptions.users?.map((obj) => ({ label: obj.display_name, value: obj.id })),
   countryListOptions: (s) => s.allCountries?.map((obj) => ({ label: obj.value, value: obj.key })),
+  appointmentTypeOptions: (s) => s.appointmentTypes?.map((obj) => ({ label: obj.name, value: obj.id })),
   order_task_by_id: (state) => (id) => {
     if (id) state.order_tasks.find((i) => i.id == id)
     else return
@@ -128,11 +126,14 @@ export const mutations = {
   SET_DOCUMENT_LIST(state, { documents }) {
     state.document_list = documents.data
   },
+  SET_APPOINTMENT_TYPES(state, { appointmentTypes }) {
+    state.appointmentTypes = appointmentTypes
+  },
 }
 
 export const actions = {
   //////////////////Get actions
-  async fetchOrders({ commit }, filters = {}) {
+  async fetchOrders({ commit }, filters = { limit: 10, page: 1 }) {
     const url = this.$applyQueryToUrl('/api/v2/multiple-order', filters)
     const { data: orders } = await this.$axios.get(url)
     commit('SET_ORDERS', { orders })
@@ -152,17 +153,17 @@ export const actions = {
   },
 
   async fetchTravelToOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?travel_to=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search?travel_to=all')
     commit('SET_SELECT_OPTIONS', { key: 'travelTo', options })
   },
 
   async fetchVisaTypeOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?visa_type=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search?visa_type=all')
     commit('SET_SELECT_OPTIONS', { key: 'visaType', options })
   },
 
   async fetchPaymentStatusOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?payment_status=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search?payment_status=all')
     commit('SET_SELECT_OPTIONS', { key: 'paymentStatus', options })
   },
 
@@ -172,22 +173,22 @@ export const actions = {
   },
 
   async fetchVisaStatusOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?visa_status=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search?visa_status=all')
     commit('SET_SELECT_OPTIONS', { key: 'visaStatus', options })
   },
 
   async fetchOrderPriorityOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?order_priority=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search?order_priority=all')
     commit('SET_SELECT_OPTIONS', { key: 'orderPriority', options })
   },
 
   async fetchOrderTypeOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?order_type=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search??order_type=all')
     commit('SET_SELECT_OPTIONS', { key: 'orderType', options })
   },
 
   async fetchOrderSourceOptions({ commit }) {
-    const { data: options } = await this.$axios.get('/api/v1/orders/search?order_source=all')
+    const { data: options } = await this.$axios.get('api/v2/multiple-orders/search?order_source=all')
     commit('SET_SELECT_OPTIONS', { key: 'orderSource', options })
   },
 
@@ -259,11 +260,16 @@ export const actions = {
     commit('SET_ORDER_COMMENTS', { orderComments })
   },
 
+  async fetchAppointmentTypes({ commit }) {
+    const { data: appointmentTypes } = await this.$axios.get('/api/v2/appointment-types')
+    commit('SET_APPOINTMENT_TYPES', { appointmentTypes })
+  },
+
   //////////////////Post actions
   async createNewOrderTask(_, form) {
     try {
-      let response = await this.$axios.post('/api/v2/task/', form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.post('/api/v2/task/', form)
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }
@@ -271,8 +277,8 @@ export const actions = {
 
   async createNewTaskComment(_, form) {
     try {
-      let response = await this.$axios.post('/api/v2/comments', form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.post('/api/v2/comments', form)
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }
@@ -280,19 +286,27 @@ export const actions = {
 
   async createApplicantPassport({ dispatch }, form) {
     try {
-      let response = await this.$axios.post('/api/v2/applicant-passport', form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.post('/api/v2/applicant-passport', form)
+      this.$toast.success(data.message)
       await dispatch('fetchApplicantPassports', form.applicant_id)
     } catch (err) {
       this.$toast.error(err)
     }
   },
 
+  async createAppointment(_, form) {
+    try {
+      const { data: data } = await this.$axios.post('/api/v2/appointments', form)
+      this.$toast.success(data.message)
+    } catch (err) {
+      this.$toast.error(err)
+    }
+  },
   //////////////////Update actions
   async updateOrderStatus(_, { status, order_id }) {
     try {
-      let response = await this.$axios.patch(`/api/v2/order/${order_id}`, { status })
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.patch(`/api/v2/order/${order_id}`, { status })
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }
@@ -300,8 +314,8 @@ export const actions = {
 
   async updateExistingOrderTask(_, { task_id, form }) {
     try {
-      let response = await this.$axios.patch(`/api/v2/task/${task_id}`, form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.patch(`/api/v2/task/${task_id}`, form)
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }
@@ -309,8 +323,8 @@ export const actions = {
 
   async updateExistingVisaDetails(_, { visa_id, form }) {
     try {
-      let response = await this.$axios.patch(`/api/v2/applicants_visa/${visa_id}`, form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.patch(`/api/v2/applicants_visa/${visa_id}`, form)
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }
@@ -318,8 +332,8 @@ export const actions = {
 
   async updateExistingTripDetails(_, { trip_id, form }) {
     try {
-      let response = await this.$axios.patch(`/api/v2/trip/${trip_id}`, form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.patch(`/api/v2/trip/${trip_id}`, form)
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }
@@ -327,8 +341,8 @@ export const actions = {
 
   async updateDocumentStatus(_, { document_id, form }) {
     try {
-      let response = await this.$axios.patch(`/api/v2/document/${document_id}`, form)
-      this.$toast.success(response.data.message)
+      const { data: data } = await this.$axios.patch(`/api/v2/document/${document_id}`, form)
+      this.$toast.success(data.message)
     } catch (err) {
       this.$toast.error(err)
     }

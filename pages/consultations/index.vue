@@ -18,7 +18,7 @@
       </div>
     </page-header>
     <div class="container">
-      <user-table :fields="fields">
+      <DataTable :fields="fields">
         <tbody>
           <template v-for="consultation in consultations">
             <tr :key="consultation.id" @click="$router.push(`consultations/${consultation.id}`)">
@@ -57,7 +57,7 @@
             </tr>
           </template>
         </tbody>
-      </user-table>
+      </DataTable>
       <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" />
     </div>
   </div>
@@ -65,8 +65,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import DataTable from '../../components/tables/DataTable.vue'
 export default {
   name: 'Consultations',
+  components: { DataTable },
   async asyncData({ store }) {
     await store.dispatch('consultations/fetchConsultations')
   },

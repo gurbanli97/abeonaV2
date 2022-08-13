@@ -6,7 +6,7 @@
         <div class="trip-item_head" @click="handleTripActivation($event, trip.id)">
           <span class="d-flex align-items-center">
             <icon name="plane" />
-            To {{ country_fullname(trip.travel_to) }}
+            To {{ $getCountryName(trip.travel_to) }}
           </span>
           <icon name="arrow-circle-down" />
         </div>
@@ -67,7 +67,6 @@ export default {
   computed: {
     ...mapGetters({
       trips: 'orders/trip_details',
-      country_fullname: 'orders/country_fullname',
       countryListOptions: 'orders/countryListOptions',
     }),
     editTripItem() {
@@ -100,7 +99,7 @@ export default {
     async handleTripUpdate(trip_id, visa_id) {
       this.editTripform.applicant_visa_id = visa_id
       const preparedForm = this.editTripform
-      for (const [key, val] of Object.entries(preparedForm)) {
+      for (const [key] of Object.entries(preparedForm)) {
         if (!preparedForm[key]) delete preparedForm[key]
       }
       await this.$store.dispatch('orders/updateExistingTripDetails', { trip_id, form: preparedForm })

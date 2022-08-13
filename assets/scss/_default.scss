@@ -34,10 +34,13 @@ body {
   background-color: transparent;
   font-weight: normal;
 
-  &.modal-open{
+  &.modal-active{
     overflow: hidden !important;
   }
- 
+
+  &.slideout-active{
+    overflow: hidden !important;
+  }
 }
 
 .root{

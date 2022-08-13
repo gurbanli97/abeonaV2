@@ -33,7 +33,7 @@
             <div class="group-applicant_details">
               <h3>Applicants</h3>
               <div class="table-wrap">
-                <user-table :fields="fields">
+                <DataTable :fields="fields">
                   <tbody>
                     <tr
                       v-for="order in orderDetails.orders"
@@ -47,7 +47,7 @@
                         <strong>{{ order.applicant.id }}</strong>
                       </td>
                       <td>
-                        <strong>{{ country_fullname(order.details.destination) }}</strong>
+                        <strong>{{ $getCountryName(order.details.destination) }}</strong>
                       </td>
                       <td>
                         <strong>{{ order.details.visa_type }}</strong>
@@ -66,7 +66,7 @@
                       </td>
                     </tr>
                   </tbody>
-                </user-table>
+                </DataTable>
               </div>
             </div>
           </b-tab>
@@ -99,7 +99,6 @@ export default {
   computed: {
     ...mapGetters({
       orderDetails: 'orders/orderGroupDetails',
-      country_fullname: 'orders/country_fullname',
     }),
   },
   methods: {

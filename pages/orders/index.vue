@@ -29,7 +29,7 @@
                   <th>
                     <client-only>
                       <treeselect
-                        v-model="filters.customer"
+                        v-model="filters.client_id"
                         :multiple="true"
                         :clearable="true"
                         :searchable="true"
@@ -38,7 +38,7 @@
                         :limit-text="(count) => `${count} items`"
                         :async="true"
                         :load-options="loadCustomerOptions"
-                        placeholder="Customer"
+                        placeholder="Client"
                         @input="handleSearch"
                       />
                     </client-only>
@@ -164,7 +164,7 @@
                   <td>
                     <ul>
                       <li>
-                        <strong>{{ order.client.name }}{{ order.client.surname }}</strong>
+                        <strong>{{ order.client.name }} {{ order.client.surname }}</strong>
                       </li>
                       <li>
                         <span>
@@ -196,7 +196,7 @@
                 <template v-for="order in separatedOrders">
                   <tr v-for="item in order" :key="item.id" @click="$router.push(`/orders/${item.id}`)">
                     <td>
-                      <strong>{{ item.client.name }}{{ item.client.surname }}</strong>
+                      <strong>{{ item.client.name }} {{ item.client.surname }}</strong>
                     </td>
                     <td>
                       <strong>{{ item.id }}</strong>
@@ -267,7 +267,7 @@ export default {
         visa_type: null,
         visa_status: null,
         payment_status: null,
-        customer: null,
+        client_id: null,
         order_id: null,
       },
     }
@@ -325,18 +325,20 @@ export default {
           return 'clock'
       }
     },
+    // eslint-disable-next-line no-unused-vars
     loadCustomerOptions({ action, searchQuery, callback }) {
-      this.$axios.get(`/api/v1/orders/search?customer=${searchQuery}`).then((response) => {
+      this.$axios.get(`/api/v2/multiple-orders/search?client=${searchQuery}`).then((response) => {
         this.options = response.data.data
         const options = this.options.map((i) => ({
-          id: `${i.customer_id}`,
+          id: `${i.client_id}`,
           label: `${i.full_name}`,
         }))
         callback(null, options)
       })
     },
+    // eslint-disable-next-line no-unused-vars
     loadOrderIdOptions({ action, searchQuery, callback }) {
-      this.$axios.get(`/api/v1/orders/search?order_id=${searchQuery}`).then((response) => {
+      this.$axios.get(`/api/v2/multiple-orders/search?order_group_id=${searchQuery}`).then((response) => {
         this.options = response.data.data
         const options = this.options.map((i) => ({
           id: `${i.id}`,
@@ -346,7 +348,7 @@ export default {
       })
     },
     clearFilters() {
-      for (const [key,val] of Object.entries(this.filters)) {
+      for (const [key] of Object.entries(this.filters)) {
         this.$set(this.filters, key, null)
       }
       this.order_dates = []

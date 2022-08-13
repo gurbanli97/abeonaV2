@@ -1,6 +1,20 @@
-.documents {
-  margin-top: 112px;
+.documents-inner {
+  padding-top: 10px;
 
+  & > button{
+    padding: 0 16px;
+    width: 170px;
+    height: 40px;
+    border-radius: 4px;
+
+    i{
+        font-size: 20px;
+        margin-right: 10px;
+    }
+  }
+}
+.documents-draggable {
+  padding: 32px 0 0 0;
   .drag-box {
       max-width: 336px;
       padding: 18px 16px;

@@ -30,6 +30,13 @@ export default {
   mounted() {
     window.addEventListener('keydown', this.handleEscapeKey)
   },
+  updated() {
+    if (this.toggle) {
+      document.querySelector('body').classList.add('modal-active')
+    } else {
+      document.querySelector('body').classList.remove('modal-active')
+    }
+  },
   beforeDestroy() {
     window.removeEventListener('keydown', this.handleEscapeKey)
   },

@@ -5,7 +5,7 @@
       show-back-button
       show-actions
       :show-details="{
-        country: country_fullname(order.details.destination),
+        country: $getCountryName(order.details.destination),
         visa_type: order.details.visa_type,
       }"
     >
@@ -56,6 +56,7 @@ export default {
       store.dispatch('orders/fetchOrderComments', params.id),
       store.dispatch('orders/fetchDocumentList', params.id),
       store.dispatch('orders/fetchVisaStatusList'),
+      store.dispatch('orders/fetchAppointmentTypes'),
     ])
   },
   data() {
@@ -66,7 +67,6 @@ export default {
   computed: {
     ...mapGetters({
       order: 'orders/orderById',
-      country_fullname: 'orders/country_fullname',
       orderStatusOptions: 'orders/orderStatusOptions',
       applicantPassports: 'orders/applicant_passports',
     }),

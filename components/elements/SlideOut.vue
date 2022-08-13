@@ -38,6 +38,13 @@ export default {
   mounted() {
     window.addEventListener('keydown', this.handleEscapeKey)
   },
+  updated() {
+    if (this.slideIsActive) {
+      document.querySelector('body').classList.add('slideout-active')
+    } else {
+      document.querySelector('body').classList.remove('slideout-active')
+    }
+  },
   beforeDestroy() {
     window.removeEventListener('keydown', this.handleEscapeKey)
   },

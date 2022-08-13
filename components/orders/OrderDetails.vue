@@ -38,13 +38,13 @@
             </div>
             <div class="col-12 mt-4 d-flex flex-wrap justify-content-between">
               <DetailField :label="'Citizen of'">
-                <!-- <strong>{{ country_fullname(order.details.citizenship) }}</strong> -->
+                <!-- <strong>{{ $getCountryName(order.details.citizenship) }}</strong> -->
               </DetailField>
               <DetailField :label="'Resident of'">
-                <strong>{{ country_fullname(order.details.residency) }}</strong>
+                <strong>{{ $getCountryName(order.details.residency) }}</strong>
               </DetailField>
               <DetailField :label="'Travel to'">
-                <strong>{{ country_fullname(order.details.destination) }}</strong>
+                <strong>{{ $getCountryName(order.details.destination) }}</strong>
               </DetailField>
               <DetailField :label="'Visa type'">
                 <strong>{{ order.details.visa_type }}</strong>
@@ -121,7 +121,6 @@ export default {
   computed: {
     ...mapGetters({
       order: 'orders/orderById',
-      country_fullname: 'orders/country_fullname',
       applicantPassports: 'orders/applicant_passports',
     }),
   },

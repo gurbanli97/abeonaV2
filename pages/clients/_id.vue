@@ -93,7 +93,7 @@
     <div class="container">
       <div class="clients-applicants">
         <h2>Client's applicants</h2>
-        <UserTable :with-actions="false">
+        <DataTable :with-actions="false">
           <tbody>
             <template v-for="customer in customers">
               <tr :key="customer.id">
@@ -140,7 +140,7 @@
               </tr>
             </template>
           </tbody>
-        </UserTable>
+        </DataTable>
         <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" />
       </div>
     </div>
@@ -152,13 +152,13 @@ import { mapGetters } from 'vuex'
 import { TableActionsMixin } from '~/mixins/table-actions'
 import DetailField from '../../components/elements/DetailField.vue'
 import PageHeader from '../../components/layout/PageHeader.vue'
-import UserTable from '../../components/tables/UserTable.vue'
+import DataTable from '../../components/tables/DataTable.vue'
 
 export default {
   components: {
     PageHeader,
     DetailField,
-    UserTable,
+    DataTable,
   },
   mixins: [TableActionsMixin],
   async asyncData({ store }) {
