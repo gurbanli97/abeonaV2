@@ -7,15 +7,14 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_CONSULTATIONS(state, items) {
-    state.allConsultations = items
+  SET_CONSULTATIONS(state, { consultations }) {
+    state.allConsultations = consultations.data
   },
 }
 
 export const actions = {
   async fetchConsultations({ commit }) {
-    let response = await this.$axios.get('/api/v2/consultations')
-    let items = response.data.data
-    commit('SET_CONSULTATIONS', items)
+    const { data: consultations } = await this.$axios.get('/api/v2/consultations')
+    commit('SET_CONSULTATIONS', { consultations })
   },
 }

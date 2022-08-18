@@ -1,0 +1,65 @@
+.billing {
+  &.add-new{
+    .actions {
+      margin-bottom: 24px;
+      .form-group{
+        max-width: 246px;
+      }
+    }
+    .table-responsive{
+      padding-bottom: 24px;
+      border: 1px solid #DEE1F4;
+      border-radius: 6px;
+      .custom-control{
+        padding: 0;
+
+        &-label::after,
+        &-label::before{
+          width: 20px;
+          height: 20px;
+        }
+      }
+      .form-group{
+        margin-bottom: 0;
+        input{
+          border-radius: 4px;
+        }
+      }
+      thead{
+        background: #42AAFF;
+        border-radius: 4px;
+
+        tr th{
+          color: $white;
+          font-weight: 400;
+        }
+      }
+
+      tbody{
+        tr{
+          cursor: initial;
+          border:none;
+          &:not(:last-child){
+            border-bottom: 1px solid #EDF1F7;
+          }
+        }
+        tr td {
+          button{
+            margin-left: 12px;
+            i{
+              font-size: 24px;
+            }
+          }
+        }
+      }
+
+      .add-row{
+        color: $dark-4;
+        i{
+          color: $success-5;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

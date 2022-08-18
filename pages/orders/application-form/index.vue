@@ -52,9 +52,9 @@ export default {
   },
   data() {
     return {
-      showPersonal: false,
+      showPersonal: true,
       showPassport: false,
-      showTravel: true,
+      showTravel: false,
     }
   },
 }

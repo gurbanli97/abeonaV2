@@ -60,7 +60,7 @@
                       />
                     </client-only>
                   </th>
-                  <th>
+                  <!-- <th>
                     <client-only>
                       <treeselect
                         v-model="filters.travel_to"
@@ -75,8 +75,8 @@
                         @input="handleSearch"
                       />
                     </client-only>
-                  </th>
-                  <th>
+                  </th> -->
+                  <!-- <th>
                     <client-only>
                       <treeselect
                         v-model="filters.visa_type"
@@ -91,7 +91,7 @@
                         @input="handleSearch"
                       />
                     </client-only>
-                  </th>
+                  </th> -->
                   <th>
                     <client-only>
                       <treeselect
@@ -124,7 +124,7 @@
                       />
                     </client-only>
                   </th>
-                  <th>
+                  <!-- <th>
                     <client-only>
                       <treeselect
                         v-model="filters.visa_status"
@@ -139,7 +139,7 @@
                         @input="handleSearch"
                       />
                     </client-only>
-                  </th>
+                  </th> -->
                   <th style="min-width: 240px">
                     <date-picker
                       v-model="order_dates"

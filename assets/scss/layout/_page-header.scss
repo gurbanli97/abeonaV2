@@ -10,7 +10,7 @@
             height: 1px;
             background-color: $dark-1;
     }
-    
+
     button:not(:last-child){
         margin-right: 16px;
     }
@@ -47,9 +47,8 @@
 .detailed-title{
     display: flex;
     align-items: center;
-    
+
     span{
-        white-space: nowrap;
         font-size: 20px;
         line-height: 28px;
         color: $dark-3;

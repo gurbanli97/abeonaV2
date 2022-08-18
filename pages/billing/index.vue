@@ -1,6 +1,6 @@
 <template>
-  <div class="consultations">
-    <page-header :title="'Consultations'" :show-actions="true">
+  <div class="billing">
+    <PageHeader title="Billing" show-actions>
       <button v-if="filtersActive" class="btn clear-filters" @click="$nuxt.$emit('clear-filters')">
         <icon :name="'eraser-1'" />
         <span>Clear filters</span>
@@ -10,13 +10,13 @@
         <span v-if="!filtersActive">Filters</span>
         <span v-else>Hide Filters</span>
       </button>
-      <div class="d-flex justify-content-end open-calendar">
-        <NuxtLink :to="'/consultations/calendar'" class="btn btn-success open-calendar">Calendar</NuxtLink>
+      <div class="d-flex justify-content-end mr-3">
+        <NuxtLink :to="'/billing/add'" class="btn btn-success"> Export as excel </NuxtLink>
       </div>
-      <div class="d-flex justify-content-end add-consultation">
-        <NuxtLink :to="'/consultations/add'" class="btn btn-success add-consultation">Add new</NuxtLink>
+      <div class="d-flex justify-content-end">
+        <NuxtLink :to="'/billing/add'" class="btn btn-success">Create invoice</NuxtLink>
       </div>
-    </page-header>
+    </PageHeader>
     <div class="container">
       <DataTable :fields="fields">
         <tbody>
@@ -58,26 +58,31 @@
           </template>
         </tbody>
       </DataTable>
-      <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" />
+      <!-- <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" /> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import DataTable from '../../components/tables/DataTable.vue'
+import PageHeader from '../../components/layout/PageHeader.vue'
 export default {
-  name: 'Consultations',
-  components: { DataTable },
+  components: { PageHeader },
   async asyncData({ store }) {
     await store.dispatch('consultations/fetchConsultations')
   },
   data() {
     return {
-      fields: ['Client', 'Date & Time', 'Travel to', 'Specialist', 'Status'],
-      activeAction: null,
-      showDeleteModal: false,
-      itemToDelete: null,
+      fields: [
+        'Invoice Id',
+        'Order Id',
+        'Client',
+        'Order type',
+        'Amount',
+        'Invoice date',
+        'Payment type',
+        'Payment status',
+      ],
     }
   },
   computed: {
@@ -86,37 +91,9 @@ export default {
       filtersActive: 'filtersActive',
     }),
   },
-  mounted() {
-    this.$nuxt.$on('modal-delete-click', this.handleDelete)
-    document.addEventListener('click', this.handleDocClick)
-  },
-  beforeDestroy() {
-    this.$nuxt.$off('modal-delete-click', this.handleDelete)
-    document.removeEventListener('click', this.handleDocClick)
-  },
   methods: {
     toggleFilters() {
       this.$store.commit('TOGGLE_FILTERS')
-    },
-    toggleActions(item) {
-      this.activeAction = item.id
-    },
-    handleDocClick(event) {
-      if (this.activeAction === null) {
-        return
-      }
-      let clickedActionBtn = event.target.classList.contains('icon-more')
-      let clickedActionBlock = event.target.classList.contains('table-actions')
-
-      if (!clickedActionBtn && !clickedActionBlock) {
-        this.activeAction = null
-      }
-    },
-    openModal(item) {
-      ;(this.showDeleteModal = true), (this.itemToDelete = item)
-    },
-    handleDelete(item) {
-      console.log('id:', item)
     },
   },
 }

@@ -5,40 +5,39 @@
       <button class="btn btn-success add-new">Add new</button>
     </PageHeader>
     <div class="container">
-      <user-table :fields="fields" :with-actions="true">
+      <DataTable :fields="fields" :with-actions="true">
         <tbody>
-          <template v-for="customer in customers">
-            <tr :key="customer.id" @click="$router.push(`clients/${customer.id}`)">
+          <template v-for="client in clients">
+            <tr :key="client.id" @click="$router.push(`clients/${client.id}`)">
               <td>
-                <span>{{ customer.name }} {{ customer.surname }}</span>
+                <strong>{{ client.name || '---' }} {{ client.surname || '' }}</strong>
               </td>
               <td>
-                <span>{{ customer.email }}</span>
+                <span>{{ client.email || '---' }}</span>
               </td>
               <td>
-                <span>{{ customer.phone }}</span>
+                <span>{{ client.phone || '---' }}</span>
               </td>
-              <td class="actions" :class="{ active: activeAction === customer.id }">
+              <td class="actions" :class="{ active: activeAction === client.id }">
                 <button
                   ref="showActions"
-                  v-scroll-to="`#element-${customer.id}`"
+                  v-scroll-to="`#element-${client.id}`"
                   class="show-actions"
-                  @click.stop="toggleActions(customer)"
+                  @click.stop="toggleActions(client)"
                 >
-                  <icon :name="'more'" />
+                  <Icon :name="'more'" />
                 </button>
                 <div
-                  v-show="activeAction === customer.id"
-                  :id="`element-${customer.id}`"
+                  v-show="activeAction === client.id"
+                  :id="`element-${client.id}`"
                   ref="actionsBlock"
                   class="table-actions"
                 >
-                  >
                   <button>
                     <icon :name="'edit-2'" />
                     Edit
                   </button>
-                  <button @click.stop="openModal(customer.id)">
+                  <button @click.stop="openModal(client.id)">
                     <icon :name="'trash'" />
                     Delete
                   </button>
@@ -47,7 +46,7 @@
             </tr>
           </template>
         </tbody>
-      </user-table>
+      </DataTable>
       <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" />
     </div>
   </div>
@@ -61,17 +60,20 @@ export default {
   components: { PageHeader },
   mixins: [TableActionsMixin],
   async asyncData({ store }) {
-    await store.dispatch('customers/fetchCustomers')
+    await store.dispatch('clients/fetchClients')
   },
   data() {
     return {
-      fields: ['Customer', 'Email', 'Phone'],
+      fields: ['Client', 'Email', 'Phone'],
     }
   },
   computed: {
     ...mapGetters({
-      customers: 'customers/customers',
+      clients: 'clients/clients',
     }),
+  },
+  mounted() {
+    console.log(this.clients)
   },
 }
 </script>

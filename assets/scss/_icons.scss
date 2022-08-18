@@ -68,7 +68,6 @@
 }
 .icon-close:before {
   content: "\e923";
-  color: #fff;
 }
 .icon-arrow-circle-down:before {
   content: "\e900";
@@ -153,26 +152,21 @@
 }
 .icon-plane:before {
   content: "\e91b";
-  color: #8d92c1;
 }
 .icon-plus-circle:before {
   content: "\e91c";
-  color: #575c84;
 }
 .icon-profile-circle .path1:before {
   content: "\e91d";
-  color: rgb(41, 45, 50);
   opacity: 0.4;
 }
 .icon-profile-circle .path2:before {
   content: "\e91e";
   margin-left: -1em;
-  color: rgb(41, 45, 50);
 }
 .icon-profile-circle .path3:before {
   content: "\e91f";
   margin-left: -1em;
-  color: rgb(41, 45, 50);
 }
 .icon-search-normal-1:before {
   content: "\e920";

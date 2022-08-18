@@ -95,44 +95,44 @@
         <h2>Client's applicants</h2>
         <DataTable :with-actions="false">
           <tbody>
-            <template v-for="customer in customers">
-              <tr :key="customer.id">
+            <template v-for="client in clients">
+              <tr :key="client.id" @click="$router.push('/applicants')">
                 <td>
                   <DetailField :label="'Name'">
-                    <strong>{{ customer.name }} <span class="client-type"> (Client applicant)</span></strong>
+                    <strong>{{ client.name }} <span class="client-type"> (Client applicant)</span></strong>
                   </DetailField>
                 </td>
                 <td>
                   <DetailField :label="'Surname'">
-                    <strong>{{ customer.surname }}</strong>
+                    <strong>{{ client.surname }}</strong>
                   </DetailField>
                 </td>
                 <td>
                   <DetailField :label="'Phone'">
-                    <strong>{{ customer.phone }}</strong>
+                    <strong>{{ client.phone }}</strong>
                   </DetailField>
                 </td>
 
-                <td class="actions" :class="{ active: activeAction === customer.id }">
-                  <button ref="showActions" class="show-actions" @click="toggleActions(customer)">
-                    <icon :name="'more'" />
+                <td :class="['actions', { active: activeAction === client.id }]">
+                  <button ref="showActions" class="show-actions" @click="toggleActions(client)">
+                    <Icon :name="'more'" />
                   </button>
                   <div
-                    v-show="activeAction === customer.id"
-                    :id="`element-${customer.id}`"
+                    v-show="activeAction === client.id"
+                    :id="`element-${client.id}`"
                     ref="actionsBlock"
                     class="table-actions"
                   >
                     <button>
-                      <icon :name="'edit-2'" />
+                      <Icon :name="'edit-2'" />
                       Edit
                     </button>
                     <button>
-                      <icon :name="'profile-1'" />
+                      <Icon :name="'profile-1'" />
                       Make applicant
                     </button>
-                    <button @click="openModal(customer.id)">
-                      <icon :name="'trash'" />
+                    <button @click="openModal(client.id)">
+                      <Icon :name="'trash'" />
                       Delete
                     </button>
                   </div>
@@ -162,7 +162,7 @@ export default {
   },
   mixins: [TableActionsMixin],
   async asyncData({ store }) {
-    await store.dispatch('customers/fetchCustomers')
+    await store.dispatch('clients/fetchClients')
   },
   data() {
     return {
@@ -171,11 +171,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      customers: 'customers/customers',
+      clients: 'clients/clients',
     }),
-  },
-  mounted() {
-    console.log(this.customers)
   },
 }
 </script>

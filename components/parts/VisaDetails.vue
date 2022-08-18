@@ -163,7 +163,7 @@ export default {
     async handleEditVisaFormSubmit() {
       const preparedForm = this.editVisaForm
 
-      for (const [key, val] of Object.entries(preparedForm)) {
+      for (const [key] of Object.entries(preparedForm)) {
         if (!preparedForm[key]) delete preparedForm[key]
       }
 

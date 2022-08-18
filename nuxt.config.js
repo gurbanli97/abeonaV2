@@ -59,6 +59,7 @@ export default {
   plugins: [
     { src: '~/plugins/helpers' },
     { src: '~/plugins/axios' },
+    { src: '~/plugins/lodash' },
     { src: '~/plugins/global-components' },
     { src: '~/plugins/vue-select' },
     { src: '~/plugins/vClickOutside' },
@@ -113,33 +114,33 @@ export default {
     },
   },
 
-  i18n: {
-    locales: [
-      {
-        code: 'en',
-        file: 'en.js',
-        iso: 'en-en',
-      },
-      {
-        code: 'ru',
-        file: 'ru.js',
-        iso: 'ru-ru',
-      },
-      {
-        code: 'az',
-        file: 'az.js',
-        iso: 'az-az',
-      },
-    ],
-    langDir: 'locales/',
-    strategy: 'prefix_except_default',
-    baseUrl: 'localhost:3000',
-    defaultLocale: 'en',
-    vueI18n: {
-      fallbackLocale: 'en',
-    },
-    detectBrowserLanguage: false,
-  },
+  // i18n: {
+  //   locales: [
+  //     {
+  //       code: 'en',
+  //       file: 'en.js',
+  //       iso: 'en-en',
+  //     },
+  //     {
+  //       code: 'ru',
+  //       file: 'ru.js',
+  //       iso: 'ru-ru',
+  //     },
+  //     {
+  //       code: 'az',
+  //       file: 'az.js',
+  //       iso: 'az-az',
+  //     },
+  //   ],
+  //   langDir: 'locales/',
+  //   strategy: 'prefix_except_default',
+  //   baseUrl: 'localhost:3000',
+  //   defaultLocale: 'en',
+  //   vueI18n: {
+  //     fallbackLocale: 'en',
+  //   },
+  //   detectBrowserLanguage: false,
+  // },
 
   // server: {
   //   port: 3000,

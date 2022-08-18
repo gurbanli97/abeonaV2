@@ -45,7 +45,7 @@ export default (_, inject) => {
   })
 
   inject('getCountryName', (alpha) => {
-    const country = countries.find((country) => country.code === alpha)
-    return country ? country.name : '---'
+    const country = countries.find((country) => country.key === alpha)
+    return country ? country.value : '---'
   })
 }

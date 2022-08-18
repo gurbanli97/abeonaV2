@@ -2,11 +2,11 @@
   <div class="applicant applicant_id">
     <page-header :title="'Applicant name'" :show-back-button="true" :show-border="true" :show-actions="true">
       <button class="btn applicant-details">
-        <icon :name="'info-circle'" />
+        <Icon :name="'info-circle'" />
         Applicant details
       </button>
-      <button class="btn applicant-files">
-        <icon :name="'folder-add'" />
+      <button class="btn applicant-files" @click="$router.push(`${$route.params.id}/documents`)">
+        <Icon :name="'folder-add'" />
         Applicant files
       </button>
     </page-header>
@@ -14,10 +14,10 @@
       <div class="applicant-id_inner">
         <div class="recent-orders">
           <h2>Recent orders</h2>
-          <user-table :fields="fields">
+          <DataTable :fields="fields">
             <tbody>
-              <template v-for="customer in customers">
-                <tr :key="customer.id">
+              <template v-for="client in clients">
+                <tr :key="client.id">
                   <td>
                     <span>United States of America</span>
                   </td>
@@ -39,11 +39,11 @@
                 </tr>
               </template>
             </tbody>
-          </user-table>
+          </DataTable>
         </div>
-        <div class="customer-passports">
-          <h2>Customer passports</h2>
-          <div class="customer-passports_inner">
+        <div class="applicant-passports">
+          <h2>client passports</h2>
+          <div class="applicant-passports_inner">
             <b-tabs>
               <b-tab title="Passport: C123230">
                 <button class="btn btn-success ml-auto">---</button>
@@ -162,7 +162,7 @@
                                   <b-progress-bar :value="progressValue"></b-progress-bar>
                                 </b-progress>
                                 <button class="btn">
-                                  <icon name="close-circle-2" />
+                                  <Icon name="close-circle-2" />
                                 </button>
                               </div>
                             </div>
@@ -175,10 +175,10 @@
                             <div v-for="trip in trips" :key="trip.id" :class="['trip-item']">
                               <div class="trip-item_head" @click="handleTripActivation($event)">
                                 <span class="d-flex align-items-center">
-                                  <icon name="plane" />
+                                  <Icon name="plane" />
                                   To {{ trip.country }}
                                 </span>
-                                <icon name="arrow-circle-down" />
+                                <Icon name="arrow-circle-down" />
                               </div>
                               <div class="trip-item_body">
                                 <form-field label="Travel to" type="text" />
@@ -231,7 +231,7 @@ import { mapGetters } from 'vuex'
 export default {
   components: {},
   async asyncData({ store }) {
-    await store.dispatch('customers/fetchCustomers')
+    await store.dispatch('clients/fetchClients')
   },
   data() {
     return {
@@ -259,7 +259,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      customers: 'customers/customers',
+      clients: 'clients/clients',
     }),
   },
   methods: {

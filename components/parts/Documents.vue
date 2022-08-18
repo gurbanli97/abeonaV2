@@ -204,7 +204,6 @@ export default {
   },
   methods: {
     async handleAttachmentStatusChange(event) {
-      console.log(event)
       const form = {
         order_id: this.$route.params.id,
         status: event.added?.element.id,
@@ -220,7 +219,6 @@ export default {
       await this.$store.dispatch('orders/fetchDocumentList', this.$route.params.id)
     },
     handleDocumentToBring(event) {
-      console.log(event)
       const document = {
         id: event,
       }
@@ -251,5 +249,3 @@ export default {
   },
 }
 </script>
-
-<style></style>

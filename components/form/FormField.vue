@@ -48,10 +48,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    inputStyle: {
-      type: String,
-      default: 'default',
-    },
   },
   computed: {
     fieldValue: {

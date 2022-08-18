@@ -20,7 +20,7 @@
                 </b-form-group>
 
                 <!-- <div class="client-search_popup">
-                    <user-table :fields="fields">
+                    <DataTable :fields="fields">
                       <tbody>
                         <template v-for="customer in customers">
                           <tr :key="customer.id">
@@ -39,7 +39,7 @@
                           </tr>
                         </template>
                       </tbody>
-                    </user-table>
+                    </DataTable>
                   </div> -->
                 <b-form-group>
                   <form-field :placeholder="'Enter'" :label="'Surname'" />
@@ -53,16 +53,21 @@
               <h3>Appointment details</h3>
               <b-form class="d-flex flex-wrap justify-content-between">
                 <b-form-group label="Date">
-                  <date-picker value-type="format" format="YYYY-MM-DD" placeholder="Choose date" />
+                  <date-picker
+                    value-type="format"
+                    format="YYYY-MM-DD HH:mm"
+                    type="datetime"
+                    placeholder="Choose date"
+                  />
                 </b-form-group>
-                <b-form-group label="Language">
+                <b-form-group label="Appointment type">
                   <v-select :close-on-select="true" :clearable="false"> </v-select>
                 </b-form-group>
                 <b-form-group label="Specialist">
                   <v-select :close-on-select="true" :clearable="false"> </v-select>
                 </b-form-group>
-                <b-form-group label="Time">
-                  <v-select :close-on-select="true" :clearable="false"> </v-select>
+                <b-form-group label="Note">
+                  <b-form-textarea placeholder="Enter" rows="6" max-rows="6" no-resize />
                 </b-form-group>
               </b-form>
             </b-col>
@@ -81,7 +86,7 @@
               <h3>Applicants</h3>
 
               <div class="applicant-list">
-                <user-table>
+                <DataTable>
                   <tbody>
                     <template v-for="customer in customers">
                       <tr :key="customer.id">
@@ -132,7 +137,7 @@
                       </tr>
                     </template>
                   </tbody>
-                </user-table>
+                </DataTable>
                 <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" />
               </div>
 
