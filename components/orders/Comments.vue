@@ -30,7 +30,16 @@
         <template #body>
           <b-form @submit.prevent="handleAddNewComment">
             <b-form-group label="Description">
-              <b-form-textarea v-model="newCommentForm.content" placeholder="Enter" rows="6" max-rows="6" />
+              <b-form-textarea
+                v-model="newCommentForm.content"
+                placeholder="Enter"
+                rows="6"
+                max-rows="6"
+                :class="{ 'is-invalid': $v.newCommentForm.content.$error }"
+              />
+              <b-form-invalid-feedback v-if="!$v.newCommentForm.content.$required">
+                Input can't be empty
+              </b-form-invalid-feedback>
             </b-form-group>
             <button :class="['btn', 'btn-success', { pending: pending }]" type="submit">Save comment</button>
           </b-form>
@@ -47,6 +56,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { required } from 'vuelidate/lib/validators'
 import Modal from '../elements/Modal.vue'
 import DataTable from '../tables/DataTable.vue'
 import Icon from '../elements/Icon.vue'
@@ -70,6 +80,11 @@ export default {
       },
     }
   },
+  validations: {
+    newCommentForm: {
+      content: { required },
+    },
+  },
   computed: {
     ...mapGetters({
       commentList: 'orders/order_comments',
@@ -91,10 +106,16 @@ export default {
       this.showAddSlideOut = true
     },
     async handleAddNewComment() {
+      this.$v.newCommentForm.$touch()
+      if (this.$v.newCommentForm.$invalid) {
+        this.$toast.error('Please fill in all required fields')
+        return
+      }
       this.newCommentForm.order_id = this.$route.params.id
       await this.$store.dispatch('orders/createNewTaskComment', this.newCommentForm)
       await this.$store.dispatch('orders/fetchOrderComments', this.$route.params.id)
       this.newCommentForm.content = ''
+      this.$v.newCommentForm.$reset()
       this.showAddSlideOut = false
     },
     async handleCommentDelete(id) {

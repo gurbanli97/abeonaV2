@@ -1,85 +1,82 @@
-// $namespace: 'xmx'; // change the 'mx' to 'xmx'. then <date-picker prefix-class="xmx" />
-
 $default-color: #555;
 $primary-color: #1284e7;
 
-@import '~vue2-datepicker/scss/index.scss';
+@import "~vue2-datepicker/scss/index";
 
-.mx-datepicker{
+.mx-datepicker {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #c0c5ea;
+  border-radius: 8px;
+  background: $basic-2;
+  color: $dark-3;
+  font-size: 13px;
+  line-height: 16px;
+  cursor: pointer !important;
+
+  &.is-invalid {
+    border: 1px solid $danger-5;
+  }
+
+  &.is-invalid::after {
+    color: $danger-5;
+  }
+
+  &::after {
+    content: "\e903";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    color: $basic-7;
+    font-family: icomoon !important;
+    font-size: 20px;
+    transform: translateY(-50%);
+  }
+
+  .mx-input-wrapper {
     width: 100%;
-    height: 40px;
-    border: 1px solid #C0C5EA;
-    box-sizing: border-box;
+  }
+
+  input {
+    padding: 0 12px 0 16px;
+    width: 100%;
+    height: 100%;
+    border: none;
     border-radius: 8px;
-    // padding: 0 0 0 16px;
+    box-shadow: none;
+    background: transparent;
     cursor: pointer !important;
-    color: $dark-3;
-    font-size: 13px;
-    line-height: 16px;  
-    background: $basic-2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    pointer-events: none;
 
-    &.is-invalid{
-        border: 1px solid $danger-5;
+    &::placeholder {
+      color: $dark-3;
+      font-size: 13px;
+      line-height: 16px;
     }
-    
-    &.is-invalid::after{
-        color: $danger-5;
-    }
+  }
 
-    &::after{
-        content: "\e903";
-        font-family: 'icomoon' !important;
-        font-size: 20px;
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        color: $basic-7;
+  .mx-input-wrapper .mx-icon-clear,
+  .mx-input-wrapper .mx-icon-calendar {
+    display: none;
+  }
 
-    }
-    .mx-input-wrapper {
-        width: 100%;
-    }
-    input {
-        cursor: pointer !important;
-        padding: 0 12px 0 16px;
-        width: 100%;
-        box-shadow: none;
-        border-radius: 8px;
-        height: 100%;
-        border: none;
-        background: transparent;
-        pointer-events: none;
-        
-        &::placeholder{
-            color: $dark-3;
-            font-size: 13px;
-            line-height: 16px;  
-        }
-
-    }
-    
-
-    .mx-input-wrapper .mx-icon-clear,
-    .mx-input-wrapper .mx-icon-calendar {
-        display: none;
-    }
-
-    .mx-input-wrapper:hover .mx-icon-clear + .mx-icon-calendar {
-        display: none;
-    }
+  .mx-input-wrapper:hover .mx-icon-clear + .mx-icon-calendar {
+    display: none;
+  }
 }
 
 .datepicker-label {
-    display: inline-block;
-    font-size: 12px;
-    line-height: 16px;
-    color: $basic-7;
-    margin-bottom: 8px;
+  display: inline-block;
+  margin-bottom: 8px;
+  color: $basic-7;
+  font-size: 12px;
+  line-height: 16px;
 }
+
 // .datepicker {
 //     position: absolute;
 //     min-width: 300px;
@@ -122,7 +119,7 @@ $primary-color: #1284e7;
 //     padding: 12px 0 12px 16px;
 //     color: $dark-3;
 //     font-size: 13px;
-//     line-height: 16px;  
+//     line-height: 16px;
 //     background: #F7F9FC;
 //     i {
 //         position: absolute;
@@ -132,8 +129,3 @@ $primary-color: #1284e7;
 //         color: $basic-7;
 //     }
 // }
-
-
-
-
-

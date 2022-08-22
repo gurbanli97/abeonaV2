@@ -6,7 +6,7 @@
           <div class="customer-info row">
             <div class="col-12 head d-flex justify-content-between">
               <h3>Applicant information</h3>
-              <button class="btn">
+              <button class="btn" @click="$router.push(`/applicants/${order.applicant.id}`)">
                 <icon :name="'edit-2'" />
                 Edit
               </button>

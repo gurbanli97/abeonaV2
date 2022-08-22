@@ -1,15 +1,20 @@
 .table-responsive {
-  // padding-top: 24px;
   overflow: unset;
 
   thead {
-    background: #F5F7FF;
     border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border-radius: 4px;
+    background: #f5f7ff;
 
     tr {
       th {
+        color: $dark-4;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 16px;
+        white-space: nowrap;
+
         &:first-child {
           border-radius: 4px 0 0 4px;
         }
@@ -17,27 +22,20 @@
         &:last-child {
           border-radius: 0 4px 4px 0;
         }
-
-        white-space: nowrap;
-        font-size: 13px;
-        line-height: 16px;
-        color: $dark-4;
-        font-weight: 500;
       }
     }
   }
 
   tbody {
     tr {
-
       cursor: pointer;
       border-bottom: 1px solid $basic-3;
 
       td {
-        vertical-align: middle;
         position: relative;
         padding-top: 28px;
         padding-bottom: 28px;
+        vertical-align: middle;
 
         span {
           font-size: 14px;
@@ -52,51 +50,28 @@
     }
   }
 
-  .actions {
-    &.active {
-      .show-actions {
-        i {
-          color: $dark-4;
-        }
-      }
-    }
-
-    .show-actions {
-      &:hover {
-        i {
-          color: $dark-5;
-        }
-      }
-
-      i {
-        color: $dark-3;
-      }
-    }
-  }
-
-
   .table-actions {
+    position: absolute;
     top: 20px;
     right: 0;
-    position: absolute;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background: $white;
-    box-shadow: 0px 8px 24px rgba(41, 45, 50, 0.08);
-    border-radius: 8px;
     padding: 22px 22px 22px 20px;
     width: max-content;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgb(41 45 50 / 8%);
+    background: $white;
 
     button {
-      width: 100%;
       display: flex;
       align-items: center;
-      font-size: 14px;
-      line-height: 20px;
+      width: 100%;
       color: $dark-4;
+      font-size: 14px;
       font-weight: 500;
+      line-height: 20px;
 
       &:not(:last-child) {
         margin-bottom: 20px;
@@ -111,6 +86,28 @@
       }
     }
   }
+
+  .actions {
+    .show-actions {
+      i {
+        color: $dark-3;
+      }
+
+      &:hover {
+        i {
+          color: $dark-5;
+        }
+      }
+    }
+
+    &.active {
+      .show-actions {
+        i {
+          color: $dark-4;
+        }
+      }
+    }
+  }
 }
 
 .data-table {
@@ -119,11 +116,11 @@
   max-height: 100%;
 
   .data-table_row {
-    background: $white;
-    border: 1px solid $white;
     box-sizing: border-box;
-    border-radius: 8px;
     padding: 24px 62px 24px 24px;
+    border: 1px solid $white;
+    border-radius: 8px;
+    background: $white;
 
     &:not(:first-child),
     &:not(:last-child) {
@@ -135,16 +132,16 @@
       flex-direction: column;
 
       span {
+        color: $dark-3;
         font-size: 12px;
         line-height: 16px;
-        color: $dark-3;
       }
 
       strong {
-        font-size: 12px;
-        line-height: 16px;
         color: $basic-7;
+        font-size: 12px;
         font-weight: 500;
+        line-height: 16px;
       }
     }
 

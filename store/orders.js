@@ -295,7 +295,6 @@ export const actions = {
   },
 
   async createAppointment(_, form) {
-    console.log(form)
     try {
       const { data: data } = await this.$axios.post('/api/v2/appointments', form)
       this.$toast.success(data.message)

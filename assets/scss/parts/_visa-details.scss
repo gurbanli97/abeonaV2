@@ -3,66 +3,60 @@
   padding-bottom: 400px;
 
   .tabs .nav-tabs {
-      border: none;
+    border: none;
 
-      .nav-item:not(:last-child) {
-          margin-right: 8px;
-      }
+    .nav-item:not(:last-child) {
+      margin-right: 8px;
+    }
 
-      .nav-link {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 20px;
-          padding: 6px 16px;
-          background: $dark-3;
-          color: $white;
-          font-size: 14px;
-          line-height: 20px;
-      }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: $dark-3;
+      color: $white;
+      font-size: 14px;
+      line-height: 20px;
+    }
 
-      .nav-link.active {
-          background: $success-5;
-          color: $white;
-      }
+    .nav-link.active {
+      background: $success-5;
+      color: $white;
+    }
   }
-
-
-
-  
 }
-
-
-
 
 .edit-visa {
-    color: $basic-7;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 500;
-    i {
-        margin-right: 10px;
-        font-size: 20px;
-    }
+  color: $basic-7;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+
+  i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
 }
 
+.slideout-forms-inner {
+  .form-group {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 336px;
+  }
 
-.slideout-forms-inner  {
-    .form-group{
-        max-width: 336px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    input {
-        height: 48px;
-    }
+  input {
+    height: 48px;
+  }
 
-    .btn-success{
-        width: 336px;
-        max-width: 100%;
-        margin: auto;
-        margin-top: 40px;
-        padding: 16px 0;
-        border-radius: 8px;
-    }
+  .btn-success {
+    margin: auto;
+    margin-top: 40px;
+    padding: 16px 0;
+    max-width: 100%;
+    width: 336px;
+    border-radius: 8px;
+  }
 }

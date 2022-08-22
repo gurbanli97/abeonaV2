@@ -1,150 +1,148 @@
-.login-inner{
-    min-height: 100vh;
+.login-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+.login-box {
+  display: flex;
+  border-radius: 8px;
+  background-color: $white;
+}
+
+.login-box_right {
+  padding: 48px 48px 24px;
+  width: 336px;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(to top, #1c1e32, #2a2c45, #383c59, #474c6e, #575c84);
+
+  span {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-.login-box {
-    display: flex;
-    background-color: $white;
+    margin-top: 24px;
+    color: rgb(255 255 255 / 48%);
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+
+    i {
+      margin-right: 9px;
+      font-size: 13px;
+    }
+  }
+
+  .right-small {
+    position: relative;
+    padding: 40px 50px 0 49px;
+    height: 372px;
     border-radius: 8px;
+    background: linear-gradient(209.93deg, rgb(255 255 255 / 5.76%) 0%, rgb(255 255 255 / 15.4%) 98.54%);
+    text-align: center;
+
+    img {
+      width: 141px;
+      height: 32px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      color: $white;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      box-shadow: inset 2px 2px 4px rgb(89 72 185 / 24%), inset -2px -2px 4px rgb(89 72 185 / 24%);
+      background: $white;
+      color: $basic-7;
+      font-size: 24px;
+
+      &.lock {
+        position: absolute;
+        bottom: 88px;
+        left: 29px;
+      }
+
+      &.sms {
+        position: absolute;
+        right: -28px;
+        bottom: 158px;
+      }
+    }
+  }
 }
 
 .login-box_left {
-    width: 360px;
-    padding: 40px 40px 0 40px;
-    h2{
-        margin-bottom: 16px;
-        text-align: center;
-        font-size: 24px;
-        line-height: 32px;
+  padding: 40px 40px 0;
+  width: 360px;
+
+  h2 {
+    margin-bottom: 16px;
+    color: $basic-7;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+  }
+
+  span {
+    display: block;
+    color: $basic-7;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  form {
+    margin-top: 48px;
+
+    button {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      padding: 0;
+      width: 100%;
+      border-radius: 8px;
+      background: #1c1e33;
+      color: $white;
+      line-height: 40px;
+    }
+
+    .password-input {
+      position: relative;
+
+      span {
+        position: absolute;
+        top: 50%;
+        right: 18px;
+        width: 20px;
+        height: 20px;
+        transform: translateY(-50%);
+      }
+
+      i {
         color: $basic-7;
+        font-size: 20px;
+        cursor: pointer !important;
+      }
+
+      input {
+        padding-right: 48px;
+      }
     }
+  }
 
-    span {
-        display: block;
-        text-align: center;
-        color: $basic-7;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    .form-group.is-invalid span i{
-        color: $danger-5;
-    }
-
-    form {
-        margin-top: 48px;
-
-        button {
-            padding: 0;
-            line-height: 40px;
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            background: #1C1E33;
-            border-radius: 8px;
-            color: $white;
-            width: 100%;
-        }
-
-
-        .password-input {
-            position: relative;
-            span{
-                width: 20px;
-                height: 20px;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 18px;
-            }
-            i {
-                cursor: pointer !important;
-                font-size: 20px;
-               
-                color: $basic-7;
-            }
-            
-
-            input{
-                padding-right: 48px;
-            }
-        }
-
-       
-    }
-}
-
-.login-box_right{
-    padding: 48px 48px 24px 48px;
-    width: 336px;
-    background: linear-gradient(to top, #1c1e32, #2a2c45, #383c59, #474c6e, #575c84);
-    border-radius: 0px 8px 8px 0px;
-
-    span{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 24px;
-        font-size: 12px;
-        line-height: 16px;
-        color: rgba(255, 255, 255, 0.48);
-        text-align: center;
-
-        i{
-            margin-right: 9px;
-            font-size: 13px;
-        }
-    }
-
-    .right-small {
-        position: relative;
-        height: 372px;
-        padding: 40px 50px 0 49px;
-        background: linear-gradient(209.93deg, rgba(255, 255, 255, 0.0576) 0%, rgba(255, 255, 255, 0.1536) 98.54%);
-        // backdrop-filter: blur(80px);
-        border-radius: 8px;
-        text-align: center;
-        img {
-            width: 141px;
-            height: 32px;
-        }
-
-        h3{
-            margin-top: 24px;
-            font-size: 16px;
-            line-height: 24px;
-            color: $white;
-            font-weight: 400;
-        }
-
-
-        .icon-wrapper{
-            color: $basic-7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            background: $white;
-            box-shadow: inset 2px 2px 4px rgba(89, 72, 185, 0.24), inset -2px -2px 4px rgba(89, 72, 185, 0.24);
-            border-radius: 16px;
-            font-size: 24px;
-
-
-            &.lock{
-                position: absolute;
-                left: 29px;
-                bottom: 88px;
-            }
-
-            &.sms{
-                position: absolute;
-                right: -28px;
-                bottom: 158px;
-            }
-        }
-    }
+  .form-group.is-invalid span i {
+    color: $danger-5;
+  }
 }

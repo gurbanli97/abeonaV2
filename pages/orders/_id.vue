@@ -30,8 +30,11 @@
     </page-header>
     <div class="container">
       <div class="order_id-inner">
-        <OrderDetails v-if="applicantPassports.length" />
-        <AddPassport v-else />
+        <keep-alive>
+          <component :is="checkPassportExistance" />
+        </keep-alive>
+        <!-- <OrderDetails v-if="applicantPassports.length" />
+        <AddPassport v-else /> -->
       </div>
     </div>
   </div>
@@ -70,6 +73,10 @@ export default {
       orderStatusOptions: 'orders/orderStatusOptions',
       applicantPassports: 'orders/applicant_passports',
     }),
+    checkPassportExistance() {
+      const component = this.applicantPassports.length ? OrderDetails : AddPassport
+      return component
+    },
     // activePassport() {
     //   if (this.applicantPassports?.length) {
     //     return this.applicant_passports.find((passport) => passport.is_active)

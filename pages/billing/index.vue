@@ -21,7 +21,7 @@
       <DataTable :fields="fields">
         <tbody>
           <template v-for="consultation in consultations">
-            <tr :key="consultation.id" @click="$router.push(`consultations/${consultation.id}`)">
+            <tr :key="consultation.id" @click="$router.push(`/billing/${consultation.id}`)">
               <td>
                 <span>{{ consultation.client.name }} {{ consultation.client.surname }}</span>
               </td>
@@ -39,35 +39,46 @@
                   {{ consultation.status }}
                 </badge>
               </td>
-              <!-- <td class="actions" :class="{'active':activeAction === consultation.id}">
-                    <button class="show-actions" @click="toggleActions(consultation)" v-scroll-to="`#element-${consultation.id}`" ref="showActions">
-                      <icon :name="'more'" />
-                    </button>
-                    <div class="table-actions" v-show="activeAction === consultation.id" :id="`element-${consultation.id}`" ref="actionsBlock">
-                      <button>
-                        <icon :name="'edit-2'"/>
-                        Edit
-                      </button>
-                      <button @click="openModal(consultation.id)">
-                        <icon :name="'trash'"/>
-                        Delete
-                      </button>
-                    </div>
-                  </td> -->
+              <td :class="['actions', { active: activeAction }]">
+                <button
+                  ref="showActions"
+                  v-scroll-to="`#element-${consultation.id}`"
+                  class="show-actions"
+                  @click.stop="toggleActions(consultation)"
+                >
+                  <icon :name="'more'" />
+                </button>
+                <div
+                  v-show="activeAction === consultation.id"
+                  :id="`element-${consultation.id}`"
+                  ref="actionsBlock"
+                  class="table-actions"
+                >
+                  <button @click="$router.push(`/billing/${consultation.id}`)">
+                    <icon :name="'edit-2'" />
+                    Edit
+                  </button>
+                  <!-- <button @click="openModal(consultation.id)">
+                    <icon :name="'trash'" />
+                    Delete
+                  </button> -->
+                </div>
+              </td>
             </tr>
           </template>
         </tbody>
       </DataTable>
-      <!-- <modal :toggle="showDeleteModal" :item="itemToDelete" @close="showDeleteModal = false" /> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import PageHeader from '../../components/layout/PageHeader.vue'
+import PageHeader from '@/components/layout/PageHeader.vue'
+import { TableActionsMixin } from '~/mixins/table-actions'
 export default {
   components: { PageHeader },
+  mixins: [TableActionsMixin],
   async asyncData({ store }) {
     await store.dispatch('consultations/fetchConsultations')
   },
@@ -90,6 +101,14 @@ export default {
       consultations: 'consultations/consultations',
       filtersActive: 'filtersActive',
     }),
+  },
+  mounted() {
+    this.$nuxt.$on('modal-delete-click', this.handleDelete)
+    document.addEventListener('click', this.handleDocClick)
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('modal-delete-click', this.handleDelete)
+    document.removeEventListener('click', this.handleDocClick)
   },
   methods: {
     toggleFilters() {

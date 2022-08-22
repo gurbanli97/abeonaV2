@@ -2,7 +2,7 @@
   <div class="root">
     <Sidebar />
     <section class="page" :class="{ 'sidebar-active': sidebarIsActive }">
-      <nuxt keep-alive />
+      <nuxt />
     </section>
   </div>
 </template>

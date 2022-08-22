@@ -1,63 +1,73 @@
 .billing {
-  &.add-new{
+  &.add-new {
     .actions {
       margin-bottom: 24px;
-      .form-group{
+
+      .form-group {
         max-width: 246px;
       }
     }
-    .table-responsive{
+
+    .table-responsive {
       padding-bottom: 24px;
-      border: 1px solid #DEE1F4;
+      border: 1px solid #dee1f4;
       border-radius: 6px;
-      .custom-control{
+
+      .custom-control {
         padding: 0;
 
         &-label::after,
-        &-label::before{
+        &-label::before {
           width: 20px;
           height: 20px;
         }
       }
-      .form-group{
+
+      .form-group {
         margin-bottom: 0;
-        input{
+
+        input {
           border-radius: 4px;
         }
       }
-      thead{
-        background: #42AAFF;
-        border-radius: 4px;
 
-        tr th{
+      thead {
+        border-radius: 4px;
+        background: #42aaff;
+
+        tr th {
           color: $white;
           font-weight: 400;
         }
       }
 
-      tbody{
-        tr{
+      tbody {
+        tr {
           cursor: initial;
-          border:none;
-          &:not(:last-child){
-            border-bottom: 1px solid #EDF1F7;
+          border: none;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid #edf1f7;
           }
         }
+
         tr td {
-          button{
+          button {
             margin-left: 12px;
-            i{
+
+            i {
               font-size: 24px;
             }
           }
         }
       }
 
-      .add-row{
+      .add-row {
         color: $dark-4;
-        i{
-          color: $success-5;
+
+        i {
           margin-right: 8px;
+          color: $success-5;
         }
       }
     }

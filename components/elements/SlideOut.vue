@@ -1,7 +1,7 @@
 <template>
   <div :class="['slideout-overlay', { active: slideIsActive }]" @click.self="$emit('close-slide')">
     <div :class="['slideout-content', { active: slideIsActive }]">
-      <div class="slideout-content_head">
+      <div class="slideout-content-head">
         <h2>{{ title }}</h2>
         <slot name="head"></slot>
         <button @click="$emit('close-slide')">
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   props: {
     slideIsActive: {
@@ -29,11 +28,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-  computed: {
-    ...mapGetters({
-      taskList: 'orders/order_tasks',
-    }),
   },
   mounted() {
     window.addEventListener('keydown', this.handleEscapeKey)

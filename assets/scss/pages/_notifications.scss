@@ -1,147 +1,141 @@
 .notifications {
+  .notification-date {
+    padding-left: 16px;
+    color: $basic-6;
+    font-size: 14px;
+    line-height: 20px;
+  }
 
-    .notification-date {
-        padding-left: 16px;
+  .notifications-inner {
+    max-width: 876px;
+  }
+
+  .notification-card {
+    padding-top: 24px;
+
+    &:not(:last-child) {
+      .notification-card_body p {
+        padding-bottom: 24px;
+        border-bottom: 1px solid $basic-3;
+      }
+    }
+
+    .notification-card_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .user-info {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        img {
+          flex-shrink: 0;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        strong {
+          margin-left: 16px;
+          color: $basic-7;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
+        }
+      }
+
+      .unread-dot {
+        display: inline-block;
+        margin-right: 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $warning-5;
+      }
+
+      span {
+        color: $basic-7;
         font-size: 14px;
+        font-weight: 400;
         line-height: 20px;
-        color: $basic-6;
+      }
     }
 
-    .notifications-inner {
-        max-width: 876px;
-        // padding-left: 16px;
+    .notification-card_body {
+      margin-top: 12px;
+      padding-left: 73px;
+      max-width: 738px;
+
+      p {
+        color: $basic-7;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+      }
     }
+  }
+
+  .notifications-today {
+    padding-bottom: 41px;
+    border-bottom: 8px solid $dark-1;
+  }
+
+  .notifications-others {
+    padding-top: 24px;
 
     .notification-card {
-        padding-top: 24px;
-        &:not(:last-child) {
-            .notification-card_body p {
-                padding-bottom: 24px;
-                border-bottom-width: 1px;
-                border-bottom-style: solid;
-                border-bottom-color: $basic-3;
-            }
+      .details {
+        padding-bottom: 24px;
+        border-bottom: 1px solid $basic-3;
+
+        .details-head {
+          span {
+            color: $dark-3;
+          }
         }
 
-
-
-        .notification-card_head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .user-info {
-                display: flex;
-                align-items: center;
-                position: relative;
-               
-                img {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    flex-shrink: 0;
-                }
-
-                strong {
-                    margin-left: 16px;
-                    font-size: 16px;
-                    line-height: 24px;
-                    color: $basic-7;
-                    font-weight: 500;
-                }
-            }
-
-            .unread-dot {
-                display: inline-block;
-                margin-right: 8px;
-                width: 8px;
-                height: 8px;
-                background-color: $warning-5;
-                border-radius: 50%;
-            }
-
-            span {
-                font-size: 14px;
-                line-height: 20px;
-                color: $basic-7;
-                font-weight: 400;
-            }
+        .details-text {
+          p {
+            color: $dark-3;
+          }
         }
-
-        .notification-card_body {
-            max-width: 738px;
-            margin-top: 12px;
-            padding-left: 73px;
-            p {
-                font-size: 14px;
-                line-height: 20px;
-                color: $basic-7;
-                font-weight: 400;
-            }
-        }
+      }
     }
-
-    .notifications-today {
-        padding-bottom: 41px;
-        border-bottom-width: 8px;
-        border-bottom-style: solid;
-        border-bottom-color: $dark-1;
-    }
-
-    .notifications-others {
-        padding-top: 24px;
-
-        .notification-card {
-
-            .details {
-                padding-bottom: 24px;
-                border-bottom-width: 1px;
-                border-bottom-style: solid;
-                border-bottom-color: $basic-3;
-
-                .details-head {
-                    span {
-                        color: $dark-3;
-                    }
-                }
-
-                .details-text {
-                    p {
-                        color: $dark-3;
-                    }
-                }
-            }
-        }
-    }
-
+  }
 }
 
-.notification_id .page-header::after{
-    content: '';
-    width: 100%;
-    display: block;
-    margin-top: 32px;
-    height: 1px;
-    background-color: $dark-1;
+.notification_id .page-header::after {
+  content: "";
+  display: block;
+  margin-top: 32px;
+  width: 100%;
+  height: 1px;
+  background-color: $dark-1;
 }
 
 .notification_id .notification-card {
-    .notification-card_head{
-        .user-info {
-            img{
-                width: 48px;
-                height: 48px;
-            }
-            strong {
-                font-size: 20px;
-                line-height: 28px;
-            }
-        }
+  .notification-card_head {
+    .user-info {
+      img {
+        width: 48px;
+        height: 48px;
+      }
+
+      strong {
+        font-size: 20px;
+        line-height: 28px;
+      }
     }
-        .notification-card_body {
-            padding-left: 109px;
-            margin-top: 24px;
-            p {
-                line-height: 24px;
-            }
-        }
+  }
+
+  .notification-card_body {
+    margin-top: 24px;
+    padding-left: 109px;
+
+    p {
+      line-height: 24px;
+    }
+  }
 }

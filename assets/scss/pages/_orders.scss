@@ -1,380 +1,378 @@
-.orders{
-    .page-header{
-        .btn.btn-success{
-            padding: 10px 16px;
-            align-self: center;
-            flex-shrink: 0;
-        }
+.orders {
+  background-color: $white;
+
+  .page-header {
+    .btn.btn-success {
+      flex-shrink: 0;
+      align-self: center;
+      padding: 10px 16px;
     }
-    background-color: $white;
+  }
 
-    .table-wrap {
-        position: relative;
-        overflow-x: scroll;
-        padding-bottom: 40px;
-        
-    }
-    .table-responsive .table {
-        .mx-datepicker {
-            background-color: #fff;
-            input::placeholder{
-                font-weight: 500;
-            }
-        }
-        td{
-            vertical-align: middle;
-        }
-        thead tr th {
-            width: 150px;
+  .table-wrap {
+    position: relative;
+    overflow-x: scroll;
+    padding-bottom: 40px;
+  }
 
-            .form-group {
-                margin-bottom: 0;
-            }
-        }
-
-        tbody tr td ul:last-child span {
-            color: $basic-6;
-            font-size: 12px;
-            line-height: 16px;
-
-            strong{
-                display: inline-block;
-                background: $basic-3;
-                border-radius: 4px;
-                padding: 2px 8px;
-                font-size: 12px;
-                line-height: 16px;
-                color: $dark-4;
-                margin-left: 8px;
-            }
-        }
-
-        .order-status_field{
-            display: flex;
-            align-items: center;
-            i{
-                margin-right: 8px;
-                font-size: 16px;
-            }
-            .icon-tick-circle {
-                color: $success-5;
-            }
-            .icon-close-circle-2{
-                color: $danger-5;
-            }
-
-            .icon-clock {
-                color: $warning-5;
-            }
-        }
-
-        .payment-status_field{
-            color: $info-5;
-        }
-    }
-
-
-    .table_pagination {
-        margin: auto;
-        margin: 20px 0;
-        position: absolute;
-        bottom: 0;
-        left:0; 
-        right:0;
-        .page-link {
-            line-height: 24px;
-            padding: 0.5rem 1.75rem;
-            font-size: 20px;
-            color: $dark-4;
-        }
-
-        .page-item.active .page-link{
-             color: #fff;
-             background-color: $dark-4;
-             border-color: $dark-4;
-        }
-    }
-    
-   
-    
-}
-
-.add-passport_inner{
+  .add-passport_inner {
     .passport-form_inputs {
-        h3{
-            font-size: 16px;
-            line-height: 24px;
-            color: $basic-7;
+      h3 {
+        color: $basic-7;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      form {
+        .form-group {
+          max-width: 312px;
         }
-        form{
-            .form-group{
-                max-width: 312px;
-            }
-        }
+      }
     }
-}
+  }
 
-.order-details_inner{
-    
-    .head {
-        h3{
-            font-size: 16px;
-            line-height: 24px;
-            color: $basic-7;
-        }
+  .btn.application-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    height: 40px;
+    border: 1px solid $info-5;
+    border-radius: 8px;
+    background: #fff;
+    color: $info-5;
+    transition: all .2s linear;
+    cursor: pointer;
 
-        button{
-            font-size: 14px;
-            line-height: 16px;
-            color: $basic-7;
-            font-weight: 500;
-            i{
-                font-size: 20px;
-                margin-right: 10px;
-            }
-        }
+    &:hover {
+      background-color: $info-5;
+      color: $white;
     }
 
-    .detail-field {
-        height: 40px;
-        flex: 1 1 30%;
-        // width: 33%;
-        margin-bottom: 32px;
+    i {
+      margin-right: 12px;
     }
+  }
 
-   
-    .order-tasks_inner {
-        table tbody tr {
-            cursor: default;
-        }
-        table tbody tr td p{
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
-            color: $basic-7;
-        }
-        .add-task{
-            font-size: 14px;
-            line-height: 20px;
-            color: $dark-4;
-            i{
-                color: $success-5;
-                font-size: 20px;
-                margin-right: 8px;
-            }
-        }
-
-        .comments-count,
-        .attachment-count{
-            max-width: 145px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 16px;
-            border-radius: 16px;
-
-
-            span {
-                font-size: 14px;
-                line-height: 20px;
-                color: $basic-7;
-            }
-            i{
-                font-size: 16px;
-                margin-right: 8px;
-            }
-        }
-        .comments-count {
-            background: #FFFDF2;
-            border: 1px solid $warning-5;
-            margin-bottom: 10px;
-
-            i{
-                color: $warning-5;
-            }
-        }
-        .attachment-count{
-            background: #FFF2F2;
-            border: 1px solid $danger-5;
-            i{
-                color: $danger-5;
-            }
-        }
-        
-
-        .edit-task_comments  {
-
-            .comments-list {
-                padding-top: 16px;
-            }
-
-            .comments-list_item {
-                margin-bottom: 24px;
-            }
-
-            .comments-list_item-header{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 10px;
-
-            }
-
-            .comments-list_item-profile {
-                display: flex;
-                align-items: center;
-                img{
-                    width: 25px;
-                    height: 25px; 
-                    margin-right: 8px;
-                 }
-                 & > span {
-                    font-size: 12px;
-                    line-height: 16px;
-                    color: $basic-6;
-                }
-            }
-
-            .comment-list_item-actions{
-                display: flex;
-                align-items: center;
-
-                & > span {
-                    font-size: 12px;
-                    line-height: 16px;
-                    color: $basic-7;
-                }
-
-                .btn > i{
-                    font-size: 16px;
-                    color: $dark-3;
-                }
-            }
-
-            .comments-list_item-body {
-                p{
-                    color: $basic-7;
-                    font-size: 14px;
-                    line-height: 20px;
-                    word-break: break-all;
-                }
-            }
-            
-            .comments-add-new {
-                margin-top: 32px;
-                display: flex;
-                align-items: center;
-                position: relative;
-
-                .form-group {
-                    input{
-                        background: $basic-2;
-                        border: 1px solid $basic-4;
-                        border-radius: 20px;
-                        margin-bottom: 0;
-                    }
-                }
-
-                .btn {
-                    top: 0;
-                    height: 40px;
-                    padding: 0;
-                    right: 20px;
-                    position: absolute;
-                    border-radius: 20px;
-                    margin-bottom: 0;
-                    font-size: 14px;
-                    line-height: 16px;
-                    color: $info-5;
-                }
-            }
-        }
-
-
-        .edit-task_attachments {
-            padding-bottom: 32px;
-            border-bottom: 1px solid $dark-1;
-        }
-
-        .edit-task_attachments > span {
-            display: inline-block;
-            margin-bottom: 16px;
-            color: $basic-7;
-
-        }
-
-        .edit-task_attachments ul:not(:last-child) li {
-            margin-bottom: 20px;
-        }
-
-        .attachments-list_item {
-            display: flex;
-            align-items: center;
-
-            a {
-                color: $basic-7;
-                margin-left: 8px;
-                margin-right: auto;
-            }
-            .icon-gallery{
-                color: $danger-5;
-            }
-            .icon-document-text-2{
-                color: $info-5;
-            }
-
-            .icon-trash{
-                font-size: 20px;
-                color: $dark-4;
-            }
-        }
-
-
-
-    }
-
-   
-}
-
-.order-group_switch {
+  .order-group_switch {
     display: inline-flex;
     align-items: center;
     margin-right: 48px;
 
     & > span {
-        font-size: 14px;
-        line-height: 16px;
-        color: $basic-7;
-        font-weight: 500;
+      color: $basic-7;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
     }
-}
+  }
 
+  .order-details_inner {
+    .head {
+      h3 {
+        color: $basic-7;
+        font-size: 16px;
+        line-height: 24px;
+      }
 
-.btn.application-form{
-        background: #FFFFFF;
-        border: 1px solid $info-5;
-        border-radius: 8px;
+      button {
+        color: $basic-7;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+
+        i {
+          margin-right: 10px;
+          font-size: 20px;
+        }
+      }
+    }
+
+    .detail-field {
+      flex: 1 1 30%;
+
+      // width: 33%;
+      margin-bottom: 32px;
+      height: 40px;
+    }
+
+    .order-tasks_inner {
+      table tbody tr {
+        cursor: default;
+      }
+
+      table tbody tr td p {
+        color: $basic-7;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+
+      .add-task {
+        color: $dark-4;
+        font-size: 14px;
+        line-height: 20px;
+
+        i {
+          margin-right: 8px;
+          color: $success-5;
+          font-size: 20px;
+        }
+      }
+
+      .comments-count,
+      .attachment-count {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $info-5;
-        height: 40px;
-        transition: all .2s linear;
-        padding: 12px 16px;
-        cursor: pointer;
+        padding: 8px 16px;
+        max-width: 145px;
+        border-radius: 16px;
 
-        &:hover{
-            background-color: $info-5;
-            color: $white;
+        span {
+          color: $basic-7;
+          font-size: 14px;
+          line-height: 20px;
         }
 
-        i{
-            margin-right: 12px;
+        i {
+          margin-right: 8px;
+          font-size: 16px;
         }
-     
+      }
+
+      .comments-count {
+        margin-bottom: 10px;
+        border: 1px solid $warning-5;
+        background: #fffdf2;
+
+        i {
+          color: $warning-5;
+        }
+      }
+
+      .attachment-count {
+        border: 1px solid $danger-5;
+        background: #fff2f2;
+
+        i {
+          color: $danger-5;
+        }
+      }
+
+      .edit-task_attachments > span {
+        display: inline-block;
+        margin-bottom: 16px;
+        color: $basic-7;
+      }
+
+      .edit-task_comments {
+        .comments-list {
+          padding-top: 16px;
+        }
+
+        .comments-list_item {
+          margin-bottom: 24px;
+        }
+
+        .comments-list_item-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 10px;
+        }
+
+        .comments-list_item-profile {
+          display: flex;
+          align-items: center;
+
+          img {
+            margin-right: 8px;
+            width: 25px;
+            height: 25px;
+          }
+
+          & > span {
+            color: $basic-6;
+            font-size: 12px;
+            line-height: 16px;
+          }
+        }
+
+        .comment-list_item-actions {
+          display: flex;
+          align-items: center;
+
+          & > span {
+            color: $basic-7;
+            font-size: 12px;
+            line-height: 16px;
+          }
+
+          .btn > i {
+            color: $dark-3;
+            font-size: 16px;
+          }
+        }
+
+        .comments-list_item-body {
+          p {
+            color: $basic-7;
+            font-size: 14px;
+            line-height: 20px;
+            word-break: break-all;
+          }
+        }
+
+        .comments-add-new {
+          position: relative;
+          display: flex;
+          align-items: center;
+          margin-top: 32px;
+
+          .form-group {
+            input {
+              margin-bottom: 0;
+              border: 1px solid $basic-4;
+              border-radius: 20px;
+              background: $basic-2;
+            }
+          }
+
+          .btn {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            margin-bottom: 0;
+            padding: 0;
+            height: 40px;
+            border-radius: 20px;
+            color: $info-5;
+            font-size: 14px;
+            line-height: 16px;
+          }
+        }
+      }
+
+      .edit-task_attachments {
+        padding-bottom: 32px;
+        border-bottom: 1px solid $dark-1;
+      }
+
+      .edit-task_attachments ul:not(:last-child) li {
+        margin-bottom: 20px;
+      }
+
+      .attachments-list_item {
+        display: flex;
+        align-items: center;
+
+        a {
+          margin-right: auto;
+          margin-left: 8px;
+          color: $basic-7;
+        }
+
+        .icon-gallery {
+          color: $danger-5;
+        }
+
+        .icon-document-text-2 {
+          color: $info-5;
+        }
+
+        .icon-trash {
+          color: $dark-4;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .table-responsive .table {
+    .mx-datepicker {
+      background-color: #fff;
+
+      input::placeholder {
+        font-weight: 500;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    thead tr th {
+      width: 150px;
+
+      .form-group {
+        margin-bottom: 0;
+      }
+    }
+
+    tbody tr td ul:last-child span {
+      color: $basic-6;
+      font-size: 12px;
+      line-height: 16px;
+
+      strong {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: $basic-3;
+        color: $dark-4;
+        font-size: 12px;
+        line-height: 16px;
+      }
+    }
+
+    .order-status_field {
+      display: flex;
+      align-items: center;
+
+      i {
+        margin-right: 8px;
+        font-size: 16px;
+      }
+
+      .icon-tick-circle {
+        color: $success-5;
+      }
+
+      .icon-close-circle-2 {
+        color: $danger-5;
+      }
+
+      .icon-clock {
+        color: $warning-5;
+      }
+    }
+
+    .payment-status_field {
+      color: $info-5;
+    }
+  }
+
+  .table_pagination {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    margin: 20px 0;
+
+    .page-link {
+      padding: .5rem 1.75rem;
+      color: $dark-4;
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    .page-item.active .page-link {
+      border-color: $dark-4;
+      background-color: $dark-4;
+      color: #fff;
+    }
+  }
 }
-
-
-
-
-

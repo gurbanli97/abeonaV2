@@ -299,7 +299,15 @@
                   </ul>
                 </template>
                 <div class="comments-add-new">
-                  <form-field v-model="newCommentForm.content" placeholder="New comment" />
+                  <form-field
+                    v-model="newCommentForm.content"
+                    placeholder="New comment"
+                    :is-invalid="$v.newCommentForm.content.$error"
+                  >
+                    <b-form-invalid-feedback v-if="!$v.newCommentForm.content.$required">
+                      Input can't be empty
+                    </b-form-invalid-feedback>
+                  </form-field>
                   <button class="btn" @click.prevent="handleAddNewComment">Add</button>
                 </div>
               </div>
@@ -386,6 +394,9 @@ export default {
       due_date: { required },
       label: { required },
       status: { required },
+    },
+    newCommentForm: {
+      content: { required },
     },
   },
   computed: {
@@ -494,15 +505,22 @@ export default {
     },
 
     async handleAddNewComment() {
+      this.$v.newCommentForm.$touch()
+      if (this.$v.newCommentForm.$invalid) {
+        this.$toast.error('Please fill in all required fields')
+        return
+      }
       this.newCommentForm.task_id = this.itemToEdit
       await this.$store.dispatch('orders/createNewTaskComment', this.newCommentForm)
       this.newCommentForm.content = ''
+      this.$v.newCommentForm.$reset()
       await this.$store.dispatch('orders/fetchTaskComments', this.itemToEdit)
       await this.$store.dispatch('orders/fetchOrderTasks', this.$route.params.id)
     },
     async handleTaskCommentDelete(id) {
       await this.$store.dispatch('orders/deleteTaskComment', id)
       await this.$store.dispatch('orders/fetchTaskComments', this.itemToEdit)
+      await this.$store.dispatch('orders/fetchOrderTasks', this.$route.params.id)
     },
   },
 }

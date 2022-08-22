@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <section class="page" :class="{ 'is-login': $route.path === '/login' }">
-      <nuxt keep-alive />
+      <nuxt />
     </section>
   </div>
 </template>

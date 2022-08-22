@@ -1,15 +1,17 @@
 // // Core
+
 @import "variables";
 @import "fonts";
 @import "icons";
 @import "default";
-@import "helpers";
 
 // Layout
+
 @import "layout/sidebar";
 @import "layout/page-header";
 
-//Elements
+// Elements
+
 @import "elements/modal";
 @import "elements/slide-out";
 @import "elements/buttons";
@@ -20,7 +22,8 @@
 @import "elements/dark-switch";
 @import "elements/detail-field";
 
-//Form
+// Form
+
 @import "form/input";
 @import "form/select";
 @import "form/datepicker";
@@ -28,7 +31,8 @@
 @import "form/textarea";
 @import "form/attachment";
 
-//Pages
+// Pages
+
 @import "pages/login";
 @import "pages/404";
 @import "pages/orders";
@@ -41,8 +45,8 @@
 @import "pages/profile";
 @import "pages/notifications";
 
+// Parts
 
-//Parts
 @import "parts/visa-details";
 @import "parts/trip-details";
 @import "parts/passport-details";

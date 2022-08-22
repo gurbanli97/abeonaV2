@@ -1,105 +1,105 @@
 .documents-inner {
   padding-top: 10px;
 
-  & > button{
+  & > button {
     padding: 0 16px;
     width: 170px;
     height: 40px;
     border-radius: 4px;
 
-    i{
-        font-size: 20px;
-        margin-right: 10px;
+    i {
+      margin-right: 10px;
+      font-size: 20px;
     }
   }
 }
+
 .documents-draggable {
-  padding: 32px 0 0 0;
+  padding: 32px 0 0;
+
   .drag-box {
-      max-width: 336px;
-      padding: 18px 16px;
-      width: 100%;
-      border-radius: 8px;
-      background-color: #EBEFFF;
-      min-height: 492px;
+    padding: 18px 16px;
+    min-height: 492px;
+    max-width: 336px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #ebefff;
 
-      &:not(:last-child) {
-          margin-right: 24px;
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+
+    .box-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        color: $basic-7;
+        font-size: 14px;
+        line-height: 20px;
       }
 
-      .box-title {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-
-          span {
-              font-size: 14px;
-              line-height: 20px;
-              color: $basic-7;
-          }
-
-          .item-count {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 32px;
-              height: 32px;
-              background: $dark-1;
-              border-radius: 8px;
-          }
+      .item-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: $dark-1;
       }
+    }
 
+    .list-group {
+      margin-top: 22px;
+      margin-bottom: 16px;
 
-      .list-group {
-          margin-top: 22px;
-          margin-bottom: 16px;
+      .list-group-item {
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
 
-          .list-group-item {
-              border-radius: 8px;
-              cursor: pointer;
-              border: none;
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
 
-              &:not(:last-child) {
-                  margin-bottom: 8px;
-              }
-
-              p {
-                  max-width: 224px;
-                  white-space: pre-wrap;
-                  font-size: 14px;
-                  line-height: 20px;
-                  color: $basic-7;
-              }
-
-              .badge {
-                  margin-top: 16px;
-                  padding: 4px 8px;
-                  border-radius: 4px;
-                  height: 24px;
-                  font-weight: 400;
-                  width: auto;
-                  max-width: fit-content;
-                  font-size: 12px;
-                  line-height: 16px;
-
-                  &:not(:last-child) {
-                      margin-right: 12px;
-                  }
-              }
-          }
-
-      }
-
-      button {
-          margin-left: 17px;
-          color: $dark-4;
+        p {
+          max-width: 224px;
+          color: $basic-7;
           font-size: 14px;
           line-height: 20px;
+          white-space: pre-wrap;
+        }
 
-          i {
-              margin-right: 10px;
-              font-size: 17px;
+        .badge {
+          margin-top: 16px;
+          padding: 4px 8px;
+          max-width: fit-content;
+          width: auto;
+          height: 24px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 16px;
+
+          &:not(:last-child) {
+            margin-right: 12px;
           }
+        }
       }
+    }
+
+    button {
+      margin-left: 17px;
+      color: $dark-4;
+      font-size: 14px;
+      line-height: 20px;
+
+      i {
+        margin-right: 10px;
+        font-size: 17px;
+      }
+    }
   }
 }

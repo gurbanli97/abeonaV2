@@ -7,37 +7,35 @@
 
     ul {
       display: flex;
-      justify-content: center;
       align-items: center;
-
-
+      justify-content: center;
     }
 
     li {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
 
-      &>span {
-        font-size: 14px;
-        line-height: 20px;
+      & > span {
         color: $basic-7;
+        font-size: 14px;
         font-weight: 500;
+        line-height: 20px;
       }
 
       &:nth-child(1) {
         margin-right: 144px;
 
         &::after {
-          content: '';
-          display: inline;
-          border-bottom: 1px dashed $dark-2;
+          content: "";
           position: absolute;
-          right: -180%;
           top: 20%;
-          height: 1px;
+          right: -180%;
+          display: inline;
           width: 120px;
+          height: 1px;
+          border-bottom: 1px dashed $dark-2;
         }
       }
 
@@ -45,35 +43,34 @@
         margin-left: 144px;
 
         &::before {
-          content: '';
-          display: inline;
-          border-bottom: 1px dashed $dark-2;
+          content: "";
           position: absolute;
-          left: -180%;
           top: 20%;
-          height: 1px;
+          left: -180%;
+          display: inline;
           width: 120px;
+          height: 1px;
+          border-bottom: 1px dashed $dark-2;
         }
       }
-
     }
 
     .step-circle {
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 18px;
       width: 32px;
       height: 32px;
       border: 1px solid $basic-6;
-      background: $white;
       border-radius: 50%;
-      margin-bottom: 18px;
+      background: $white;
 
       span {
         color: $basic-7;
         font-size: 14px;
-        line-height: 20px;
         font-weight: 500;
+        line-height: 20px;
       }
 
       &.active {
@@ -99,38 +96,35 @@
     }
 
     h2 {
+      color: $success-6;
       font-size: 20px;
       line-height: 28px;
-      color: $success-6;
     }
 
     .form-group {
-      width: 312px;
       max-width: 100%;
+      width: 312px;
     }
   }
 
-
-  .actions{
-    margin-top: 100px;
+  .actions {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 100px;
 
-
-    .btn-transparent{
+    .btn-transparent {
       margin-right: 12px;
       width: 137px;
       height: 40px;
-      color: $success-5;
       border: 1px solid $success-5;
       border-radius: 4px;
+      color: $success-5;
     }
 
-    .btn-success{
+    .btn-success {
       width: 172px;
       height: 40px;
     }
-   
   }
 }

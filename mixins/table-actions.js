@@ -11,6 +11,7 @@ export const TableActionsMixin = {
       this.activeAction = item.id
     },
     handleDocClick(event) {
+      console.log(event)
       if (this.activeAction === null) {
         return
       }
@@ -26,14 +27,6 @@ export const TableActionsMixin = {
     },
     handleDelete(item) {
       console.log('id:', item)
-    },
-    mounted() {
-      this.$nuxt.$on('modal-delete-click', this.handleDelete)
-      document.addEventListener('click', this.handleDocClick)
-    },
-    beforeDestroy() {
-      this.$nuxt.$off('modal-delete-click', this.handleDelete)
-      document.removeEventListener('click', this.handleDocClick)
     },
   },
 }

@@ -88,7 +88,6 @@ export default {
     await Promise.all([
       store.dispatch('orders/fetchOrderGroupDetails', params.id),
       store.dispatch('orders/fetchOrderPaymentDetails', params.id),
-      store.dispatch('orders/fetchCountries'),
     ])
   },
   data() {

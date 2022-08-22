@@ -1,124 +1,114 @@
 .clients {
-    h2 {
-        font-size: 16px;
-        line-height: 24px;
-        color: $basic-7;
+  h2 {
+    color: $basic-7;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .client-edit_form .form-group {
+    margin-bottom: 0;
+  }
+
+  .page-header {
+    .form-group {
+      margin-right: 18px;
+      margin-bottom: 0;
+      max-width: 246px;
     }
 
-    .page-header {
-
-        .form-group {
-            max-width: 246px;
-            margin-right: 18px;
-            margin-bottom: 0;
-        }
-
-        .add-new {
-            align-self: center;
-            background: #00D68F;
-            border-radius: 8px;
-            width: 91px;
-            line-height: 40px;
-        }
+    .add-new {
+      align-self: center;
+      width: 91px;
+      border-radius: 8px;
+      background: #00d68f;
+      line-height: 40px;
     }
+  }
 
+  .client-edit_form .form-group:not(:last-child) {
+    margin-right: 24px;
+  }
 
-    .save {
-        width: 65px;
-        height: 32px;
-    }
-}
-
-.client-details {
-    // padding-bottom: 40px;
-    
+  .save {
+    width: 65px;
+    height: 32px;
+  }
 }
 
 .client-details > div {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .clients-orders {
-    padding-top: 32px;
+  padding: 32px 24px 50px;
+  background-color: $basic-2;
 }
 
-.clients-orders>h2 {
-    margin-bottom: 24px;
+.clients-orders > h2 {
+  margin-bottom: 24px;
 }
 
 .client-edit_tooltip {
-    border-radius: 4px;
-}
-
-.client-edit_form .form-group {
-    margin-bottom: 0;
-}
-
-.client-edit_form .form-group:not(:last-child) {
-    margin-right: 24px;
-}
-
-.clients-orders {
-    padding-bottom: 50px;
-    padding-left: 24px;
-    padding-right: 24px;
-    background-color: $basic-2;
+  border-radius: 4px;
 }
 
 .client-orders_inner ul li {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 30px 16px 16px;
+  min-height: 72px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: #fff;
+
+  .travel-country strong {
+    font-weight: 400;
+  }
+
+  .visa-type {
+    font-size: 12px;
+    line-height: 16px;
+
+    span {
+      color: $basic-7;
+      font-weight: 600;
+    }
+
+    strong {
+      font-weight: 400;
+    }
+  }
+
+  .payment-status span {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .order-status span {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    background: #FFFFFF;
-    border: 1px solid #FFFFFF;
-    box-sizing: border-box;
-    border-radius: 8px;
-    padding: 20px 30px 16px 16px;
-    min-height: 72px;
+    align-items: center;
+    color: $basic-7;
 
+    i {
+      margin-right: 9px;
+      color: $success-5;
+      font-size: 16px;
+    }
+  }
 
-    .travel-country strong {
-        font-weight: 400;
-    }
-    .visa-type {
-        font-size: 12px;
-        line-height: 16px;
-        span{
-            font-weight: 600;
-            color: $basic-7;
-        }
-        strong{
-            font-weight: 400;
-        }
-    }
-    .payment-status span{
-        font-size: 12px;
-        line-height: 16px;
-    }
-
-    .order-status span{
-        display: flex;
-        align-items: center;
-        color: $basic-7;
-        i{
-            color: $success-5;
-            margin-right: 9px;
-            font-size: 16px;
-        }
-    }
-
-    .badge{
-        padding: 6px 13px;
-        width: 88px;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-    }
+  .badge {
+    padding: 6px 13px;
+    width: 88px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+  }
 }
 
-
 .clients-applicants {
-    padding-top: 48px;
-    padding-bottom: 40px;
+  padding-top: 48px;
+  padding-bottom: 40px;
 }

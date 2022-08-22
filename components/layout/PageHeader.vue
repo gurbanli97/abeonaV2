@@ -14,7 +14,7 @@
       </b-col>
 
       <b-col v-if="showActions" class="d-flex justify-content-end align-items-center">
-        <slot> </slot>
+        <slot></slot>
       </b-col>
     </b-row>
 
@@ -31,7 +31,7 @@
             :inputStyle = "'query-field'"
             :value="`${queryFilters.dateFrom} - ${queryFilters.dateTo}`"
             @delete-filter="test"
-           
+
         />
         </b-col>
           <b-col xl="3" class="mt-4" v-if="queryFilters.travelTo">

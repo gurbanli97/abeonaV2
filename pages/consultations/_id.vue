@@ -1,6 +1,6 @@
 <template>
   <div class="consultations consultation_id">
-    <page-header :title="'Consultation details'" :show-actions="true" :show-back-button="true" :show-border="true" />
+    <page-header :title="'Consultation details'" show-actions show-back-button show-border />
     <div class="container">
       <div class="add-consultation-inner row justify-content-between">
         <div class="main col-8">
@@ -106,7 +106,6 @@
                 <draggable class="list-group" :list="list2" group="people" @change="log">
                   <div v-for="element in list2" :key="element.name" class="list-group-item">
                     <p>{{ element.name }}</p>
-
                     <badge :category="'document'" :text="element.document_type" />
                   </div>
                 </draggable>
@@ -126,7 +125,6 @@
                 <icon :name="'plus-circle'" />
                 <span>Add service</span>
               </button>
-
               <div v-show="showAddPopup" class="add-service-popup">
                 <div class="popup-head">
                   <span>Add service</span>

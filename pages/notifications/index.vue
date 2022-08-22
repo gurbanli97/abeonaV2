@@ -1,6 +1,6 @@
 <template>
   <div class="notifications">
-    <page-header :title="'Notifications'" :show-actions="true" />
+    <page-header title="Notifications" show-actions />
     <div class="container">
       <div class="notifications-inner">
         <div class="notifications-today">
@@ -21,9 +21,9 @@
             </NuxtLink>
           </div>
         </div>
-        <!-- <div 
+        <!-- <div
               class="notifications-others"
-              v-for="notification in notifications" 
+              v-for="notification in notifications"
               :key="notification.id"
               >
               <NuxtLink :to="`/notifications/${notification.id}`">

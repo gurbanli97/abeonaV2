@@ -1,88 +1,88 @@
 .trips {
-    margin-top: 48px;
-    h3 {
-        font-size: 16px;
-        line-height: 24px;
-        color: #2E3A59;
-    }
+  margin-top: 48px;
+
+  h3 {
+    color: #2e3a59;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
-.trips-inner{
-  .trip-item{
-      height: 48px;
-      margin-top: 24px;
-      width: 426px;
-      max-width: 100%;
-      background: #F7F9FC;
-      border: 1px solid #DEE1F4;
-      border-radius: 8px;
-      
-      cursor: pointer;
+.trips-inner {
+  .trip-item {
+    margin-top: 24px;
+    max-width: 100%;
+    width: 426px;
+    height: 48px;
+    border: 1px solid #dee1f4;
+    border-radius: 8px;
+    background: #f7f9fc;
+    cursor: pointer;
 
+    .trip-item_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 14px 15px;
 
-      &.active{
-          height: 100%;
-           .trip-item_body{
-               display:block;
-               height: 100%;
-           }
-           .trip-item_head > i {
-               transform: rotate(180deg);
-           }
+      i {
+        color: $dark-4;
+        font-size: 20px;
       }
 
-      .trip-item_head{
-       padding: 14px 16px 14px 15px;
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
+      span {
+        color: $basic-7;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
 
+        i {
+          margin-right: 24px;
+          font-size: 20px;
+        }
+      }
+    }
 
-       span{
-           font-size: 14px;
-           line-height: 20px;
-           color: $basic-7;
-           font-weight: 500;
-           i{
-               margin-right: 24px;
-               font-size: 20px;
-           }
-       }
+    .trip-item_body {
+      display: none;
+      padding: 26px 25px 40px;
+      transition: all .3s ease-out;
 
-       i{
-           font-size: 20px;
-           color: $dark-4;
-       }
+      .form-field input {
+        background-color: $white;
       }
 
+      .mx-datepicker {
+        background-color: $white;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 32px;
+
+        .btn-borderless {
+          color: $danger-5;
+        }
+      }
+    }
+
+    &.active {
+      height: 100%;
 
       .trip-item_body {
-          display:none;
-          padding: 26px 25px 40px 25px;
-          transition: all .3s ease-out;
-
-          .form-field input{
-              background-color: $white;
-          }
-          .mx-datepicker {
-              background-color: $white;
-          }
-
-          .actions {
-              margin-top: 32px;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-
-
-              .btn-borderless {
-                color: $danger-5;
-              }
-          }
+        display: block;
+        height: 100%;
       }
+
+      .trip-item_head > i {
+        transform: rotate(180deg);
+      }
+    }
   }
 
-   .vs__dropdown-toggle{
+  .vs__dropdown-toggle {
     background-color: #fff;
-   }
+  }
 }

@@ -1,39 +1,41 @@
-.group-order_inner{
-  .detail-field{
-    width: 192px;
+.group-order_inner {
+  .detail-field {
     max-width: 100%;
+    width: 192px;
   }
-  h3{
+
+  h3 {
+    color: $basic-7;
     font-size: 14px;
     line-height: 20px;
-    color: $basic-7;
   }
+
   .group-client_details {
     padding-top: 32px;
     padding-bottom: 24px;
 
-    .row{
-      margin-top: 20px;      
-    }
-
-  }
-  .group-applicant_details {
-    margin-top: 24px;
-
-    table{
+    .row {
       margin-top: 20px;
     }
   }
-  
 
-  .add-invoice{
+  .group-applicant_details {
+    margin-top: 24px;
+
+    table {
+      margin-top: 20px;
+    }
+  }
+
+  .add-invoice {
+    color: $dark-4;
     font-size: 14px;
     line-height: 20px;
-    color: $dark-4;
-    i{
-        color: $success-5;
-        font-size: 20px;
-        margin-right: 8px;
+
+    i {
+      margin-right: 8px;
+      color: $success-5;
+      font-size: 20px;
     }
-}
+  }
 }
