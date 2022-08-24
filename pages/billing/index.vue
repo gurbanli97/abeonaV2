@@ -1,21 +1,40 @@
 <template>
   <div class="billing">
     <PageHeader title="Billing" show-actions>
-      <button v-if="filtersActive" class="btn clear-filters" @click="$nuxt.$emit('clear-filters')">
-        <icon :name="'eraser-1'" />
-        <span>Clear filters</span>
-      </button>
-      <button class="btn open-filters" @click="toggleFilters">
-        <icon :name="!filtersActive ? 'filter-search' : 'close-circle'" />
-        <span v-if="!filtersActive">Filters</span>
-        <span v-else>Hide Filters</span>
-      </button>
-      <div class="d-flex justify-content-end mr-3">
-        <NuxtLink :to="'/billing/add'" class="btn btn-success"> Export as excel </NuxtLink>
-      </div>
-      <div class="d-flex justify-content-end">
-        <NuxtLink :to="'/billing/add'" class="btn btn-success">Create invoice</NuxtLink>
-      </div>
+      <template #actions>
+        <button v-if="filtersActive" class="btn clear-filters" @click="$nuxt.$emit('clear-filters')">
+          <icon :name="'eraser-1'" />
+          <span>Clear filters</span>
+        </button>
+        <button class="btn open-filters" @click="toggleFilters">
+          <icon :name="!filtersActive ? 'filter-search' : 'close-circle'" />
+          <span v-if="!filtersActive">Filters</span>
+          <span v-else>Hide Filters</span>
+        </button>
+        <div class="d-flex justify-content-end mr-3">
+          <NuxtLink :to="'/billing/add'" class="btn btn-success"> Export as excel </NuxtLink>
+        </div>
+        <div class="d-flex justify-content-end">
+          <NuxtLink :to="'/billing/add'" class="btn btn-success">Create invoice</NuxtLink>
+        </div>
+      </template>
+      <template #filters>
+        <div class="col-3">
+          <b-form-group>
+            <form-field :placeholder="'Enter'" label="Search" type="search" />
+          </b-form-group>
+        </div>
+        <div class="col-3">
+          <b-form-group label="Date range">
+            <date-picker value-type="format" range format="YYYY-MM-DD" />
+          </b-form-group>
+        </div>
+        <div class="col-3">
+          <b-form-group label="Paymnet status">
+            <v-select />
+          </b-form-group>
+        </div>
+      </template>
     </PageHeader>
     <div class="container">
       <DataTable :fields="fields">
@@ -85,14 +104,14 @@ export default {
   data() {
     return {
       fields: [
-        'Invoice Id',
-        'Order Id',
+        'Invoice ID',
+        'Order ID',
         'Client',
         'Order type',
         'Amount',
         'Invoice date',
-        'Payment type',
         'Payment status',
+        'Payment type',
       ],
     }
   },

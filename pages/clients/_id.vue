@@ -114,7 +114,7 @@
                 </td>
 
                 <td :class="['actions', { active: activeAction === client.id }]">
-                  <button ref="showActions" class="show-actions" @click="toggleActions(client)">
+                  <button ref="showActions" class="show-actions" @click.stop="toggleActions(client)">
                     <Icon :name="'more'" />
                   </button>
                   <div
@@ -173,6 +173,14 @@ export default {
     ...mapGetters({
       clients: 'clients/clients',
     }),
+  },
+  mounted() {
+    this.$nuxt.$on('modal-delete-click', this.handleDelete)
+    document.addEventListener('click', this.handleDocClick)
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('modal-delete-click', this.handleDelete)
+    document.removeEventListener('click', this.handleDocClick)
   },
 }
 </script>

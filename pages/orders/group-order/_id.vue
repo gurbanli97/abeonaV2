@@ -1,11 +1,13 @@
 <template>
   <div class="orders group-order">
     <page-header show-back-button show-actions>
-      <div class="order-status_select">
-        <span>Order status:</span>
-        <v-select> </v-select>
-      </div>
-      <button class="btn btn-success">Save</button>
+      <template #actions>
+        <div class="order-status_select">
+          <span>Order status:</span>
+          <v-select />
+        </div>
+        <button class="btn btn-success">Save</button>
+      </template>
     </page-header>
     <div class="container">
       <div class="group-order_inner">
@@ -55,8 +57,8 @@
                       <td class="payment-status_field">
                         <span>{{ $capitalizeString(orderDetails.payment_status) }}</span>
                       </td>
-                      <td class="order-status_field">
-                        <span>
+                      <td>
+                        <span class="order-status_field">
                           <icon :name="iconType(orderDetails.status.status_value)" />
                           {{ orderDetails.status.status_value }}
                         </span>

@@ -92,6 +92,10 @@
   opacity: 1 !important;
 }
 
+.dropzone .dz-preview.dz-image-preview {
+  background-color: transparent;
+}
+
 .dropzone .dz-preview.dz-file-preview .dz-details {
   position: relative !important;
 }

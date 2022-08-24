@@ -13,12 +13,12 @@
         <div class="trip-item_body">
           <b-form>
             <b-form-group label="Country">
-              <v-select v-model="editTripform.travel_to" :options="countryListOptions" :reduce="(data) => data.value">
+              <v-select v-model="editTripForm.travel_to" :options="countryListOptions" :reduce="(data) => data.value">
               </v-select>
             </b-form-group>
             <b-form-group label="Date from">
               <date-picker
-                v-model="editTripform.date_from"
+                v-model="editTripForm.date_from"
                 value-type="format"
                 format="YYYY-MM-DD"
                 placeholder="Enter"
@@ -26,7 +26,7 @@
             </b-form-group>
 
             <b-form-group label="Date to">
-              <date-picker v-model="editTripform.date_to" value-type="format" format="YYYY-MM-DD" placeholder="Enter" />
+              <date-picker v-model="editTripForm.date_to" value-type="format" format="YYYY-MM-DD" placeholder="Enter" />
             </b-form-group>
           </b-form>
 
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       itemToEdit: '',
-      editTripform: {
+      editTripForm: {
         applicant_visa_id: '',
         travel_to: '',
         date_from: '',
@@ -77,10 +77,10 @@ export default {
     handleTripActivation(event, trip_id) {
       this.itemToEdit = trip_id
 
-      this.editTripform.date_from = this.editTripItem.date_from
-      this.editTripform.date_to = this.editTripItem.date_to
-      this.editTripform.status = this.editTripItem.status
-      this.editTripform.travel_to = this.editTripItem.travel_to
+      this.editTripForm.date_from = this.editTripItem.date_from
+      this.editTripForm.date_to = this.editTripItem.date_to
+      this.editTripForm.status = this.editTripItem.status
+      this.editTripForm.travel_to = this.editTripItem.travel_to
 
       var items = document.querySelectorAll('.trip-item')
       items.forEach((item) => {
@@ -97,8 +97,8 @@ export default {
       this.showDeleteModal = false
     },
     async handleTripUpdate(trip_id, visa_id) {
-      this.editTripform.applicant_visa_id = visa_id
-      const preparedForm = this.editTripform
+      this.editTripForm.applicant_visa_id = visa_id
+      const preparedForm = this.editTripForm
       for (const [key] of Object.entries(preparedForm)) {
         if (!preparedForm[key]) delete preparedForm[key]
       }

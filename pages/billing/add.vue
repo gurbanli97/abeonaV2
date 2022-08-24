@@ -1,7 +1,9 @@
 <template>
   <div class="billing add-new">
     <PageHeader title="Add invoice" show-back-button show-actions>
-      <button class="btn btn-success">Save invoice</button>
+      <template #actions>
+        <button class="btn btn-success">Save invoice</button>
+      </template>
     </PageHeader>
     <div class="container">
       <div class="actions d-flex align-items-center justify-content-between flex-wrap">

@@ -1,14 +1,16 @@
 <template>
   <div class="applicant applicant_id">
     <page-header :title="'Applicant name'" :show-back-button="true" :show-border="true" :show-actions="true">
-      <button class="btn applicant-details">
-        <Icon :name="'info-circle'" />
-        Applicant details
-      </button>
-      <button class="btn applicant-files" @click="$router.push(`${$route.params.id}/documents`)">
-        <Icon :name="'folder-add'" />
-        Applicant files
-      </button>
+      <template #actions>
+        <button class="btn applicant-details">
+          <Icon :name="'info-circle'" />
+          Applicant details
+        </button>
+        <button class="btn applicant-files" @click="$router.push(`${$route.params.id}/documents`)">
+          <Icon :name="'folder-add'" />
+          Applicant files
+        </button>
+      </template>
     </page-header>
     <div class="container">
       <div class="applicant-id_inner">
@@ -42,7 +44,7 @@
           </DataTable>
         </div>
         <div class="applicant-passports">
-          <h2>client passports</h2>
+          <h2>Applicant passports</h2>
           <div class="applicant-passports_inner">
             <b-tabs>
               <b-tab title="Passport: C123230">

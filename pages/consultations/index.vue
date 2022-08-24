@@ -1,21 +1,23 @@
 <template>
   <div class="consultations">
     <page-header :title="'Consultations'" :show-actions="true">
-      <button v-if="filtersActive" class="btn clear-filters" @click="$nuxt.$emit('clear-filters')">
-        <icon :name="'eraser-1'" />
-        <span>Clear filters</span>
-      </button>
-      <button class="btn open-filters" @click="toggleFilters">
-        <icon :name="!filtersActive ? 'filter-search' : 'close-circle'" />
-        <span v-if="!filtersActive">Filters</span>
-        <span v-else>Hide Filters</span>
-      </button>
-      <div class="d-flex justify-content-end open-calendar">
-        <NuxtLink :to="'/consultations/calendar'" class="btn btn-success open-calendar">Calendar</NuxtLink>
-      </div>
-      <div class="d-flex justify-content-end add-consultation">
-        <NuxtLink :to="'/consultations/add'" class="btn btn-success add-consultation">Add new</NuxtLink>
-      </div>
+      <template #actions>
+        <button v-if="filtersActive" class="btn clear-filters" @click="$nuxt.$emit('clear-filters')">
+          <icon :name="'eraser-1'" />
+          <span>Clear filters</span>
+        </button>
+        <button class="btn open-filters" @click="toggleFilters">
+          <icon :name="!filtersActive ? 'filter-search' : 'close-circle'" />
+          <span v-if="!filtersActive">Filters</span>
+          <span v-else>Hide Filters</span>
+        </button>
+        <div class="d-flex justify-content-end open-calendar">
+          <NuxtLink :to="'/consultations/calendar'" class="btn btn-success open-calendar">Calendar</NuxtLink>
+        </div>
+        <div class="d-flex justify-content-end add-consultation">
+          <NuxtLink :to="'/consultations/add'" class="btn btn-success add-consultation">Add new</NuxtLink>
+        </div>
+      </template>
     </page-header>
     <div class="container">
       <DataTable :fields="fields">

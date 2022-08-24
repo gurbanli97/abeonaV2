@@ -14,13 +14,15 @@
       </b-col>
 
       <b-col v-if="showActions" class="d-flex justify-content-end align-items-center">
-        <slot></slot>
+        <slot name="actions"></slot>
       </b-col>
     </b-row>
 
     <b-row v-show="filtersActive">
       <b-col xl="12">
-        <Filters />
+        <div class="filters row justify-content-between">
+          <slot name="filters"></slot>
+        </div>
       </b-col>
     </b-row>
     <!-- <b-row v-show="!filtersActive && filtersLength">
@@ -66,10 +68,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Filters from '../elements/Filters.vue'
 import Icon from '../elements/Icon.vue'
 export default {
-  components: { Filters, Icon },
+  components: { Icon },
   props: {
     title: {
       type: String,

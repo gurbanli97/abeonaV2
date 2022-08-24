@@ -19,16 +19,24 @@
     background: #f7f9fc;
     cursor: pointer;
 
+    &.active {
+      height: 100%;
+
+      .trip-item_body {
+        display: block;
+        height: 100%;
+      }
+
+      .trip-item_head > i {
+        transform: rotate(180deg);
+      }
+    }
+
     .trip-item_head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 14px 16px 14px 15px;
-
-      i {
-        color: $dark-4;
-        font-size: 20px;
-      }
 
       span {
         color: $basic-7;
@@ -40,6 +48,11 @@
           margin-right: 24px;
           font-size: 20px;
         }
+      }
+
+      i {
+        color: $dark-4;
+        font-size: 20px;
       }
     }
 
@@ -65,19 +78,6 @@
         .btn-borderless {
           color: $danger-5;
         }
-      }
-    }
-
-    &.active {
-      height: 100%;
-
-      .trip-item_body {
-        display: block;
-        height: 100%;
-      }
-
-      .trip-item_head > i {
-        transform: rotate(180deg);
       }
     }
   }

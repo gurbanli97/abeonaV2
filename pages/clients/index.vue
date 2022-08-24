@@ -1,8 +1,10 @@
 <template>
   <div class="clients">
     <PageHeader title="Clients" :show-actions="true">
-      <form-field :placeholder="'Search'" :type="'search'"> </form-field>
-      <button class="btn btn-success add-new">Add new</button>
+      <template #actions>
+        <form-field :placeholder="'Search'" :type="'search'"> </form-field>
+        <button class="btn btn-success add-new">Add new</button>
+      </template>
     </PageHeader>
     <div class="container">
       <DataTable :fields="fields" :with-actions="true">
@@ -73,7 +75,12 @@ export default {
     }),
   },
   mounted() {
-    console.log(this.clients)
+    this.$nuxt.$on('modal-delete-click', this.handleDelete)
+    document.addEventListener('click', this.handleDocClick)
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('modal-delete-click', this.handleDelete)
+    document.removeEventListener('click', this.handleDocClick)
   },
 }
 </script>

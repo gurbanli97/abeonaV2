@@ -40,6 +40,7 @@ export default {
     }
   },
   beforeDestroy() {
+    document.querySelector('body').classList.remove('slideout-active')
     window.removeEventListener('keydown', this.handleEscapeKey)
   },
   methods: {

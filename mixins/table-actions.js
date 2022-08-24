@@ -11,7 +11,6 @@ export const TableActionsMixin = {
       this.activeAction = item.id
     },
     handleDocClick(event) {
-      console.log(event)
       if (this.activeAction === null) {
         return
       }
@@ -23,7 +22,8 @@ export const TableActionsMixin = {
       }
     },
     openModal(item) {
-      ;(this.showDeleteModal = true), (this.itemToDelete = item)
+      this.showDeleteModal = true
+      this.itemToDelete = item
     },
     handleDelete(item) {
       console.log('id:', item)

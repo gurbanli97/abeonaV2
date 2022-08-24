@@ -1,4 +1,4 @@
-import { transformOptions } from '~/functions/select_options'
+import { transformOptions } from './store-helpers'
 export const state = () => ({
   allOrders: [],
   pagination: {

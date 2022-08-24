@@ -38,6 +38,7 @@ export default {
     }
   },
   beforeDestroy() {
+    document.querySelector('body').classList.remove('modal-active')
     window.removeEventListener('keydown', this.handleEscapeKey)
   },
   methods: {

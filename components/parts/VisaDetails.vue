@@ -1,7 +1,7 @@
 <template>
   <div class="visa-details">
     <b-tabs>
-      <b-tab :title="visa.country">
+      <b-tab :title="$getCountryName(visa.country)">
         <button class="btn edit-visa ml-auto" @click="handleEditSlideOut(visa.id)">
           <icon :name="'edit-2'" />
           Edit
@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-12 d-flex justify-content-between flex-wrap mb-4">
             <detail-field label="Country">
-              <strong>{{ visa.country }}</strong>
+              <strong>{{ $getCountryName(visa.country) }}</strong>
             </detail-field>
             <detail-field label="Issue date">
               <strong>{{ visa.issue_date }}</strong>

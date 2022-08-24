@@ -1,10 +1,12 @@
 <template>
   <div class="applicant applicant-documents">
     <PageHeader title="Applicant documents" show-back-button show-actions>
-      <button class="btn btn-success download-files">
-        <Icon name="document-download" />
-        Download all files
-      </button>
+      <template #actions>
+        <button class="btn btn-success download-files">
+          <Icon name="document-download" />
+          Download all files
+        </button>
+      </template>
     </PageHeader>
     <div class="container">
       <div class="applicant-documents_inner">

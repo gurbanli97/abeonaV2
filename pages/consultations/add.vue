@@ -1,9 +1,11 @@
 <template>
   <div class="consultations add-new">
     <page-header :title="'New Consultation'" :show-actions="true" :show-back-button="true" :show-border="true">
-      <button class="btn btn-borderless add-customer_list">Add to customer list</button>
-      <button class="btn btn-transparent send-details">Send details</button>
-      <button class="btn btn-success">Save consultation</button>
+      <template #actions>
+        <button class="btn btn-borderless add-customer_list">Add to customer list</button>
+        <button class="btn btn-transparent send-details">Send details</button>
+        <button class="btn btn-success">Save consultation</button>
+      </template>
     </page-header>
     <div class="container">
       <div class="add-consultation-inner row justify-content-between">

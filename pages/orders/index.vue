@@ -1,23 +1,25 @@
 <template>
   <div class="orders">
     <page-header :title="'Orders'" show-actions>
-      <div class="order-group_switch">
-        <span>Group</span>
-        <label class="switch">
-          <input v-model="showByGroup" type="checkbox" />
-          <span class="slider round"></span>
-        </label>
-      </div>
-      <button v-if="filtersActive" class="btn clear-filters" @click="clearFilters">
-        <icon :name="'eraser-1'" />
-        <span>Clear filters</span>
-      </button>
-      <button class="btn open-filters" @click="filtersActive = !filtersActive">
-        <icon :name="!filtersActive ? 'filter-search' : 'close-circle'" />
-        <span v-if="!filtersActive">Filters</span>
-        <span v-else>Hide Filters</span>
-      </button>
-      <button class="btn btn-success" @click="$router.push('orders/add')">Export as excel</button>
+      <template #actions>
+        <div class="order-group_switch">
+          <span>Group</span>
+          <label class="switch">
+            <input v-model="showByGroup" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <button v-if="filtersActive" class="btn clear-filters" @click="clearFilters">
+          <icon :name="'eraser-1'" />
+          <span>Clear filters</span>
+        </button>
+        <button class="btn open-filters" @click="filtersActive = !filtersActive">
+          <icon :name="!filtersActive ? 'filter-search' : 'close-circle'" />
+          <span v-if="!filtersActive">Filters</span>
+          <span v-else>Hide Filters</span>
+        </button>
+        <button class="btn btn-success" @click="$router.push('orders/add')">Export as excel</button>
+      </template>
     </page-header>
     <div class="container">
       <div class="orders-inner">

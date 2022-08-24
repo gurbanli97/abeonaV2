@@ -9,7 +9,7 @@
         visa_type: order.details.visa_type,
       }"
     >
-      <template v-if="applicantPassports.length">
+      <template v-if="applicantPassports.length" #actions>
         <button class="btn btn-info application-form" @click.prevent="$router.push('/orders/application-form')">
           <icon name="document-text" />
           Application form
