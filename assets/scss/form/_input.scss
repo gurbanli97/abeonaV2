@@ -57,6 +57,14 @@
 
   input {
     padding-left: 52px;
+    padding-right: 30px;
+
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration {
+      appearance: none;
+
+      // -webkit-appearance: none;
+    }
   }
 
   i {
@@ -64,8 +72,25 @@
     top: 50%;
     left: 18px;
     color: $dark-3;
-    font-size: 17px;
+    font-size: 20px;
+    font-weight: 500;
     transform: translateY(-50%);
+  }
+
+  #clear-search {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    i {
+      font-size: 18px;
+      color: $dark-4;
+    }
   }
 }
 

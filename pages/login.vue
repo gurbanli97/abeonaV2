@@ -77,6 +77,9 @@ export default {
       },
     }
   },
+  head: {
+    title: 'Login',
+  },
   validations: {
     form: {
       username: { required },

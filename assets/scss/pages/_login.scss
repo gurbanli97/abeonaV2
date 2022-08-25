@@ -113,9 +113,16 @@
       padding: 0;
       width: 100%;
       border-radius: 8px;
-      background: #1c1e33;
+      background: $dark-5;
       color: $white;
       line-height: 40px;
+      border: 1px solid transparent;
+
+      &:hover {
+        background-color: $white;
+        color: $dark-5;
+        border: 1px solid $dark-5;
+      }
     }
 
     .password-input {

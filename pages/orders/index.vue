@@ -18,7 +18,10 @@
           <span v-if="!filtersActive">Filters</span>
           <span v-else>Hide Filters</span>
         </button>
-        <button class="btn btn-success" @click="$router.push('orders/add')">Export as excel</button>
+        <button class="btn btn-success excel-export" @click="$router.push('orders/add')">
+          <Icon name="document-download" />
+          Export as excel
+        </button>
       </template>
     </page-header>
     <div class="container">
@@ -166,7 +169,7 @@
                   <td>
                     <ul>
                       <li>
-                        <strong>{{ order.client.name }} {{ order.client.surname }}</strong>
+                        <strong>{{ order.client.name || '---' }} {{ order.client.surname }}</strong>
                       </li>
                       <li>
                         <span>
@@ -198,13 +201,13 @@
                 <template v-for="order in separatedOrders">
                   <tr v-for="item in order" :key="item.id" @click="$router.push(`/orders/${item.id}`)">
                     <td>
-                      <strong>{{ item.client.name }} {{ item.client.surname }}</strong>
+                      <strong>{{ item.client.name || '---' }} {{ item.client.surname }}</strong>
                     </td>
                     <td>
                       <strong>{{ item.id }}</strong>
                     </td>
                     <td class="payment-status_field">
-                      <span>{{ $capitalizeString(item.payment_status) }}</span>
+                      <span>{{ $capitalizeString(item.payment_status) || '---' }}</span>
                     </td>
                     <td>
                       <span class="order-status_field">
@@ -213,7 +216,7 @@
                       </span>
                     </td>
                     <td>
-                      <span>{{ $moment(item.order_date).format('DD.MM.YYYY - HH:mm') }}</span>
+                      <span>{{ $moment(item.order_date).format('DD.MM.YYYY - HH:mm') || '---' }}</span>
                     </td>
                   </tr>
                 </template>
@@ -273,6 +276,9 @@ export default {
         order_id: null,
       },
     }
+  },
+  head: {
+    title: 'Orders',
   },
   computed: {
     ...mapGetters({

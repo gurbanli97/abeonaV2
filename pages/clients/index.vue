@@ -2,7 +2,7 @@
   <div class="clients">
     <PageHeader title="Clients" :show-actions="true">
       <template #actions>
-        <form-field :placeholder="'Search'" :type="'search'"> </form-field>
+        <form-field v-model="search" :placeholder="'Search'" :type="'search'"> </form-field>
         <button class="btn btn-success add-new">Add new</button>
       </template>
     </PageHeader>
@@ -66,6 +66,7 @@ export default {
   },
   data() {
     return {
+      search: '',
       fields: ['Client', 'Email', 'Phone'],
     }
   },

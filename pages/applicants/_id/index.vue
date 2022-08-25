@@ -2,7 +2,7 @@
   <div class="applicant applicant_id">
     <page-header :title="'Applicant name'" :show-back-button="true" :show-border="true" :show-actions="true">
       <template #actions>
-        <button class="btn applicant-details">
+        <button class="btn applicant-details" @click="$router.push(`${$route.params.id}/details`)">
           <Icon :name="'info-circle'" />
           Applicant details
         </button>

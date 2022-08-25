@@ -96,7 +96,7 @@
         <DataTable :with-actions="false">
           <tbody>
             <template v-for="client in clients">
-              <tr :key="client.id" @click="$router.push('/applicants')">
+              <tr :key="client.id" @click="$router.push(`/applicants/${client.id}`)">
                 <td>
                   <DetailField :label="'Name'">
                     <strong>{{ client.name }} <span class="client-type"> (Client applicant)</span></strong>
@@ -123,7 +123,7 @@
                     ref="actionsBlock"
                     class="table-actions"
                   >
-                    <button>
+                    <button @click.stop="$router.push(`/applicants/${client.id}/details`)">
                       <Icon :name="'edit-2'" />
                       Edit
                     </button>

@@ -12,7 +12,10 @@
           <span v-else>Hide Filters</span>
         </button>
         <div class="d-flex justify-content-end mr-3">
-          <NuxtLink :to="'/billing/add'" class="btn btn-success"> Export as excel </NuxtLink>
+          <NuxtLink :to="'/billing/add'" class="btn btn-success excel-export">
+            <Icon name="document-download" />
+            Export as excel
+          </NuxtLink>
         </div>
         <div class="d-flex justify-content-end">
           <NuxtLink :to="'/billing/add'" class="btn btn-success">Create invoice</NuxtLink>
@@ -21,17 +24,17 @@
       <template #filters>
         <div class="col-3">
           <b-form-group>
-            <form-field :placeholder="'Enter'" label="Search" type="search" />
+            <form-field v-model="search" :placeholder="'Enter'" label="Search" type="search" />
           </b-form-group>
         </div>
         <div class="col-3">
           <b-form-group label="Date range">
-            <date-picker value-type="format" range format="YYYY-MM-DD" />
+            <date-picker value-type="format" placeholder="Choose date" range format="YYYY-MM-DD" />
           </b-form-group>
         </div>
         <div class="col-3">
-          <b-form-group label="Paymnet status">
-            <v-select />
+          <b-form-group label="Payment status">
+            <v-select placeholder="Choose status" />
           </b-form-group>
         </div>
       </template>
@@ -103,6 +106,7 @@ export default {
   },
   data() {
     return {
+      search: '',
       fields: [
         'Invoice ID',
         'Order ID',

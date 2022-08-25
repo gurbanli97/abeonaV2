@@ -87,6 +87,16 @@
   &.add-consultation {
     margin-left: 16px;
   }
+
+  &.excel-export {
+    display: flex;
+    align-items: center;
+
+    i {
+      font-size: 16px;
+      margin-right: 6px;
+    }
+  }
 }
 
 .btn.pending {

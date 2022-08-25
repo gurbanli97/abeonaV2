@@ -1,6 +1,6 @@
 <template>
   <b-form-group :label="label" :class="{ 'search-input': type === 'search' }">
-    <span v-if="type === 'search'"><icon :name="'search-normal-1'" /></span>
+    <span v-if="type === 'search'"><icon name="search-normal-1" /></span>
     <b-form-input
       v-model="fieldValue"
       autocomplete="off"
@@ -12,6 +12,9 @@
         'has-success': hasSuccess,
       }"
     />
+    <span v-if="type === 'search' && fieldValue" id="clear-search" @click.stop="clearSearchValue">
+      <icon name="close-circle-2" />
+    </span>
     <slot></slot>
   </b-form-group>
 </template>
@@ -59,6 +62,10 @@ export default {
       },
     },
   },
-  methods: {},
+  methods: {
+    clearSearchValue() {
+      this.fieldValue = ''
+    },
+  },
 }
 </script>
