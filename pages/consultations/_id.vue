@@ -1,6 +1,6 @@
 <template>
   <div class="consultations consultation_id">
-    <page-header :title="'Consultation details'" show-actions show-back-button show-border />
+    <page-header title="Consultation details" show-actions show-back-button show-border />
     <div class="container">
       <div class="add-consultation-inner row justify-content-between">
         <div class="main col-8">

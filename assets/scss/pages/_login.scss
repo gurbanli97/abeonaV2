@@ -112,16 +112,16 @@
       margin-top: 40px;
       padding: 0;
       width: 100%;
+      border: 1px solid transparent;
       border-radius: 8px;
       background: $dark-5;
       color: $white;
       line-height: 40px;
-      border: 1px solid transparent;
 
       &:hover {
+        border: 1px solid $dark-5;
         background-color: $white;
         color: $dark-5;
-        border: 1px solid $dark-5;
       }
     }
 

@@ -56,8 +56,8 @@
   position: relative;
 
   input {
-    padding-left: 52px;
     padding-right: 30px;
+    padding-left: 52px;
 
     &::-webkit-search-cancel-button,
     &::-webkit-search-decoration {
@@ -79,8 +79,8 @@
 
   #clear-search {
     position: absolute;
-    right: 30px;
     top: 50%;
+    right: 30px;
     transform: translateY(-50%);
     display: inline;
     width: 20px;
@@ -88,8 +88,8 @@
     cursor: pointer;
 
     i {
-      font-size: 18px;
       color: $dark-4;
+      font-size: 18px;
     }
   }
 }

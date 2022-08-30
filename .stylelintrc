@@ -211,7 +211,7 @@
         }
       ],
       {
-        "severity": "warning"
+        "severity": "error"
       }
     ]
   }

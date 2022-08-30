@@ -1,6 +1,6 @@
 <template>
   <div class="consultations add-new">
-    <page-header :title="'New Consultation'" :show-actions="true" :show-back-button="true" :show-border="true">
+    <page-header title="New Consultation" show-actions show-back-button show-border>
       <template #actions>
         <button class="btn btn-borderless add-customer_list">Add to customer list</button>
         <button class="btn btn-transparent send-details">Send details</button>
@@ -444,7 +444,8 @@ export default {
       }
     },
     openModal(item) {
-      ;(this.showDeleteModal = true), (this.itemToDelete = item)
+      this.showDeleteModal = true
+      this.itemToDelete = item
     },
     handleDelete(item) {
       console.log('id:', item)

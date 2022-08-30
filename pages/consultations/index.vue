@@ -1,6 +1,6 @@
 <template>
   <div class="consultations">
-    <page-header :title="'Consultations'" :show-actions="true">
+    <page-header :title="'Consultations'" show-actions>
       <template #actions>
         <button v-if="filtersActive" class="btn clear-filters" @click="$nuxt.$emit('clear-filters')">
           <icon :name="'eraser-1'" />
