@@ -71,8 +71,8 @@ export default {
   ],
   axios: {
     // Do away with the baseUrl when using proxy
-    proxy: true,
-    // baseURL: 'http://abeonav2.pickvisa.com/'
+    proxy: false,
+    baseURL: 'http://abeonav2.pickvisa.com/',
   },
   proxy: {
     // Simple proxy
