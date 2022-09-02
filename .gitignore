@@ -37,6 +37,9 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+nuxt.config.js
+settings.json
+abeona-nuxt.code-workspace
 
 # TypeScript v1 declaration files
 typings/
